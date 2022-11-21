@@ -1,5 +1,5 @@
-// import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -12,6 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import GameBoard from './components/GameBoard'
 
 const App = () => {
 
@@ -41,7 +42,7 @@ const App = () => {
 	}
 
 		return (
-			<Fragment>
+			<>
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
@@ -53,21 +54,27 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
+					<Route
+						path='/sign-out'
+						element={
+						<RequireAuth user={user}>
+							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+						</RequireAuth>
+						}
+					/>
+					<Route
+						path='/game'
+						element={
+						<GameBoard user={user}/>
+						}
+					/>
+					<Route
+						path='/change-password'
+						element={
+						<RequireAuth user={user}>
+							<ChangePassword msgAlert={msgAlert} user={user} />
+						</RequireAuth>}
+					/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
@@ -79,7 +86,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-			</Fragment>
+			</>
 		)
 }
 
