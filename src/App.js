@@ -12,7 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import GameBoard from './components/GameBoard'
+import Game from './components/game/Game'
 import NewGame from './components/NewGame'
 import Rules from './components/Rules'
 
@@ -67,7 +67,7 @@ const App = () => {
 					<Route
 						path='/game'
 						element={
-						<GameBoard user={user}/>
+						<Game user={user}/>
 						}
 					/>
 					<Route

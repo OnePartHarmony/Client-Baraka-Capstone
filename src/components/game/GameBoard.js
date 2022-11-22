@@ -19,7 +19,7 @@ for (let i=0; i<37; i++){
     })
 }
 
-const GameBoard = (props) => {
+const GameBoard = ({user}) => {
 
     const [clickedTerritory, setClickedTerritory] = useState(false)
 
