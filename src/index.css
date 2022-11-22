@@ -5,7 +5,16 @@
 
 .newGameForm {
   background-color: red;
+  padding: 10px;
   border-radius: 10px;
-  width: 50vw;
+  width: max-content;
+  margin: 4vh auto;
+}
+
+.newGameButton {
+  background: linear-gradient(#5b61ff, #17057c);    
+  box-shadow: 2px 2px 4px rgba(0,0,0,.2);
+  cursor: pointer;
+  color: white;
   margin: auto;
 }

@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Form, Button } from 'react-bootstrap'
 import { createGame } from '../api/game'
 
 
@@ -21,15 +20,11 @@ const NewGame = ({user, msgAlert}) => {
 
     return (
         <>
-            <div className='newGameForm'>
-                <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                    <h3>Create a New Game</h3>
-                    <Form onSubmit={startGame}>
-                        <Button variant='primary' type='submit'>
-                            Create Game
-                        </Button>
-                    </Form>
-                </div>
+            <div className='newGameForm'>                
+                <h3>Create a New Game</h3>                
+                <button className='newGameButton btn btn-dark' onClick={startGame} style={{margin: 'auto'}}>
+                    Create Game
+                </button>                             
             </div>
         </>
     )
