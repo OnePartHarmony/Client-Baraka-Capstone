@@ -1,6 +1,24 @@
-.gameBoard {
+.game {
   background-image: url(https://i.imgur.com/PEIVQHM.jpg);
+  background-size: cover;
   height: 100vh;
+}
+
+.gameLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameBoard {
+  width: max-content;
+  
+}
+
+.statusBar {
+  border-radius: 10px;
+  width: 50%;
+  height: 30%;
+  background: grey;
 }
 
 .newGameForm {

@@ -4,7 +4,9 @@ const StatusBar = (props) => {
 
 
     return (
-        <>Status Bar</>
+        <div className='statusBar'>
+            Status
+        </div>
     )
 }
 

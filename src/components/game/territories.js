@@ -63,7 +63,7 @@ const mapTerritories = (territories, clickFunction) => {
 console.log(territoriesJSX)
     return (
         <div className='hexBoard' 
-        style={{width: '800', display: 'flex', flexDirection: 'column', position: 'relative', top: '100px'}}
+        style={{width: '750px', display: 'flex', flexDirection: 'column', position: 'relative', top: '50px'}}
         >
             <div className='hexRow1' style={{margin: 'auto', display: 'flex', flexDirection: 'row'}}>
                 {territoriesJSX.slice(0,4)}
