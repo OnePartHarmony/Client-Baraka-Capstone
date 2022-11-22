@@ -2,3 +2,10 @@
   background-image: url(https://i.imgur.com/PEIVQHM.jpg);
   height: 100vh;
 }
+
+.newGameForm {
+  background-color: red;
+  border-radius: 10px;
+  width: 50vw;
+  margin: auto;
+}

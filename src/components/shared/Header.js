@@ -63,7 +63,17 @@ const Header = ({ user }) => (
 			<Link to='/game' style={linkStyle}>
 				Game
 			</Link>
-		</Nav.Item>
+			</Nav.Item>
+			<Nav.Item>
+			<Link to='/newgame' style={linkStyle}>
+				New Game
+			</Link>
+			</Nav.Item>
+			<Nav.Item>
+			<Link to='/rules' style={linkStyle}>
+				Rules
+			</Link>
+			</Nav.Item>
 		</Navbar.Collapse>
 	</Navbar>
 )
