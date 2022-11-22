@@ -4,7 +4,9 @@ import mapTerritories from './territories'
 const placeholderTerritories = []
 for (let i=0; i<37; i++){
     let landType
-    if (i%4 === 0) {
+    if (i%5 === 0) {
+        landType = 'mountain'
+    } else if (i%4 === 0) {
         landType = 'farmland'  
     } else if (i % 3 === 0) {
         landType = 'empty'
@@ -19,7 +21,7 @@ for (let i=0; i<37; i++){
     })
 }
 
-const GameBoard = (props) => {
+const GameBoard = ({user}) => {
 
     const [clickedTerritory, setClickedTerritory] = useState(false)
 
