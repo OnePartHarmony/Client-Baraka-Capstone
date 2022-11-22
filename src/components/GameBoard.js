@@ -23,8 +23,8 @@ const GameBoard = (props) => {
 
     const [clickedTerritory, setClickedTerritory] = useState(false)
 
-    const clickFunction = (e) => {
-        e.preventDefault()
+    const clickFunction = () => {
+        // e.preventDefault()
         // setClickedTerritory(e.target.id)
         setClickedTerritory(prev => !prev)
     }

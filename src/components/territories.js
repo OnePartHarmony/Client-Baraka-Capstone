@@ -1,3 +1,6 @@
+import React from 'react'
+import ImageMapper from 'react-img-mapper'
+
 
 const mapTerritories = (territories, clickFunction) => {
     console.log(territories)
@@ -26,31 +29,29 @@ const mapTerritories = (territories, clickFunction) => {
                 background = 'https://i.imgur.com/XIJpY5B.png?1'
         }
 
+        const map = {
+                        name: `map ${territory.number}`,                      
+                        areas: [{
+                            'id': `${territory.number}`,
+                            'name': `${territory.number}`,
+                            'shape': 'poly',
+                            'coords': [50,0,100,25,100,75,50,100,0,75,0,25]
+                            // strokeColor: rgb value for outline to represent ownership
+                        }]                        
+                    }
+
         territoriesJSX.splice(territory.number, 1, (
             <div
                 key={territory.number}
                 style={{backgroundImage: `url(${background})`, height: '100px', width: '100px', backgroundSize: '100px 100px'}}
             >
-                <img
-                    src='https://i.imgur.com/oAra3xY.png'
-                    alt='blank'
-                    useMap={territory.number}
+                <ImageMapper
+                    src={'https://i.imgur.com/oAra3xY.png'}
+                    map= {map}
                     height='100'
-                    witdh='100'
-                    style={{zIndex: '2', postition: 'absolute', left: '0', top: '0'}}
+                    width='100'
+                    onClick={clickFunction}
                 />
-
-                <map name={territory.number}>
-                    <area
-                        shape='poly'
-                        coords='50,0,100,25,100,75,50,100,0,75,0,25'
-                        alt={`blank image for clicking on territory ${territory.number}`}                        
-                        id={territory.number}
-                        href=""
-                        target='_self'
-                        onClick={clickFunction}
-                    />
-                </map>
                 {/* render display of units and properties for territory */}
             </div>
         ))
