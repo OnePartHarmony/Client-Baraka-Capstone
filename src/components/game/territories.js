@@ -1,10 +1,10 @@
 import React from 'react'
 import ImageMapper from 'react-img-mapper'
-import empty from '../../images/Empty-Hex.png'
-import farmland from '../../images/Farmland-Hex.png'
-import field from '../../images/Field-Hex.png'
-import mountain from '../../images/Mountain-Hex.png'
-import water from '../../images/Water-Hex.png'
+import empty from '../../images/Empty-Hex-lowSat.png'
+import farmland from '../../images/Farmland-Hex-lowSat.png'
+import field from '../../images/Field-Hex-lowSat.png'
+import mountain from '../../images/Mountain-Hex-lowSat.png'
+import water from '../../images/Water-Hex-lowSat.png'
 
 const mapTerritories = (territories, clickFunction) => {
     console.log(territories)
