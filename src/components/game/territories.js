@@ -39,7 +39,7 @@ const mapTerritories = (territories, clickFunction) => {
                             'id': `${territory.number}`,
                             'name': `${territory.number}`,
                             'shape': 'poly',
-                            'coords': [50,0,100,30,100,90,50,100,0,90,0,30]
+                            'coords': [50,0,100,30,100,90,50,120,0,90,0,30]
                             // strokeColor: rgb value for outline to represent ownership
                         }]                        
                     }
