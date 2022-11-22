@@ -5,7 +5,7 @@ import ActionMenu from './ActionMenu'
 
 const Game = (props) => {
 
-    const [user] = props
+    const {user} = props
 
     return (
         <>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CombatMenu = (props) => {
+const CombatMenu = ({user}) => {
 
 
     return (

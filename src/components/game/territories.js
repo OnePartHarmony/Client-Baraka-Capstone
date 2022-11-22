@@ -1,6 +1,10 @@
 import React from 'react'
 import ImageMapper from 'react-img-mapper'
-
+import empty from '../../images/Empty-Hex.png'
+import farmland from '../../images/Farmland-Hex.png'
+import field from '../../images/Field-Hex.png'
+import mountain from '../../images/Mountain-Hex.png'
+import water from '../../images/Water-Hex.png'
 
 const mapTerritories = (territories, clickFunction) => {
     console.log(territories)
@@ -10,20 +14,20 @@ const mapTerritories = (territories, clickFunction) => {
         let background
         switch (territory.type) {
             case 'farmland' :
-                background = 'https://i.imgur.com/XIJpY5B.png?1'
+                background = farmland
                 break
             case 'empty' :
-                background = 'https://i.imgur.com/KY8A5PI.png'
+                background = empty
                 break
             case 'field' :
-                background = 'https://i.imgur.com/CWDQxFf.png'
+                background = field
                 break
             case 'water' :
-                background = 'https://i.imgur.com/KjQzpkn.png'
+                background = water
                 break
-            // case 'mountain' :
-            //     background = ''
-            //     break
+            case 'mountain' :
+                background = mountain
+                break
 
             default :
                 background = 'https://i.imgur.com/XIJpY5B.png?1'
@@ -35,7 +39,7 @@ const mapTerritories = (territories, clickFunction) => {
                             'id': `${territory.number}`,
                             'name': `${territory.number}`,
                             'shape': 'poly',
-                            'coords': [50,0,100,25,100,75,50,100,0,75,0,25]
+                            'coords': [50,0,100,30,100,90,50,100,0,90,0,30]
                             // strokeColor: rgb value for outline to represent ownership
                         }]                        
                     }
@@ -43,12 +47,12 @@ const mapTerritories = (territories, clickFunction) => {
         territoriesJSX.splice(territory.number, 1, (
             <div
                 key={territory.number}
-                style={{backgroundImage: `url(${background})`, height: '100px', width: '100px', backgroundSize: '100px 100px'}}
+                style={{backgroundImage: `url(${background})`, height: '120px', width: '100px', backgroundSize: '100px 120px'}}
             >
                 <ImageMapper
                     src={'https://i.imgur.com/oAra3xY.png'}
                     map= {map}
-                    height='100'
+                    height='120'
                     width='100'
                     onClick={clickFunction}
                 />
@@ -64,22 +68,22 @@ console.log(territoriesJSX)
             <div className='hexRow1' style={{margin: 'auto', display: 'flex', flexDirection: 'row'}}>
                 {territoriesJSX.slice(0,4)}
             </div>
-            <div className='hexRow2' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-24px'}}>
+            <div className='hexRow2' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-35px'}}>
                 {territoriesJSX.slice(4,9)}
             </div>
-            <div className='hexRow3' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-48px'}}>
+            <div className='hexRow3' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-70px'}}>
                 {territoriesJSX.slice(9,15)}
             </div>
-            <div className='hexRow4' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-72px'}}>
+            <div className='hexRow4' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-105px'}}>
                 {territoriesJSX.slice(15,22)}
             </div>
-            <div className='hexRow5' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-96px'}}>
+            <div className='hexRow5' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-140px'}}>
                 {territoriesJSX.slice(22,28)}
             </div>
-            <div className='hexRow6' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-120px'}}>
+            <div className='hexRow6' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-175px'}}>
                 {territoriesJSX.slice(28,33)}
             </div>
-            <div className='hexRow7' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-144px'}}>
+            <div className='hexRow7' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-210px'}}>
                 {territoriesJSX.slice(33,37)}
             </div>
         </div>

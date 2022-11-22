@@ -1,8 +1,10 @@
 import React from 'react'
+import CommandMenu from './CommandMenu'
+import CombatMenu from './CombatMenu'
 
 const ActionMenu = (props) => {
 
-    const [user] = props
+    const {user} = props
 
     return (
         <>

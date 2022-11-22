@@ -36,18 +36,28 @@ const unauthenticatedOptions = (
 const alwaysOptions = (
 	<>
 		<Nav.Item>
-			<Link to='/' style={linkStyle}>
-				Home
+			<Link to='/game' style={linkStyle}>
+				Game
+			</Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to='/newgame' style={linkStyle}>
+				New Game
+			</Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to='/rules' style={linkStyle}>
+				Rules
 			</Link>
 		</Nav.Item>
 	</>
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
+	<Navbar bg='dark' variant='dark' expand='md'>
 		<Navbar.Brand>
             <Link to='/' style={linkStyle}>
-                BARAKA
+                <img src='/favicon.ico' alt='baraka logo' height='45'/>
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -59,21 +69,7 @@ const Header = ({ user }) => (
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
-			<Nav.Item>
-			<Link to='/game' style={linkStyle}>
-				Game
-			</Link>
-			</Nav.Item>
-			<Nav.Item>
-			<Link to='/newgame' style={linkStyle}>
-				New Game
-			</Link>
-			</Nav.Item>
-			<Nav.Item>
-			<Link to='/rules' style={linkStyle}>
-				Rules
-			</Link>
-			</Nav.Item>
+			
 		</Navbar.Collapse>
 	</Navbar>
 )
