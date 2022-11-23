@@ -5,10 +5,36 @@ const apiUrls = {
 	development: 'http://localhost:8000',
 }
 
+///////set up socket connection///////
+const {io} = require("socket.io-client")
+
+
 if (window.location.hostname === 'localhost') {
 	apiUrl = apiUrls.development
 } else {
 	apiUrl = apiUrls.production
 }
 
-export default apiUrl
+
+const socket = io(apiUrl, {
+	path: '/baraka-socket/'
+	// auth: {
+	// 	token: "abc"
+	// }
+})
+
+
+socket.on("connect", () => {
+	console.log("connected", socket.id)
+})
+  
+socket.on('woohoo', (arg) => {
+	console.log(arg.message)
+} )
+
+socket.on("disconnect", () => {
+	console.log("disconnected", socket.id)
+})
+
+
+module.exports = {apiUrl, socket}
