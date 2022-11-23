@@ -15,7 +15,7 @@ export const createGame = (user) => {
 export const getGame = (user, gameId) => {
 	return axios({
 		url: apiUrl + `/games/${gameId}`,
-		method: 'POST',
+		method: 'GET',
 		data: {
 			user: user
 		},
