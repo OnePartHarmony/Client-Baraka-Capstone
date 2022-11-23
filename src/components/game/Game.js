@@ -8,11 +8,13 @@ const Game = (props) => {
     const {user} = props
 
     return (
-        <>
-            <GameBoard user={user}/>
-            <StatusBar user={user}/>
+        <div className='game'>
+            <div className='gameLeft'>
+                <GameBoard user={user}/>
+                <StatusBar user={user}/>
+            </div>            
             <ActionMenu user={user}/>
-        </>
+        </div>
     )
 }
 

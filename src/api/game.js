@@ -11,3 +11,13 @@ export const createGame = (user) => {
 		},
 	})
 }
+
+export const getGame = (user, gameId) => {
+	return axios({
+		url: apiUrl + `/games/${gameId}`,
+		method: 'GET',
+		data: {
+			user: user
+		},
+	})
+}
