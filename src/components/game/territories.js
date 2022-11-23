@@ -7,7 +7,7 @@ import mountain from '../../images/Mountain-Hex-lowSat.png'
 import water from '../../images/Water-Hex-lowSat.png'
 
 const mapTerritories = (territories, clickFunction) => {
-    console.log(territories)
+
     const territoriesJSX = Array(37)
     
     territories.forEach(territory => {
@@ -60,7 +60,7 @@ const mapTerritories = (territories, clickFunction) => {
             </div>
         ))
     })
-console.log(territoriesJSX)
+
     return (
         <div className='hexBoard' 
         style={{width: '750px', display: 'flex', flexDirection: 'column', position: 'relative', top: '50px'}}
