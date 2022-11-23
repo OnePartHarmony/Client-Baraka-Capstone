@@ -6,7 +6,7 @@ const apiUrls = {
 }
 
 ///////set up socket connection///////
-const io = require("socket.io-client")
+const {io} = require("socket.io-client")
 
 
 if (window.location.hostname === 'localhost') {
@@ -18,8 +18,23 @@ if (window.location.hostname === 'localhost') {
 
 const socket = io(apiUrl, {
 	path: '/baraka-socket/'
+	// auth: {
+	// 	token: "abc"
+	// }
 })
 
+
+socket.on("connect", () => {
+	console.log("connected", socket.id)
+})
+  
+socket.on('woohoo', (arg) => {
+	console.log(arg.message)
+} )
+
+socket.on("disconnect", () => {
+	console.log("disconnected", socket.id)
+})
 
 
 module.exports = {apiUrl, socket}
