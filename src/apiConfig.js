@@ -11,4 +11,12 @@ if (window.location.hostname === 'localhost') {
 	apiUrl = apiUrls.production
 }
 
-export default apiUrl
+///////set up socket connection///////
+import { io } from 'socket.io-client'
+
+const socket = io('https://example.com', {
+  path: '/baraka-socket/'
+})
+
+
+module.exports = { apiUrl, socket }
