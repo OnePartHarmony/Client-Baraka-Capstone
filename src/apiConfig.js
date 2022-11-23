@@ -5,18 +5,21 @@ const apiUrls = {
 	development: 'http://localhost:8000',
 }
 
+///////set up socket connection///////
+const io = require("socket.io-client")
+
+
 if (window.location.hostname === 'localhost') {
 	apiUrl = apiUrls.development
 } else {
 	apiUrl = apiUrls.production
 }
 
-///////set up socket connection///////
-import { io } from 'socket.io-client'
 
-const socket = io('https://example.com', {
-  path: '/baraka-socket/'
+const socket = io(apiUrl, {
+	path: '/baraka-socket/'
 })
 
 
-module.exports = { apiUrl, socket }
+
+module.exports = {apiUrl, socket}
