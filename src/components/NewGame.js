@@ -1,21 +1,27 @@
 import React, {useState} from 'react'
 import { createGame } from '../api/game'
-
+import { socket } from '../apiConfig'
 
 const NewGame = ({user, msgAlert}) => {
 
     const startGame = () => {
-        createGame(user)
-        .then(game => {
-            console.log(game)
+        //start new socket room
+        socket.emit('createNewGame', (response) => {
+            console.log("roomId",response.roomId)
         })
-        .catch(err => {
-            msgAlert({
-                heading: 'Failed to create game',
-                message: err,
-                variant: 'danger'
-            })
-        })
+
+        //create game document
+        // createGame(user)
+        // .then(game => {
+        //     console.log(game)
+        // })
+        // .catch(err => {
+        //     msgAlert({
+        //         heading: 'Failed to create game',
+        //         message: err,
+        //         variant: 'danger'
+        //     })
+        // })
     }
 
     return (
