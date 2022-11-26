@@ -54,7 +54,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='dark' variant='dark' expand='md'>
+	<Navbar bg='dark' variant='dark' expand='md' className='navigation'>
 		<Navbar.Brand>
             <Link to='/' style={linkStyle}>
                 <img src='/favicon.ico' alt='baraka logo' height='45'/>
