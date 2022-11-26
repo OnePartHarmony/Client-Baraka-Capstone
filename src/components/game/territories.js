@@ -6,7 +6,14 @@ import field from '../../images/Field-Hex-lowSat.png'
 import mountain from '../../images/Mountain-Hex-lowSat.png'
 import water from '../../images/Water-Hex-lowSat.png'
 
-const mapTerritories = (territories, clickFunction) => {
+const mapTerritories = (territories, width, clickFunction) => {
+    // set a dynamic number based on the view width, with a max and min
+    let hexWidth = .3 * width   
+    if (hexWidth > 425) {
+        hexWidth = 425
+    } else if (hexWidth < 300) {
+        hexWidth = 300
+    }
 
     const territoriesJSX = Array(37)
     
@@ -47,14 +54,14 @@ const mapTerritories = (territories, clickFunction) => {
         territoriesJSX.splice(territory.number, 1, (
             <div
                 key={territory.number}
-                style={{backgroundImage: `url(${background})`, height: '114px', width: '100px', backgroundSize: '100px 114px'}}
+                style={{backgroundImage: `url(${background})`, height: .285 * hexWidth, width: .25 * hexWidth, backgroundSize: '100% 100%'}}
             >
                 <ImageMapper
                     src={'https://i.imgur.com/oAra3xY.png'}
                     map= {map}
-                    height='114'
-                    width='100'
                     onClick={clickFunction}
+                    responsive= 'true'
+                    parentWidth={hexWidth}
                 />
                 {/* render display of units and properties for territory */}
             </div>
@@ -62,28 +69,26 @@ const mapTerritories = (territories, clickFunction) => {
     })
 
     return (
-        <div className='hexBoard' 
-        style={{width: '750px', display: 'flex', flexDirection: 'column', position: 'relative', top: '50px'}}
-        >
-            <div className='hexRow1' style={{margin: 'auto', display: 'flex', flexDirection: 'row'}}>
+        <div className='hexBoard' style= {{height: 2* hexWidth}}>
+            <div className='hexRow hexRow1'>
                 {territoriesJSX.slice(0,4)}
             </div>
-            <div className='hexRow2' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-28px'}}>
+            <div className='hexRow hexRow2' style={{ top: -.072 * hexWidth }}>
                 {territoriesJSX.slice(4,9)}
             </div>
-            <div className='hexRow3' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-56px'}}>
+            <div className='hexRow hexRow3' style={{ top: -.144 * hexWidth}}>
                 {territoriesJSX.slice(9,15)}
             </div>
-            <div className='hexRow4' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-84px'}}>
+            <div className='hexRow hexRow4' style={{ top: -.216 * hexWidth}}>
                 {territoriesJSX.slice(15,22)}
             </div>
-            <div className='hexRow5' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-112px'}}>
+            <div className='hexRow hexRow5' style={{ top: -.288 * hexWidth}}>
                 {territoriesJSX.slice(22,28)}
             </div>
-            <div className='hexRow6' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-140px'}}>
+            <div className='hexRow hexRow6' style={{ top: -.360 * hexWidth}}>
                 {territoriesJSX.slice(28,33)}
             </div>
-            <div className='hexRow7' style={{margin: 'auto', display: 'flex', flexDirection: 'row', position: 'relative', top: '-168px'}}>
+            <div className='hexRow hexRow7' style={{ top: -.432 * hexWidth}}>
                 {territoriesJSX.slice(33,37)}
             </div>
         </div>
