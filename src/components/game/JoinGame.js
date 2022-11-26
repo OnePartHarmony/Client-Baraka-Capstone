@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 import { Form } from 'react-bootstrap'
 import { socket } from '../../apiConfig'
 
-const JoinGame = ({user, msgAlert, setJoinedGame}) => {
+const JoinGame = (props) => {
+
+    const {user, msgAlert, setJoinedGame} = props
 
     const [roomId, setRoomId] = useState('')
 
