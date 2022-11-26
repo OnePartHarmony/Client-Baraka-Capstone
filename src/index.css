@@ -1,25 +1,46 @@
 .game {
   background-image: url(https://i.imgur.com/PEIVQHM.jpg);
   background-size: cover;
-  height: 100vh;
+  height: 92vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .gameLeft {
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  flex: 2;
+  align-items: center;
+}
+
+.gameRight {
+  border: 2px solid red;
+  width: 40vw;
+  height: 80vh;
+  border-radius: 10px;
+  margin-right: 20px;
+  flex: 1;
 }
 
 .gameBoard {
   width: max-content;
-  
+  height: 80vh;
 }
 
 .statusBar {
   border-radius: 10px;
-  width: 50%;
-  height: 30%;
+  height: 10vh;
+  width: 90%;
   background: grey;
+  padding: 10px;
 }
+
+
+
 
 .newGameForm {
   background-color: red;
