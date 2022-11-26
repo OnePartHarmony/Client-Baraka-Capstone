@@ -46,7 +46,10 @@ const mapTerritories = (territories, width, clickFunction) => {
                             'id': `${territory.number}`,
                             'name': `${territory.number}`,
                             'shape': 'poly',
-                            'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5]
+                            'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
+                            stayHighlighted: 'true',
+                            // preFillColor: 'rgba(255,0,0,.4)',
+                            lineWidth: 4
                             // strokeColor: rgb value for outline to represent ownership
                         }]                        
                     }

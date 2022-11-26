@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import { createGame } from '../api/game'
-import { socket } from '../apiConfig'
+import { createGame } from '../../api/game'
+import { socket } from '../../apiConfig'
 import JoinGame from './JoinGame'
 
-const NewGame = ({user, msgAlert}) => {
+const NewGame = ({user, msgAlert, setJoinedGame}) => {
 
     const startGame = () => {
         //start new socket room
         socket.emit('createNewGame', (response) => {
+            setJoinedGame(true)
             console.log("roomId",response.roomId)
         })
 
@@ -33,7 +34,6 @@ const NewGame = ({user, msgAlert}) => {
                     Create Game
                 </button>                             
             </div>
-            <JoinGame user={user} />
         </>
     )
 }

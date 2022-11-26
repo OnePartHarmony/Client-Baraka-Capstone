@@ -5,17 +5,20 @@ import ActionMenu from './ActionMenu'
 
 const Game = (props) => {
 
-    const [updated, setUpdated] = useState(false)
-
     const {user} = props
 
+    const [joinedGame, setJoinedGame] = useState(false)
+
+
     return (
-        <div className='game'  onresize={() => setUpdated(prev => !prev)}>
+        <div className='game'>
+          
             <div className='gameLeft'>
                 <GameBoard user={user}/>
                 <StatusBar user={user}/>
             </div>            
             <ActionMenu user={user}/>
+            
         </div>
     )
 }

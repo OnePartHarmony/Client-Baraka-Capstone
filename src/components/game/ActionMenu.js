@@ -1,6 +1,6 @@
 import React from 'react'
-import CommandMenu from './CommandMenu'
-import CombatMenu from './CombatMenu'
+// import CommandMenu from './CommandMenu'
+// import CombatMenu from './CombatMenu'
 
 const ActionMenu = (props) => {
 

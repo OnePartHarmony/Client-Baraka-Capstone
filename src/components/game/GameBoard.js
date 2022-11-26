@@ -32,9 +32,7 @@ const GameBoard = ({user}) => {
         })
 
         return () => {
-            window.removeEventListener('resize', () => {
-                setWidth(window.innerWidth)
-            })
+            window.removeEventListener('resize')
         }
     }, [])
 
