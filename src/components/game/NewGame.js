@@ -12,23 +12,15 @@ const NewGame = (props) => {
 
     const startGame = () => {
         //start new socket room
-        socket.emit('createNewGame', user, playerCount, (response) => {            
-            setUser(response.user)
-            console.log("roomId",response.roomId)
+        socket.emit('createNewGame', user, playerCount, (response) => {
+            if (response.error){
+                console.log(response.error)
+            } else {
+                setUser(response.user)
+                console.log("roomId",response.roomId)
+            }            
         })
         setJoinedGame(true)
-        //create game document
-        // createGame(user)
-        // .then(game => {
-        //     console.log(game)
-        // })
-        // .catch(err => {
-        //     msgAlert({
-        //         heading: 'Failed to create game',
-        //         message: err,
-        //         variant: 'danger'
-        //     })
-        // })
     }
 
     return (
