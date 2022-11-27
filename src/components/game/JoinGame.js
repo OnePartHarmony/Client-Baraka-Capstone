@@ -1,46 +1,23 @@
 import React, {useState} from 'react'
-import { Form } from 'react-bootstrap'
-import { socket } from '../../apiConfig'
 
 const JoinGame = (props) => {
 
-    const {user, msgAlert, setJoinedGame} = props
-
-    const [roomId, setRoomId] = useState('')
-
+    const {user, msgAlert, setJoinedGame, roomId, setRoomId, joinGame} = props
+       
     const handleChange = (e) => {
         setRoomId(e.target.value)
-    }
-
-    const joinGame = (e) => {
-        e.preventDefault()
-        setJoinedGame(true)
-        socket.emit('joinGame', roomId, user, (response) => {            
-            console.log("joined?",response.message)
-        })
-
-        //create player document 
     }
 
     return (
         <>
             <div className='newGameForm'>                
-                <h3>Join an Existing Game</h3>                
-                {/* <button className='newGameButton btn btn-dark' onClick={joinGame} style={{margin: 'auto'}}>
+                <h3>Join an Existing Game</h3>
+                <label>Game Key:</label>
+                <input type='text' value={roomId} placeholder='Enter the code for your game' onChange={handleChange}/>
+                <br/>
+                <button className='newGameButton btn btn-dark' onClick={joinGame} style={{margin: 'auto'}}>
                     Join Game
-                </button> */}
-                <Form onSubmit={joinGame} >
-                    <Form.Group>
-                        <Form.Label>Game Key:</Form.Label>
-                        <Form.Control
-                            type='text'
-                            value={roomId}
-                            placeholder='Enter the code for your game'
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                    <button type='submit'  className='newGameButton btn btn-dark mt-3'>Join Game</button>
-                </Form>
+                </button>
             </div>
         </>
     )

@@ -19,6 +19,11 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Item>
+		<Nav.Item>
+			<Link to='/game' style={linkStyle}>
+				Game
+			</Link>
+		</Nav.Item>
 	</>
 )
 
@@ -34,12 +39,7 @@ const unauthenticatedOptions = (
 )
 
 const alwaysOptions = (
-	<>
-		<Nav.Item>
-			<Link to='/game' style={linkStyle}>
-				Game
-			</Link>
-		</Nav.Item>
+	<>		
 		<Nav.Item>
 			<Link to='/rules' style={linkStyle}>
 				Rules

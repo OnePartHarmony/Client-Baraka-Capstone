@@ -64,13 +64,15 @@ const App = () => {
 					<Route
 						path='/game'
 						element={
-						<GameMenu user={user}/>
+							<RequireAuth user={user}>
+								<GameMenu user={user}/>
+							</RequireAuth>						
 						}
 					/>
 					<Route
 						path='/rules'
-						element={
-						<Rules user={user}/>
+						element={							
+							<Rules user={user}/>
 						}
 					/>
 					<Route

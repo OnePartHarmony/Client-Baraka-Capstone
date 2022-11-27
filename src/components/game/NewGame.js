@@ -2,7 +2,9 @@ import React, {useState} from 'react'
 import { createGame } from '../../api/game'
 import { socket } from '../../apiConfig'
 
-const NewGame = ({user, msgAlert, setJoinedGame}) => {
+const NewGame = (props) => {
+
+    const {user, msgAlert, setJoinedGame} = props
 
     const [playerCount, setPlayerCount] = useState(2)
 
@@ -12,7 +14,7 @@ const NewGame = ({user, msgAlert, setJoinedGame}) => {
 
     const startGame = () => {
         //start new socket room
-        socket.emit('createNewGame', playerCount, (response) => {
+        socket.emit('createNewGame', user, playerCount, (response) => {
             setJoinedGame(true)
             console.log("roomId",response.roomId)
         })
