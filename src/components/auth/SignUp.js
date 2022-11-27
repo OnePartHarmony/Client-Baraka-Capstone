@@ -9,18 +9,11 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const SignUp = (props) => {
-	// constructor(props) {
-	// 	super(props)
-
-	// 	this.state = {
-	// 		email: '',
-	// 		password: '',
-	// 		passwordConfirmation: '',
-	// 	}
-	// }    
+ 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [username, setUsername] = useState('')
 
     const navigate = useNavigate()
 
@@ -29,7 +22,7 @@ const SignUp = (props) => {
 
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password, passwordConfirmation}
+        const credentials = {email, password, passwordConfirmation, username}
 
 		signUp(credentials)
 			.then(() => signIn(credentials))
@@ -64,11 +57,22 @@ const SignUp = (props) => {
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
                             required
-                            type='email'
+                            type='text'
                             name='email'
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId='username'>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            required
+                            name='username'
+                            value={username}
+                            type='text'
+                            placeholder='Username'
+                            onChange={e => setUsername(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
@@ -77,7 +81,7 @@ const SignUp = (props) => {
                             required
                             name='password'
                             value={password}
-                            type='password'
+                            type='text'
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
                         />
@@ -88,7 +92,7 @@ const SignUp = (props) => {
                             required
                             name='passwordConfirmation'
                             value={passwordConfirmation}
-                            type='password'
+                            type='text'
                             placeholder='Confirm Password'
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
