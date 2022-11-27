@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import GameBoard from './GameBoard'
 import ActionMenu from './ActionMenu'
 import { socket } from '../../apiConfig'
