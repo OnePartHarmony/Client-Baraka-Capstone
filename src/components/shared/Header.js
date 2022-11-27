@@ -2,9 +2,12 @@ import React from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import backgroundMusic from '../../audio/EmilyHopkins-SlowCat.mp3'
+import Player from './BackgroundMusic'
+
 const linkStyle = {
-    color: 'white',
-    textDecoration: 'none',
+	color: 'white',
+	textDecoration: 'none',
 	marginLeft: "10px"
 }
 const authenticatedOptions = (
@@ -30,17 +33,28 @@ const authenticatedOptions = (
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item>
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-        </Nav.Item>
+		<Nav.Item>
+			<Link to='sign-up' style={linkStyle}>Sign Up</Link>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to='sign-in' style={linkStyle}>Sign In</Link>
+		</Nav.Item>
 	</>
 )
 
 const alwaysOptions = (
-	<>		
+
+	<>
+		<Nav.Item>
+			<Player
+				url={backgroundMusic}
+			/>
+		</Nav.Item>
+		<Nav.Item>
+			<Link to='/game' style={linkStyle}>
+				Game
+			</Link>
+		</Nav.Item>
 		<Nav.Item>
 			<Link to='/rules' style={linkStyle}>
 				Rules
@@ -50,12 +64,12 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='dark' variant='dark' expand='md' className='navigation' style={{paddingTop: '2px', paddingBottom: '2px'}}>
+	<Navbar bg='dark' variant='dark' expand='md' className='navigation' style={{ paddingTop: '2px', paddingBottom: '2px' }}>
 		<Navbar.Brand>
-            <Link to='/' style={linkStyle}>
-                <img src='/favicon.ico' alt='baraka logo' className='brandLink' height='40px'/>
-            </Link>
-        </Navbar.Brand>
+			<Link to='/' style={linkStyle}>
+				<img src='/favicon.ico' alt='baraka logo' className='brandLink' height='40px' />
+			</Link>
+		</Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>			
