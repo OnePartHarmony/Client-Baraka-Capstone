@@ -57,7 +57,7 @@ const SignUp = (props) => {
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
                             required
-                            type='text'
+                            type='email'
                             name='email'
                             value={email}
                             placeholder='Enter email'
@@ -81,7 +81,7 @@ const SignUp = (props) => {
                             required
                             name='password'
                             value={password}
-                            type='text'
+                            type='password'
                             placeholder='Password'
                             onChange={e => setPassword(e.target.value)}
                         />
@@ -92,7 +92,7 @@ const SignUp = (props) => {
                             required
                             name='passwordConfirmation'
                             value={passwordConfirmation}
-                            type='text'
+                            type='password'
                             placeholder='Confirm Password'
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
