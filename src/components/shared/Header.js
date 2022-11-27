@@ -41,11 +41,6 @@ const alwaysOptions = (
 			</Link>
 		</Nav.Item>
 		<Nav.Item>
-			<Link to='/newgame' style={linkStyle}>
-				New Game
-			</Link>
-		</Nav.Item>
-		<Nav.Item>
 			<Link to='/rules' style={linkStyle}>
 				Rules
 			</Link>
@@ -54,10 +49,10 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='dark' variant='dark' expand='md' className='navigation'>
+	<Navbar bg='dark' variant='dark' expand='md' className='navigation' style={{paddingTop: '2px', paddingBottom: '2px'}}>
 		<Navbar.Brand>
             <Link to='/' style={linkStyle}>
-                <img src='/favicon.ico' alt='baraka logo' height='45'/>
+                <img src='/favicon.ico' alt='baraka logo' className='brandLink' height='40px'/>
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />

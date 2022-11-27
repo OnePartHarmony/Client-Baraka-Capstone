@@ -12,8 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import Game from './components/game/Game'
-import NewGame from './components/NewGame'
+import GameMenu from './components/game/GameMenu'
 import Rules from './components/Rules'
 
 const App = () => {
@@ -65,13 +64,7 @@ const App = () => {
 					<Route
 						path='/game'
 						element={
-						<Game user={user}/>
-						}
-					/>
-					<Route
-						path='/newgame'
-						element={
-						<NewGame msgAlert={msgAlert} user={user}/>
+						<GameMenu user={user}/>
 						}
 					/>
 					<Route

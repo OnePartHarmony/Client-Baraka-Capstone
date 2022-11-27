@@ -1,11 +1,17 @@
 .navigation {
   width: 100vw;
-  height: 6vh;
+  height: 55px;
 }
+
+body {
+  min-height: 100vh;
+}
+
 .game {
   background-image: url(https://i.imgur.com/PEIVQHM.jpg);
   background-size: cover;
-  height: 94vh;
+  min-height: 94vh;
+  height: max-content;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -14,20 +20,22 @@
 }
 
 .gameLeft {
-  height: 94vh;
+  top: 55px;
+  min-height: 94vh;
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 0px 10px;
   flex: 2;
   align-items: center;
   justify-content: space-around;
 }
 
 .gameRight {
+  top: 55px;
   border: 2px solid red;
-  height: 80vh;  
+  min-height: 80vh;  
   border-radius: 10px;
-  margin: 0 10px 0 10px;
+  margin: 0 10px;
   flex-grow: 1;
 }
 
@@ -55,6 +63,9 @@
   padding: 10px;
   position: relative;
   top: -6vw;
+  overflow-x: wrap;
+  overflow-y: auto;
+  z-index: 3;
 }
 
 @media (max-width: 800px) {
@@ -65,7 +76,6 @@
     width: 90%;
   }
 }
-
 
 .newGameForm {
   background-color: red;

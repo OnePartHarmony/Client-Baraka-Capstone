@@ -5,15 +5,13 @@ const placeholderTerritories = []
 for (let i=0; i<37; i++){
     let landType
     if (i%5 === 0) {
-        landType = 'mountain'
+        landType = 'water'
     } else if (i%4 === 0) {
         landType = 'farmland'  
     } else if (i % 3 === 0) {
-        landType = 'empty'
-    } else if (i % 2 === 0) {
-        landType = 'field'
+        landType = 'mountain'
     } else {
-        landType = 'water'
+        landType = 'field'
     }
     placeholderTerritories.push({
         number: i,
@@ -24,24 +22,22 @@ for (let i=0; i<37; i++){
 const GameBoard = ({user}) => {
 
     const [width, setWidth] = useState(window.innerWidth)
-    const [clickedTerritory, setClickedTerritory] = useState(false)
+    const [clickedTerritory, setClickedTerritory] = useState('')
+
+    const setWindowWidth = () => {
+        setWidth(window.innerWidth)
+    }
 
     useEffect(() => {
-        window.addEventListener('resize', () => {
-            setWidth(window.innerWidth)
-        })
+        window.addEventListener('resize', setWindowWidth)
 
-        return () => {
-            window.removeEventListener('resize', () => {
-                setWidth(window.innerWidth)
-            })
+        return function unMount() {
+            window.removeEventListener('resize', setWindowWidth)
         }
     }, [])
 
-    const clickFunction = () => {
-        // e.preventDefault()
-        // setClickedTerritory(e.target.id)
-        setClickedTerritory(prev => !prev)
+    const clickFunction = (e) => {
+        setClickedTerritory(e.id)
     }
 
     const territories = mapTerritories(placeholderTerritories, width, clickFunction)

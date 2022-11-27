@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import { Form } from 'react-bootstrap'
-import { socket } from '../apiConfig'
+import { socket } from '../../apiConfig'
 
-const JoinGame = ({user, msgAlert}) => {
+const JoinGame = (props) => {
+
+    const {user, msgAlert, setJoinedGame} = props
 
     const [roomId, setRoomId] = useState('')
 
@@ -12,7 +14,8 @@ const JoinGame = ({user, msgAlert}) => {
 
     const joinGame = (e) => {
         e.preventDefault()
-        socket.emit('joinGame', roomId, (response) => {
+        setJoinedGame(true)
+        socket.emit('joinGame', roomId, user, (response) => {            
             console.log("joined?",response.message)
         })
 
