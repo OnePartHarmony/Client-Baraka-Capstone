@@ -15,8 +15,7 @@ const GameMenu = (props) => {
             {joinedGame  ? 
                 <>
                     <Game user={user} />
-                </>
-                
+                </>                
                 :
                 <>
                     <NewGame user={user} setJoinedGame={setJoinedGame}/>

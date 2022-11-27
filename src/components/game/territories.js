@@ -23,9 +23,6 @@ const mapTerritories = (territories, width, clickFunction) => {
             case 'farmland' :
                 background = farmland
                 break
-            case 'empty' :
-                background = empty
-                break
             case 'field' :
                 background = field
                 break
