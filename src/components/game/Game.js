@@ -7,7 +7,7 @@ const Game = (props) => {
 
     const {user} = props
 
-    const [statusArray, setStatusArray] = useState(['Waiting for other players...'])
+    const [statusArray, setStatusArray] = useState([])
 
     
     socket.on('status', (arg) => {
@@ -16,12 +16,8 @@ const Game = (props) => {
         setStatusArray(newStatArray)
     })
     
-    const statusDisplay = statusArray.map((item, index) => (
-        <>            
-            <span key={index}>{item}</span>
-            <br/>
-        </>
-                     
+    const statusDisplay = statusArray.map((item, index) => (        
+        <span key={index}>{item}<br/></span>                             
     ))
     
 
