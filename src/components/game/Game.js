@@ -12,13 +12,16 @@ const Game = (props) => {
     
     socket.on('status', (arg) => {
         let newStatArray = statusArray.slice()
-        console.log(newStatArray)
         newStatArray.push(arg.message)
         setStatusArray(newStatArray)
     })
     
     const statusDisplay = statusArray.map((item, index) => (
-        <p key={index}>{item}</p>                
+        <>            
+            <span key={index}>{item}</span>
+            <br/>
+        </>
+                     
     ))
     
 
@@ -28,7 +31,10 @@ const Game = (props) => {
             <div className='gameLeft'>
                 <GameBoard user={user}/>
                 <div className='statusBar'>
-                    {statusDisplay}
+                    <p>
+                        {statusDisplay}
+                    </p>
+                    
                 </div>
             </div>
             

@@ -64,7 +64,8 @@ body {
   position: relative;
   top: -6vw;
   overflow-x: wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
+  z-index: 3;
 }
 
 @media (max-width: 800px) {
