@@ -12,7 +12,7 @@ const Game = (props) => {
     
     socket.on('status', (arg) => {
         let newStatArray = statusArray.slice()
-        newStatArray.push(arg.message)
+        newStatArray.unshift(arg.message)
         setStatusArray(newStatArray)
     })
     
