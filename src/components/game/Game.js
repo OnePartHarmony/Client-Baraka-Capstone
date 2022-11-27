@@ -27,7 +27,7 @@ const Game = (props) => {
 
     return (
         <div className='game'>
-          
+
             <div className='gameLeft'>
                 <GameBoard user={user}/>
                 <div className='statusBar'>
