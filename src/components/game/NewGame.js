@@ -5,7 +5,7 @@ import { socket } from '../../apiConfig'
 const NewGame = (props) => {
 
     const {user, msgAlert, setJoinedGame} = props
-    console.log(user)
+
     const [playerCount, setPlayerCount] = useState(2)
 
     const handleChange = (e) => {
