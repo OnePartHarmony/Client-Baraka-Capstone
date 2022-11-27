@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 const JoinGame = (props) => {
 
-    const {user, msgAlert, setJoinedGame, roomId, setRoomId, joinGame} = props
+    const {roomId, setRoomId, joinGame} = props
        
     const handleChange = (e) => {
         setRoomId(e.target.value)

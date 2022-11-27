@@ -6,7 +6,7 @@ import NewGame from './NewGame'
 
 const GameMenu = (props) => {
 
-    const {user} = props
+    const {user, setUser} = props
     
     const [joinedGame, setJoinedGame] = useState(false)
     const [roomId, setRoomId] = useState('')
@@ -14,7 +14,8 @@ const GameMenu = (props) => {
 
     const joinGame = () => {
         setJoinedGame(true)
-        socket.emit('joinGame', roomId, user, (response) => {            
+        socket.emit('joinGame', roomId, user, (response) => {
+            setUser(response.user)
             console.log("joined?",response.message)
         })
 
@@ -22,11 +23,10 @@ const GameMenu = (props) => {
     }
 
     if (joinedGame === false && user.gameRoomId) {
-        setJoinedGame(true)
-        Promise.resolve(setRoomId(user.gameRoomId))
-            .then(socket.emit('reJoinGame', roomId, user, (response) => {            
-                console.log("reJoined?",response.message)
-            }))
+        setJoinedGame(true)        
+        socket.emit('reJoinGame', user.gameRoomId, user, (response) => {
+            console.log("reJoined?",response.message)
+        })
     }
 
     return (
@@ -37,8 +37,8 @@ const GameMenu = (props) => {
                 </>                
                 :
                 <>
-                    <NewGame user={user} setJoinedGame={setJoinedGame}/>
-                    <JoinGame user={user} setJoinedGame={setJoinedGame} roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
+                    <NewGame user={user} setJoinedGame={setJoinedGame} setUser={setUser}/>
+                    <JoinGame roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
                 </>                
             }
             
