@@ -20,7 +20,6 @@ const ChangeGame = (props) => {
     const joinGame = () => {        
         socket.emit('joinGame', roomId, user, (response) => {
             setUser(response.user)
-            console.log("joined?",response.message)
         })
         setJoinedGame(true)
     }    
