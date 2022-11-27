@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { createGame } from '../../api/game'
 import { socket } from '../../apiConfig'
 
 const NewGame = (props) => {
