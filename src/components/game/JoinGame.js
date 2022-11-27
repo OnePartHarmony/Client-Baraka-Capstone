@@ -14,8 +14,8 @@ const JoinGame = (props) => {
 
     const joinGame = (e) => {
         e.preventDefault()
-        socket.emit('joinGame', roomId, (response) => {
-            setJoinedGame(true)
+        setJoinedGame(true)
+        socket.emit('joinGame', roomId, user, (response) => {            
             console.log("joined?",response.message)
         })
 

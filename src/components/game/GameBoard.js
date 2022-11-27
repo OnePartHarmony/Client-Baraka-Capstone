@@ -22,7 +22,7 @@ for (let i=0; i<37; i++){
 const GameBoard = ({user}) => {
 
     const [width, setWidth] = useState(window.innerWidth)
-    const [clickedTerritory, setClickedTerritory] = useState(false)
+    const [clickedTerritory, setClickedTerritory] = useState('')
 
     const setWindowWidth = () => {
         setWidth(window.innerWidth)
@@ -31,15 +31,13 @@ const GameBoard = ({user}) => {
     useEffect(() => {
         window.addEventListener('resize', setWindowWidth)
 
-        return () => {
+        return function unMount() {
             window.removeEventListener('resize', setWindowWidth)
         }
     }, [])
 
-    const clickFunction = () => {
-        // e.preventDefault()
-        // setClickedTerritory(e.target.id)
-        setClickedTerritory(prev => !prev)
+    const clickFunction = (e) => {
+        setClickedTerritory(e.id)
     }
 
     const territories = mapTerritories(placeholderTerritories, width, clickFunction)

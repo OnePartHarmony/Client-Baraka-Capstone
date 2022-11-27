@@ -1,6 +1,5 @@
 import React from 'react'
 import ImageMapper from 'react-img-mapper'
-import empty from '../../images/Empty-Hex-lowSat.png'
 import farmland from '../../images/Farmland-Hex-lowSat.png'
 import field from '../../images/Field-Hex-lowSat.png'
 import mountain from '../../images/Mountain-Hex-lowSat.png'
@@ -58,7 +57,7 @@ const mapTerritories = (territories, width, clickFunction) => {
             >
                 <ImageMapper
                     src={'https://i.imgur.com/oAra3xY.png'}
-                    map= {map}
+                    map={map}
                     onClick={clickFunction}
                     responsive= 'true'
                     parentWidth={hexWidth}

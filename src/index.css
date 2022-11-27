@@ -63,6 +63,8 @@ body {
   padding: 10px;
   position: relative;
   top: -6vw;
+  overflow-x: wrap;
+  overflow-y: scroll;
 }
 
 @media (max-width: 800px) {
