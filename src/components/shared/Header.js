@@ -51,11 +51,6 @@ const alwaysOptions = (
 			/>
 		</Nav.Item>
 		<Nav.Item>
-			<Link to='/game' style={linkStyle}>
-				Game
-			</Link>
-		</Nav.Item>
-		<Nav.Item>
 			<Link to='/rules' style={linkStyle}>
 				Rules
 			</Link>
