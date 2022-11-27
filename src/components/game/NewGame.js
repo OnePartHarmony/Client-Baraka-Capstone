@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { createGame } from '../../api/game'
 import { socket } from '../../apiConfig'
-import JoinGame from './JoinGame'
 
 const NewGame = ({user, msgAlert, setJoinedGame}) => {
 
