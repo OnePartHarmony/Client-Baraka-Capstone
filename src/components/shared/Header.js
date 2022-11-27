@@ -22,6 +22,12 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Item>
+		<Nav.Item>
+			<Link to='/change-game' style={linkStyle}>
+				Change Game
+			</Link>
+		</Nav.Item>
+		
 	</>
 )
 
@@ -37,6 +43,7 @@ const unauthenticatedOptions = (
 )
 
 const alwaysOptions = (
+
 	<>
 		<Nav.Item>
 			<Player
@@ -65,14 +72,24 @@ const Header = ({ user }) => (
 		</Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
-				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
-				)}
+			<Nav className='ml-auto'>			
+				{user ?
+					<>						
+						<Nav.Item>
+							<Link to='/game' style={linkStyle}>
+								{user.gameRoomId ?
+									<span className='navbar-text mr-2'>Game Id: {user.gameRoomId}</span>
+									:
+									<span>Game</span>
+								}								
+							</Link>
+						</Nav.Item>
+						{authenticatedOptions}
+					</>
+					
+				: unauthenticatedOptions}
 				{alwaysOptions}
-				{user ? authenticatedOptions : unauthenticatedOptions}
-			</Nav>
-
+			</Nav>			
 		</Navbar.Collapse>
 	</Navbar>
 )

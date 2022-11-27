@@ -13,9 +13,11 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameMenu from './components/game/GameMenu'
+import ChangeGame from './components/game/ChangeGame'
 import Rules from './components/Rules'
 
 const App = () => {
+
 
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
@@ -58,23 +60,33 @@ const App = () => {
 						<RequireAuth user={user}>
 							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
 						</RequireAuth>
-					}
-				/>
-				<Route
-					path='/game'
-					element={
-						<GameMenu user={user} />
-					}
-				/>
-				<Route
-					path='/rules'
-					element={
-						<Rules user={user} />
-					}
-				/>
-				<Route
-					path='/change-password'
-					element={
+						}
+					/>
+					<Route
+						path='/game'
+						element={
+							<RequireAuth user={user}>
+								<GameMenu user={user} setUser={setUser}/>
+							</RequireAuth>						
+						}
+					/>
+					<Route
+						path='/change-game'
+						element={
+							<RequireAuth user={user}>
+								<ChangeGame user={user} setUser={setUser}/>
+							</RequireAuth>						
+						}
+					/>
+					<Route
+						path='/rules'
+						element={							
+							<Rules user={user}/>
+						}
+					/>
+					<Route
+						path='/change-password'
+						element={
 						<RequireAuth user={user}>
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
