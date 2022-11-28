@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { socket } from '../../apiConfig'
 import Game from './Game'
 import JoinGame from './JoinGame'
@@ -16,16 +16,26 @@ const GameMenu = (props) => {
         socket.emit('joinGame', roomId, user, (response) => {
             setUser(response.user)
         })
-
-        //create player document 
     }
-
-    if (joinedGame === false && user.gameRoomId) {              
-        socket.emit('reJoinGame', user.gameRoomId, (response) => {
-            console.log("reJoined?",response.message)
-        })
-        setJoinedGame(true)  
-    }
+    
+    useEffect(() => {
+       if (joinedGame === false && user.gameRoomId) {              
+            socket.emit('reJoinGame', user, (response) => {
+                if (response.invalid) {
+                    msgAlert({
+                        heading: 'Could not automatically rejoin game',
+                        message: response.invalid,
+                        variant: 'danger',
+                    })
+                    console.log(response.invalid)
+                } else {
+                    setJoinedGame(true)
+                }
+                console.log("reJoined?",response.message)
+            })              
+        } 
+    }, [])
+    
 
     return (
         <div className='game'>
