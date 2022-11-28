@@ -6,7 +6,7 @@ import NewGame from './NewGame'
 
 const GameMenu = (props) => {
 
-    const {user, setUser} = props
+    const {user, setUser, msgAlert} = props
     
     const [joinedGame, setJoinedGame] = useState(false)
     const [roomId, setRoomId] = useState('')
@@ -36,7 +36,7 @@ const GameMenu = (props) => {
                 </>                
                 :
                 <>
-                    <NewGame user={user} setJoinedGame={setJoinedGame} setUser={setUser}/>
+                    <NewGame user={user} setJoinedGame={setJoinedGame} setUser={setUser} msgAlert={msgAlert}/>
                     <JoinGame roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
                 </>                
             }

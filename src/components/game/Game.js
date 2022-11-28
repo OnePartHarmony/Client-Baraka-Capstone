@@ -6,7 +6,7 @@ import { socket } from '../../apiConfig'
 const Game = (props) => {
 
     const {user} = props
-
+    
     const [statusArray, setStatusArray] = useState([])
 
     

@@ -6,8 +6,8 @@ import NewGame from './NewGame'
 
 const ChangeGame = (props) => {
 
-    const {user, setUser} = props
-    console.log(user)
+    const {user, setUser, msgAlert} = props
+
     const navigate = useNavigate()
     
     const [joinedGame, setJoinedGame] = useState(false)
@@ -27,7 +27,7 @@ const ChangeGame = (props) => {
     return (        
         <div>
             <h1 style={{width: 'max-content', margin: '4vh auto'}}>Would you like to join a different game?</h1>
-            <NewGame user={user} setJoinedGame={setJoinedGame} setUser={setUser}/>
+            <NewGame user={user} setJoinedGame={setJoinedGame} setUser={setUser} msgAlert={msgAlert}/>
             <JoinGame roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
         </div>        
     )
