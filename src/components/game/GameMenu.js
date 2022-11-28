@@ -20,11 +20,11 @@ const GameMenu = (props) => {
         //create player document 
     }
 
-    if (joinedGame === false && user.gameRoomId) {
-        setJoinedGame(true)        
-        socket.emit('joinGame', user.gameRoomId, (response) => {
-            console.log("Joined?",response.message)
+    if (joinedGame === false && user.gameRoomId) {              
+        socket.emit('reJoinGame', user.gameRoomId, (response) => {
+            console.log("reJoined?",response.message)
         })
+        setJoinedGame(true)  
     }
 
     return (

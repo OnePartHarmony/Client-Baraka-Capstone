@@ -1,9 +1,9 @@
 import React from 'react'
 import ImageMapper from 'react-img-mapper'
-import farmland from '../../images/Farmland-Hex-lowSat.png'
-import field from '../../images/Field-Hex-lowSat.png'
-import mountain from '../../images/Mountain-Hex-lowSat.png'
-import water from '../../images/Water-Hex-lowSat.png'
+import neutralFarmland from '../../images/Neutral-Farmland-Hex.png'
+import neutralField from '../../images/Neutral-Field-Hex.png'
+import neutralMountain from '../../images/Neutral-Mountain-Hex.png'
+import water from '../../images/Water-Hex.png'
 
 const mapTerritories = (territories, width, clickFunction) => {
     // set a dynamic number based on the view width, with a max and min
@@ -20,16 +20,16 @@ const mapTerritories = (territories, width, clickFunction) => {
         let background
         switch (territory.type) {
             case 'farmland' :
-                background = farmland
+                background = neutralFarmland
                 break
             case 'field' :
-                background = field
+                background = neutralField
                 break
             case 'water' :
                 background = water
                 break
             case 'mountain' :
-                background = mountain
+                background = neutralMountain
                 break
 
             default :
