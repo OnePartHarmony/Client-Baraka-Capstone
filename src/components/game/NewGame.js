@@ -18,6 +18,7 @@ const NewGame = (props) => {
             } else {
                 setUser(response.user)
                 console.log("roomId",response.roomId)
+                console.log("game", response.game)
             }            
         })
         setJoinedGame(true)
