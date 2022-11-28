@@ -12,9 +12,19 @@ const GameMenu = (props) => {
 
 
     const joinGame = () => {
-        setJoinedGame(true)
         socket.emit('joinGame', roomId, user, (response) => {
-            setUser(response.user)
+            if (response.invalid) {
+                msgAlert({
+                    heading: 'Could not join game',
+                    message: response.invalid,
+                    variant: 'danger',
+                })
+                console.log(response.invalid)
+            } else {
+                setUser(response.user)
+                setJoinedGame(true)                
+            }
+            console.log("reJoined?",response.message)            
         })
     }
     
