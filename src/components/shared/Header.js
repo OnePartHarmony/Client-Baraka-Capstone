@@ -46,11 +46,6 @@ const alwaysOptions = (
 
 	<>
 		<Nav.Item>
-			<Player
-				url={backgroundMusic}
-			/>
-		</Nav.Item>
-		<Nav.Item>
 			<Link to='/rules' style={linkStyle}>
 				Rules
 			</Link>
@@ -65,6 +60,11 @@ const Header = ({ user }) => (
 				<img src='/favicon.ico' alt='baraka logo' className='brandLink' height='40px' />
 			</Link>
 		</Navbar.Brand>
+		<Nav.Item>
+			<Player
+				url={backgroundMusic}
+			/>
+		</Nav.Item>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>			
