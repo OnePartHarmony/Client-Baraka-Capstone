@@ -71,7 +71,7 @@ const Header = ({ user }) => (
 				{user ?
 					<>						
 						<Nav.Item>
-							<Link to='/game' style={linkStyle}>
+							<Link to='/gameMenu' style={linkStyle}>
 								{user.gameRoomId ?
 									<span className='navbar-text mr-2'>Game Id: {user.gameRoomId}</span>
 									:

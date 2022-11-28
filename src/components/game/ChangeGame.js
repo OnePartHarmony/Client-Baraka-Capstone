@@ -14,7 +14,7 @@ const ChangeGame = (props) => {
     const [roomId, setRoomId] = useState('')
 
     if (joinedGame === true) {
-        navigate('/game')
+        navigate('/gameMenu')
     }
 
     const joinGame = () => {        

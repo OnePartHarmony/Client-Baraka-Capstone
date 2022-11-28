@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-// import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
+import { socket } from './apiConfig'
+
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
@@ -21,6 +22,14 @@ const App = () => {
 
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
+	const [joinedGame, setJoinedGame] = useState(false)
+
+
+	socket.on('disconnect', () => {
+		console.log('disconnected', socket.id)
+		setJoinedGame(false)
+	})
+
 
 	const clearUser = () => {
 		setUser(null)
@@ -63,10 +72,16 @@ const App = () => {
 						}
 					/>
 					<Route
-						path='/game'
+						path='/gameMenu'
 						element={
 							<RequireAuth user={user}>
-								<GameMenu user={user} setUser={setUser} msgAlert={msgAlert}/>
+								<GameMenu
+									user={user}
+									setUser={setUser}
+									msgAlert={msgAlert}
+									joinedGame={joinedGame}
+									setJoinedGame={setJoinedGame}
+								/>
 							</RequireAuth>						
 						}
 					/>

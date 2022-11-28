@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { socket } from '../../apiConfig'
 
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -20,7 +21,9 @@ const SignIn = (props) => {
         const credentials = {email, password}
 
 		signIn(credentials)
-			.then((res) => setUser(res.data.user))
+			.then((res) => {
+                setUser(res.data.user)
+            })
 			.then(() =>
 				msgAlert({
 					heading: 'Sign In Success',
@@ -28,7 +31,7 @@ const SignIn = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/game'))
+			.then(() => navigate('/gameMenu'))
 			.catch((error) => {
                 setEmail('')
                 setPassword('')

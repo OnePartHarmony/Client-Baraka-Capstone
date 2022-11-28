@@ -6,9 +6,8 @@ import NewGame from './NewGame'
 
 const GameMenu = (props) => {
 
-    const {user, setUser, msgAlert} = props
+    const {user, setUser, msgAlert, joinedGame, setJoinedGame} = props
     
-    const [joinedGame, setJoinedGame] = useState(false)
     const [roomId, setRoomId] = useState('')
 
 
@@ -23,8 +22,8 @@ const GameMenu = (props) => {
 
     if (joinedGame === false && user.gameRoomId) {
         setJoinedGame(true)        
-        socket.emit('reJoinGame', user.gameRoomId, (response) => {
-            console.log("reJoined?",response.message)
+        socket.emit('joinGame', user.gameRoomId, (response) => {
+            console.log("Joined?",response.message)
         })
     }
 

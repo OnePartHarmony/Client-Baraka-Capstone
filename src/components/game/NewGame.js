@@ -21,14 +21,14 @@ const NewGame = (props) => {
         //         console.log("roomId",response.roomId)
         //         console.log("game", response.game)
         //     }            
-        // })
-        setJoinedGame(true)
+        // })        
 
         createGame(user, playerCount)
             .then(res => {
-                console.log(res)
+                console.log(res.game)
                 setUser(res.user)
             })
+            .then(setJoinedGame(true))
             .catch(err => {
                 msgAlert({
 					heading: 'Failed to create game',
