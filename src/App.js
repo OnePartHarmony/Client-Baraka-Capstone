@@ -16,6 +16,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import GameMenu from './components/game/GameMenu'
 import ChangeGame from './components/game/ChangeGame'
 import Rules from './components/Rules'
+import ActionMenu from './components/game/ActionMenu'
 
 const App = () => {
 
@@ -53,16 +54,6 @@ const App = () => {
 	return (
 		<>
 			<Header user={user} joinedGame={joinedGame}/>
-			{/* {msgAlerts.map((msgAlert) => (
-				<AutoDismissAlert
-					key={msgAlert.id}
-					heading={msgAlert.heading}
-					variant={msgAlert.variant}
-					message={msgAlert.message}
-					id={msgAlert.id}
-					deleteAlert={deleteAlert}
-				/>
-			))} */}
 			<Routes>
 				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 				<Route
@@ -112,6 +103,7 @@ const App = () => {
 					<Route
 						path='/change-password'
 						element={
+
 						<RequireAuth user={user}>
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
