@@ -4,6 +4,10 @@
 
 https://github.com/OnePartHarmony/Server-Baraka-Capstone
 
+Game Design and Art by Zach Yaffee
+Programmed by Harmony Brown, Bryan Carr, and Zach Yaffee
+Music by Emily Hopkins
+
 ## Technologies
 
 JavaScript, HTML, CSS, Node, React, MongoDB, Mongoose, Express

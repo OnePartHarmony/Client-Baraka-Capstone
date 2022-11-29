@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 const useAudio = (url) => {
 
     let bgMusic = new Audio(url)
-    bgMusic.volume = .5
+    bgMusic.volume = .4
     bgMusic.loop = true
 
     const [audio] = useState(bgMusic)
@@ -35,4 +35,4 @@ const Player = ({ url }) => {
     )
 }
 
-export default Player;
+export default Player
