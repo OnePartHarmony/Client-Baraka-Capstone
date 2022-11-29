@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -21,16 +20,34 @@ import ActionMenu from './components/game/ActionMenu'
 const App = () => {
 
 	const [playerState, setPlayerState] = useState('wait')
-
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 	const [joinedGame, setJoinedGame] = useState(false)
+	const [gameObject, setGameObject] = useState('')
+	const [statusArray, setStatusArray] = useState([])
 
+    useEffect(() => {
+        //listen for status and add it to status bar
+        socket.on('status', (arg) => {
+            let newStatArray = statusArray.slice()
+            newStatArray.unshift(arg.message)
+            setStatusArray(newStatArray)
+        })
 
-	socket.on('disconnect', () => {
-		console.log('disconnected', socket.id)
-		setJoinedGame(false)
-	})
+		socket.on('gameData', (arg) => {
+			setGameObject(arg.game)
+		})
+
+		//force socket to rejoin room on disconnect
+		socket.on('disconnect', () => {
+				console.log('disconnected', socket.id)
+				setJoinedGame(false)
+		})
+
+        return function unMount() {
+            socket.offAny()
+        }
+    }, [])
 
 
 	const clearUser = () => {
@@ -83,6 +100,8 @@ const App = () => {
 									msgAlert={msgAlert}
 									joinedGame={joinedGame}
 									setJoinedGame={setJoinedGame}
+									statusArray={statusArray}
+									gameObject={gameObject}
 								/>
 							</RequireAuth>						
 						}

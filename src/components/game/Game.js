@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import GameBoard from './GameBoard'
 import ActionMenu from './ActionMenu'
-import { socket } from '../../apiConfig'
 
 const Game = (props) => {
 
-    const {user} = props
-    
-    const [statusArray, setStatusArray] = useState([])
-
-    useEffect(() => {
-        //listen for status and add it to status bar
-        socket.on('status', (arg) => {
-            let newStatArray = statusArray.slice()
-            newStatArray.unshift(arg.message)
-            setStatusArray(newStatArray)
-        })
-
-        return function unMount() {
-            socket.off('status')
-        }
-    }, [])
+    const {user, statusArray, gameObject} = props
     
     
     const statusDisplay = statusArray.map((item, index) => (        
@@ -32,7 +16,10 @@ const Game = (props) => {
         <div className='game'>
 
             <div className='gameLeft'>
-                <GameBoard user={user}/>
+                <GameBoard
+                    user={user}
+                    gameObject={gameObject}
+                />
                 <div className='statusBar'>
                     <p>
                         {statusDisplay}
