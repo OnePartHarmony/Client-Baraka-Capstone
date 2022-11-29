@@ -8,12 +8,13 @@ import { createGame } from '../../api/game'
 
 const GameMenu = (props) => {
 
-    const {user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, gameObject} = props
+    const {user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, gameObject,clearGameStates} = props
     
     const [roomId, setRoomId] = useState('')
     const [playerCount, setPlayerCount] = useState(2)
 
     const joinGame = () => {
+        clearGameStates()
         socket.emit('joinGame', roomId, user, (response) => {
             if (response.invalid) {
                 msgAlert({
@@ -32,6 +33,7 @@ const GameMenu = (props) => {
     }
 
     const startGame = () => {
+        clearGameStates()
         createGame(user, playerCount)
             .then(res => {
                 console.log(res.data.game)
@@ -39,7 +41,7 @@ const GameMenu = (props) => {
                 // setRoomId(res.data.game.roomId)
                 // joinGame()
             })
-            // .then(setJoinedGame(true))
+            .then(setJoinedGame(true))
             .catch(err => {
                 msgAlert({
 					heading: 'Failed to create game',

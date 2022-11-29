@@ -23,7 +23,7 @@ const App = () => {
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 	const [joinedGame, setJoinedGame] = useState(false)
-	const [gameObject, setGameObject] = useState('')
+	const [gameObject, setGameObject] = useState(null)
 	const [statusArray, setStatusArray] = useState([])
 
     useEffect(() => {
@@ -52,6 +52,12 @@ const App = () => {
 
 	const clearUser = () => {
 		setUser(null)
+	}
+
+	const clearGameStates = () => {
+		setGameObject(null)
+		setJoinedGame(false)		
+		setStatusArray([])
 	}
 
 	const deleteAlert = (id) => {
@@ -102,6 +108,7 @@ const App = () => {
 									setJoinedGame={setJoinedGame}
 									statusArray={statusArray}
 									gameObject={gameObject}
+									clearGameStates={clearGameStates}
 								/>
 							</RequireAuth>						
 						}
@@ -110,7 +117,12 @@ const App = () => {
 						path='/change-game'
 						element={
 							<RequireAuth user={user}>
-								<ChangeGame user={user} setUser={setUser} msgAlert={msgAlert} setJoinedGame={setJoinedGame}/>
+								<ChangeGame
+									user={user}
+									setUser={setUser}
+									msgAlert={msgAlert}
+									clearGameStates={clearGameStates}
+								/>
 							</RequireAuth>						
 						}
 					/>

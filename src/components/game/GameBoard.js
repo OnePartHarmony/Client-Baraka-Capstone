@@ -19,10 +19,13 @@ for (let i=0; i<37; i++){
     })
 }
 
-const GameBoard = ({user}) => {
+const GameBoard = (props) => {
+
+    const {user, gameObject} = props
 
     const [width, setWidth] = useState(window.innerWidth)
     const [clickedTerritory, setClickedTerritory] = useState('')
+    const [updated, setUpdated] = useState(false)
 
     const setWindowWidth = () => {
         setWidth(window.innerWidth)
@@ -34,13 +37,15 @@ const GameBoard = ({user}) => {
         return function unMount() {
             window.removeEventListener('resize', setWindowWidth)
         }
-    }, [])
+    }, [updated, gameObject])
 
     const clickFunction = (e) => {
         setClickedTerritory(e.id)
     }
 
-    const territories = mapTerritories(placeholderTerritories, width, clickFunction)
+
+    let territories = gameObject ? mapTerritories(gameObject.territories, width, clickFunction) : (<h1>Waiting for game board....</h1>)
+
 
     return (
         <>
