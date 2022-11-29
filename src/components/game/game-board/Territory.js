@@ -14,7 +14,7 @@ import { setTerritoryBackground } from './setTerritoryBackground'
 
 const Territory = (props) => {
 
-    const {user, territory, hexWidth} = props
+    const {user, territory, hexWidth, clickFunction} = props
 
     const background = setTerritoryBackground(territory)
 
@@ -28,7 +28,6 @@ const Territory = (props) => {
             stayHighlighted: 'true',
             // preFillColor: 'rgba(255,0,0,.4)',
             lineWidth: 4
-            // strokeColor: rgb value for outline to represent ownership
         }]                        
     }
 
