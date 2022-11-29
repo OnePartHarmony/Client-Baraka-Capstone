@@ -15,6 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import GameMenu from './components/game/GameMenu'
 import ChangeGame from './components/game/ChangeGame'
 import Rules from './components/Rules'
+import ActionMenu from './components/game/ActionMenu'
 
 const App = () => {
 
@@ -44,6 +45,7 @@ const App = () => {
 	return (
 		<>
 			<Header user={user} />
+			<ActionMenu />
 			<Routes>
 				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 				<Route
@@ -60,33 +62,33 @@ const App = () => {
 						<RequireAuth user={user}>
 							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
 						</RequireAuth>
-						}
-					/>
-					<Route
-						path='/game'
-						element={
-							<RequireAuth user={user}>
-								<GameMenu user={user} setUser={setUser}/>
-							</RequireAuth>						
-						}
-					/>
-					<Route
-						path='/change-game'
-						element={
-							<RequireAuth user={user}>
-								<ChangeGame user={user} setUser={setUser}/>
-							</RequireAuth>						
-						}
-					/>
-					<Route
-						path='/rules'
-						element={							
-							<Rules user={user}/>
-						}
-					/>
-					<Route
-						path='/change-password'
-						element={
+					}
+				/>
+				<Route
+					path='/game'
+					element={
+						<RequireAuth user={user}>
+							<GameMenu user={user} setUser={setUser} />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path='/change-game'
+					element={
+						<RequireAuth user={user}>
+							<ChangeGame user={user} setUser={setUser} />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path='/rules'
+					element={
+						<Rules user={user} />
+					}
+				/>
+				<Route
+					path='/change-password'
+					element={
 						<RequireAuth user={user}>
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
