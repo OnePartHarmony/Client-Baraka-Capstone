@@ -90,7 +90,7 @@ const App = () => {
 						path='/change-game'
 						element={
 							<RequireAuth user={user}>
-								<ChangeGame user={user} setUser={setUser} msgAlert={msgAlert}/>
+								<ChangeGame user={user} setUser={setUser} msgAlert={msgAlert} setJoinedGame={setJoinedGame}/>
 							</RequireAuth>						
 						}
 					/>

@@ -7,22 +7,23 @@ import { createGame } from '../../api/game'
 
 const ChangeGame = (props) => {
 
-    const {user, setUser, msgAlert} = props
+    const {user, setUser, msgAlert, setJoinedGame} = props
 
     const navigate = useNavigate()
     
-    const [joinedGame, setJoinedGame] = useState(false)
+    const [joinedNewGame, setJoinedNewGame] = useState(false)
     const [roomId, setRoomId] = useState('')
     const [playerCount, setPlayerCount] = useState(2)
 
     useEffect(() => {
-        if (joinedGame === true) {
+        if (joinedNewGame === true) {
                 navigate('/gameMenu')
         }
-    }, [joinedGame])
+    }, [joinedNewGame])
     
 
     const joinGame = () => {
+        setJoinedGame(false)
         socket.emit('joinGame', roomId, user, (response) => {
             if (response.invalid) {
                 msgAlert({
@@ -34,19 +35,20 @@ const ChangeGame = (props) => {
             } else {
                 setUser(response.user)
                 console.log("joinGame", response.message)
-                setJoinedGame(true)                
+                setJoinedNewGame(true)                
             }
             console.log("Joined?",response.message)            
         })
     }
 
     const startGame = () => {
+        setJoinedGame(false)
         createGame(user, playerCount)
             .then(res => {
                 console.log(res.data.game)
                 setUser(res.data.user)
             })
-            .then(setJoinedGame(true))
+            .then(setJoinedNewGame(true))
             .catch(err => {
                 msgAlert({
 					heading: 'Failed to create game',
@@ -62,7 +64,7 @@ const ChangeGame = (props) => {
             <h1 style={{width: 'max-content', margin: '4vh auto'}}>Would you like to join a different game?</h1>
             <NewGame
                 user={user}
-                setJoinedGame={setJoinedGame}
+                setJoinedGame={setJoinedNewGame}
                 setUser={setUser}
                 msgAlert={msgAlert}                        
                 startGame={startGame}
