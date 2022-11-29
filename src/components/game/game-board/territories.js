@@ -1,9 +1,9 @@
 import React from 'react'
 import ImageMapper from 'react-img-mapper'
-import neutralFarmland from '../../images/Neutral-Farmland-Hex.png'
-import neutralField from '../../images/Neutral-Field-Hex.png'
-import neutralMountain from '../../images/Neutral-Mountain-Hex.png'
-import water from '../../images/Water-Hex.png'
+import neutralFarmland from '../../../images/Neutral-Farmland-Hex.png'
+import neutralField from '../../../images/Neutral-Field-Hex.png'
+import neutralMountain from '../../../images/Neutral-Mountain-Hex.png'
+import water from '../../../images/Water-Hex.png'
 
 const mapTerritories = (territories, width, clickFunction) => {
     // set a dynamic number based on the view width, with a max and min
