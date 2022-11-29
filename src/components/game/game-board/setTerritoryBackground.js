@@ -20,61 +20,63 @@ import empty from '../../../images/Empty-Hex.png'
 export const setTerritoryBackground = (territory) => {
     let background
 
-    if (territory.controlledBy.season === 'spring') { //green
-        switch (territory.type) {
-            case 'farmland' :
-                background = springFarmland
-                break
-            case 'field' :
-                background = springField
-                break
-            case 'mountain' :
-                background = springMountain
-                break
-            default :
-                background = empty
-        }
-    } else if (territory.controlledBy.season === 'summer') { //red
-        switch (territory.type) {
-            case 'farmland' :
-                background = summerFarmland
-                break
-            case 'field' :
-                background = summerField
-                break
-            case 'mountain' :
-                background = summerMountain
-                break
-            default :
-                background = empty
-        }
-    } else if (territory.controlledBy.season === 'autumn') { //grey
-        switch (territory.type) {
-            case 'farmland' :
-                background = autumnFarmland
-                break
-            case 'field' :
-                background = autumnField
-                break
-            case 'mountain' :
-                background = autumnMountain
-                break
-            default :
-                background = empty
-        }
-    } else if (territory.controlledBy.season === 'winter') { //blue
-        switch (territory.type) {
-            case 'farmland' :
-                background = winterFarmland
-                break
-            case 'field' :
-                background = winterField
-                break
-            case 'mountain' :
-                background = winterMountain
-                break
-            default :
-                background = empty
+    if (territory.controlledBy) {
+        if (territory.controlledBy.season === 'spring') { //green
+            switch (territory.type) {
+                case 'farmland' :
+                    background = springFarmland
+                    break
+                case 'field' :
+                    background = springField
+                    break
+                case 'mountain' :
+                    background = springMountain
+                    break
+                default :
+                    background = empty
+            }
+        } else if (territory.controlledBy.season === 'summer') { //red
+            switch (territory.type) {
+                case 'farmland' :
+                    background = summerFarmland
+                    break
+                case 'field' :
+                    background = summerField
+                    break
+                case 'mountain' :
+                    background = summerMountain
+                    break
+                default :
+                    background = empty
+            }
+        } else if (territory.controlledBy.season === 'autumn') { //grey
+            switch (territory.type) {
+                case 'farmland' :
+                    background = autumnFarmland
+                    break
+                case 'field' :
+                    background = autumnField
+                    break
+                case 'mountain' :
+                    background = autumnMountain
+                    break
+                default :
+                    background = empty
+            }
+        } else if (territory.controlledBy.season === 'winter') { //blue
+            switch (territory.type) {
+                case 'farmland' :
+                    background = winterFarmland
+                    break
+                case 'field' :
+                    background = winterField
+                    break
+                case 'mountain' :
+                    background = winterMountain
+                    break
+                default :
+                    background = empty
+            }
         }
     } else { //orange
         switch (territory.type) {
