@@ -26,7 +26,9 @@ const SignUp = (props) => {
 
 		signUp(credentials)
 			.then(() => signIn(credentials))
-			.then((res) => setUser(res.data.user))
+			.then((res) => {
+                setUser(res.data.user)
+            })
 			.then(() =>
 				msgAlert({
 					heading: 'Sign Up Success',
@@ -34,7 +36,7 @@ const SignUp = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/game'))
+			.then(() => navigate('/gameMenu'))
 			.catch((error) => {
                 setEmail('')
                 setPassword('')

@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-// import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
+import { socket } from './apiConfig'
+
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
@@ -22,6 +23,14 @@ const App = () => {
 
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
+	const [joinedGame, setJoinedGame] = useState(false)
+
+
+	socket.on('disconnect', () => {
+		console.log('disconnected', socket.id)
+		setJoinedGame(false)
+	})
+
 
 	const clearUser = () => {
 		setUser(null)
@@ -44,8 +53,7 @@ const App = () => {
 
 	return (
 		<>
-			<Header user={user} />
-			<ActionMenu />
+			<Header user={user} joinedGame={joinedGame}/>
 			<Routes>
 				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 				<Route
@@ -62,33 +70,40 @@ const App = () => {
 						<RequireAuth user={user}>
 							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
 						</RequireAuth>
-					}
-				/>
-				<Route
-					path='/game'
-					element={
-						<RequireAuth user={user}>
-							<GameMenu user={user} setUser={setUser} />
-						</RequireAuth>
-					}
-				/>
-				<Route
-					path='/change-game'
-					element={
-						<RequireAuth user={user}>
-							<ChangeGame user={user} setUser={setUser} />
-						</RequireAuth>
-					}
-				/>
-				<Route
-					path='/rules'
-					element={
-						<Rules user={user} />
-					}
-				/>
-				<Route
-					path='/change-password'
-					element={
+						}
+					/>
+					<Route
+						path='/gameMenu'
+						element={
+							<RequireAuth user={user}>
+								<GameMenu
+									user={user}
+									setUser={setUser}
+									msgAlert={msgAlert}
+									joinedGame={joinedGame}
+									setJoinedGame={setJoinedGame}
+								/>
+							</RequireAuth>						
+						}
+					/>
+					<Route
+						path='/change-game'
+						element={
+							<RequireAuth user={user}>
+								<ChangeGame user={user} setUser={setUser} msgAlert={msgAlert}/>
+							</RequireAuth>						
+						}
+					/>
+					<Route
+						path='/rules'
+						element={							
+							<Rules user={user}/>
+						}
+					/>
+					<Route
+						path='/change-password'
+						element={
+
 						<RequireAuth user={user}>
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}

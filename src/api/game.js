@@ -11,3 +11,20 @@ export const getGame = (user, gameId) => {
 		},
 	})
 }
+
+
+export const createGame = (user, playerCount) => {
+	return axios({
+		url: apiUrl + '/games',
+		method: 'POST',
+		data: {
+			user: user,
+			game: {
+				numberOfPlayers: playerCount
+			}
+		},
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}

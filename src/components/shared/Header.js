@@ -53,7 +53,7 @@ const alwaysOptions = (
 	</>
 )
 
-const Header = ({ user }) => (
+const Header = ({ user, joinedGame }) => (
 	<Navbar bg='dark' variant='dark' expand='md' className='navigation' style={{ paddingTop: '2px', paddingBottom: '2px' }}>
 		<Navbar.Brand>
 			<Link to='/' style={linkStyle}>
@@ -71,8 +71,8 @@ const Header = ({ user }) => (
 				{user ?
 					<>						
 						<Nav.Item>
-							<Link to='/game' style={linkStyle}>
-								{user.gameRoomId ?
+							<Link to='/gameMenu' style={linkStyle}>
+								{user.gameRoomId && joinedGame ?
 									<span className='navbar-text mr-2'>Game Id: {user.gameRoomId}</span>
 									:
 									<span>Game</span>
