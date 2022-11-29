@@ -45,7 +45,7 @@ const ChangeGame = (props) => {
         setJoinedGame(false)
         createGame(user, playerCount)
             .then(res => {
-                console.log(res.data.game)
+                // console.log(res.data.game)
                 setUser(res.data.user)
             })
             .then(setJoinedNewGame(true))

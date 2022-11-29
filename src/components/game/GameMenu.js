@@ -8,7 +8,7 @@ import { createGame } from '../../api/game'
 
 const GameMenu = (props) => {
 
-    const {user, setUser, msgAlert, joinedGame, setJoinedGame} = props
+    const {user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, gameObject} = props
     
     const [roomId, setRoomId] = useState('')
     const [playerCount, setPlayerCount] = useState(2)
@@ -73,7 +73,11 @@ const GameMenu = (props) => {
         <div className='game'>
             {joinedGame  ? 
                 <>
-                    <Game user={user} />
+                    <Game
+                        user={user}
+                        statusArray={statusArray}
+                        gameObject={gameObject}
+                    />
                 </>                
                 :
                 <>
