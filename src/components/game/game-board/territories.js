@@ -4,6 +4,7 @@ import neutralFarmland from '../../../images/Neutral-Farmland-Hex.png'
 import neutralField from '../../../images/Neutral-Field-Hex.png'
 import neutralMountain from '../../../images/Neutral-Mountain-Hex.png'
 import water from '../../../images/Water-Hex.png'
+import Territory from './Territory'
 
 const mapTerritories = (territories, width, clickFunction) => {
     // set a dynamic number based on the view width, with a max and min
@@ -17,53 +18,54 @@ const mapTerritories = (territories, width, clickFunction) => {
     const territoriesJSX = Array(37)
     
     territories.forEach(territory => {
-        let background
-        switch (territory.type) {
-            case 'farmland' :
-                background = neutralFarmland
-                break
-            case 'field' :
-                background = neutralField
-                break
-            case 'water' :
-                background = water
-                break
-            case 'mountain' :
-                background = neutralMountain
-                break
+        // let background
+        // switch (territory.type) {
+        //     case 'farmland' :
+        //         background = neutralFarmland
+        //         break
+        //     case 'field' :
+        //         background = neutralField
+        //         break
+        //     case 'water' :
+        //         background = water
+        //         break
+        //     case 'mountain' :
+        //         background = neutralMountain
+        //         break
 
-            default :
-                background = 'https://i.imgur.com/XIJpY5B.png?1'
-        }
+        //     default :
+        //         background = 'https://i.imgur.com/XIJpY5B.png?1'
+        // }
 
-        const map = {
-                        name: `map ${territory.number}`,                      
-                        areas: [{
-                            'id': `${territory.number}`,
-                            'name': `${territory.number}`,
-                            'shape': 'poly',
-                            'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
-                            stayHighlighted: 'true',
-                            // preFillColor: 'rgba(255,0,0,.4)',
-                            lineWidth: 4
-                            // strokeColor: rgb value for outline to represent ownership
-                        }]                        
-                    }
+        // const map = {
+        //                 name: `map ${territory.number}`,                      
+        //                 areas: [{
+        //                     'id': `${territory.number}`,
+        //                     'name': `${territory.number}`,
+        //                     'shape': 'poly',
+        //                     'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
+        //                     stayHighlighted: 'true',
+        //                     // preFillColor: 'rgba(255,0,0,.4)',
+        //                     lineWidth: 4
+        //                     // strokeColor: rgb value for outline to represent ownership
+        //                 }]                        
+        //             }
 
         territoriesJSX.splice(territory.number, 1, (
-            <div
-                key={territory.number}
-                style={{backgroundImage: `url(${background})`, height: .285 * hexWidth, width: .25 * hexWidth, backgroundSize: '100% 100%'}}
-            >
-                <ImageMapper
-                    src={'https://i.imgur.com/oAra3xY.png'}
-                    map={map}
-                    onClick={clickFunction}
-                    responsive= 'true'
-                    parentWidth={hexWidth}
-                />
-                {/* render display of units and properties for territory */}
-            </div>
+            <Territory key={territory.number} territory={territory} hexWidth={hexWidth}/>
+            // <div
+            //     key={territory.number}
+            //     style={{backgroundImage: `url(${background})`, height: .285 * hexWidth, width: .25 * hexWidth, backgroundSize: '100% 100%'}}
+            // >
+            //     <ImageMapper
+            //         src={'https://i.imgur.com/oAra3xY.png'}
+            //         map={map}
+            //         onClick={clickFunction}
+            //         responsive= 'true'
+            //         parentWidth={hexWidth}
+            //     />
+            //     {/* render display of units and properties for territory */}
+            // </div>
         ))
     })
 
