@@ -20,6 +20,7 @@ import ActionMenu from './components/game/ActionMenu'
 
 const App = () => {
 
+	const [playerState, setPlayerState] = useState('wait')
 
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
