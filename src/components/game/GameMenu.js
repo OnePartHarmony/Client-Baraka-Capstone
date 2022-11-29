@@ -3,13 +3,15 @@ import { socket } from '../../apiConfig'
 import Game from './Game'
 import JoinGame from './JoinGame'
 import NewGame from './NewGame'
+import { createGame } from '../../api/game'
+
 
 const GameMenu = (props) => {
 
     const {user, setUser, msgAlert, joinedGame, setJoinedGame} = props
     
     const [roomId, setRoomId] = useState('')
-
+    const [playerCount, setPlayerCount] = useState(2)
 
     const joinGame = () => {
         socket.emit('joinGame', roomId, user, (response) => {
@@ -22,12 +24,32 @@ const GameMenu = (props) => {
                 console.log(response.invalid)
             } else {
                 setUser(response.user)
+                console.log("joinGame", response.message)
                 setJoinedGame(true)                
             }
-            console.log("reJoined?",response.message)            
+            console.log("Joined?",response.message)            
         })
     }
-    
+
+    const startGame = () => {
+        createGame(user, playerCount)
+            .then(res => {
+                console.log(res.data.game)
+                setUser(res.data.user)
+                // setRoomId(res.data.game.roomId)
+                // joinGame()
+            })
+            // .then(setJoinedGame(true))
+            .catch(err => {
+                msgAlert({
+					heading: 'Failed to create game',
+					message: err.message,
+					variant: 'danger',
+				})
+                console.log(err)
+            })
+    }
+
     useEffect(() => {
        if (joinedGame === false && user.gameRoomId) {              
             socket.emit('reJoinGame', user, (response) => {
@@ -44,7 +66,7 @@ const GameMenu = (props) => {
                 console.log("reJoined?",response.message)
             })              
         } 
-    }, [])
+    }, [user, joinedGame])
     
 
     return (
@@ -55,7 +77,15 @@ const GameMenu = (props) => {
                 </>                
                 :
                 <>
-                    <NewGame user={user} setJoinedGame={setJoinedGame} setUser={setUser} msgAlert={msgAlert}/>
+                    <NewGame
+                        user={user}
+                        setJoinedGame={setJoinedGame}
+                        setUser={setUser}
+                        msgAlert={msgAlert}                        
+                        startGame={startGame}
+                        playerCount={playerCount}
+                        setPlayerCount={setPlayerCount}
+                    />
                     <JoinGame roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
                 </>                
             }

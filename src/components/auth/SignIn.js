@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { socket } from '../../apiConfig'
 
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
