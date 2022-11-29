@@ -10,6 +10,7 @@ const Game = (props) => {
     const [statusArray, setStatusArray] = useState([])
 
     useEffect(() => {
+        //listen for status and add it to status bar
         socket.on('status', (arg) => {
             let newStatArray = statusArray.slice()
             newStatArray.unshift(arg.message)
