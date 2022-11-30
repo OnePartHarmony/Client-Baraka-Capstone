@@ -68,6 +68,8 @@ const GameBoard = (props) => {
                 width={width}
                 setClickedTerritory={setClickedTerritory}
                 clickableBoard={clickableBoard}
+                userPlayerObject={userPlayerObject}
+                gameObject={gameObject}
         /> 
         : 
         (<h1>Waiting for game board....</h1>)

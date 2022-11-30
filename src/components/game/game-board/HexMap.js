@@ -3,7 +3,7 @@ import Territory from './Territory'
 
 const HexMap = (props) => {
 
-    const {territories, width, setClickedTerritory, clickableBoard} = props
+    const {userPlayerObject, gameObject, territories, width, setClickedTerritory, clickableBoard} = props
 
     let hexWidth = .1 * width   
     if (hexWidth > 90) {
@@ -20,9 +20,12 @@ const HexMap = (props) => {
         territoriesJSX.splice(territory.number, 1, (
             <Territory
                 key={territory.number}
+                gameObject={gameObject}
+                userPlayerObject={userPlayerObject}
                 territory={territory}
                 hexWidth={hexWidth}
                 clickFunction={setClickedTerritory}
+                clickableBoard={clickableBoard}
             />
         ))
     })

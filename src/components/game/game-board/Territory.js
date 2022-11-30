@@ -3,14 +3,16 @@ import ImageMapper from 'react-img-mapper'
 import { setTerritoryBackground, setSoldier, setPriest } from './setTerritoryImages'
 import invisible from '../../../images/invisible.png'
 import peasant from '../../../images/onePeasant.png'
+import { checkClickable } from './checkClickable'
 
 const Territory = (props) => {
 
-    const {user, territory, hexWidth, setClickedTerritory} = props
-
+    const {gameObject, userPlayerObject, territory, hexWidth, setClickedTerritory, clickableBoard} = props
+    
     const background = setTerritoryBackground(territory)
     const soldier = setSoldier(territory)
     const priest = setPriest(territory)
+    const clickable = checkClickable(territory, clickableBoard, gameObject, userPlayerObject)
 
     const clickFunction = (e) => {
         setClickedTerritory(e.id)
@@ -33,7 +35,7 @@ const Territory = (props) => {
             key={territory.number}
             style={{backgroundImage: `url(${background})`, height: 1.14 * hexWidth, width: hexWidth, backgroundSize: '100% 100%'}}
         >
-            {territory.type != 'water' && 
+            {clickable && 
                 <ImageMapper style={{zIndex: 2}}
                     areaKeyName={territory.number}
                     src={invisible}
