@@ -3,7 +3,6 @@ import ImageMapper from 'react-img-mapper'
 import { setTerritoryBackground, setSoldier, setPriest } from './setTerritoryImages'
 import invisible from '../../../images/invisible.png'
 import peasant from '../../../images/onePeasant.png'
-import { checkClickable } from './checkClickable'
 import { Tooltip, OverlayTrigger } from 'react-bootstrap'
 
 const Territory = (props) => {
@@ -15,9 +14,31 @@ const Territory = (props) => {
     const soldier = setSoldier(territory)
     const priest = setPriest(territory)
     
+    const checkClickable = () => {
+    
+        //water is never clickable
+        if (!clickableBoard || territory.type === 'water') {
+            return false
+        }
+        if (gameObject.placementOrder.length > 0 && (!territory.controlledBy || territory.controlledBy.season === userPlayerObject.season)) {
+            return true
+        }
+    
+        //when choosing a territory to command, it must be controlled by the user and not already commanded
+        if (playerState === 'selectTerritory' && !territoriesWithConfirmedCommands.includes(territory) && territory.controlledBy.season === userPlayerObject.season){
+            return true
+        }
+    
+        //when choosing a territory to advance to, it must be adjacent to the advancing territory
+        //potentially playerState === 'selectCommand'
+        if ( advancingTerritory?.adjacents.includes(territory) ) {
+            return true
+        }
+    
+    }
     
     useEffect(()=> {
-        setClickable(checkClickable(territory, clickableBoard, gameObject, userPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands))        
+        setClickable(checkClickable())        
     }, [clickableBoard])
 
 
