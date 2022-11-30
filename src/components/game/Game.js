@@ -6,6 +6,7 @@ const Game = (props) => {
 
     const {user, statusArray, gameObject} = props
     const [clickedTerritory, setClickedTerritory] = useState('')
+    const [playerState, setPlayerState] = useState('wait')
     
     const statusDisplay = statusArray.map((item, index) => (        
         <span key={index}>{item}<br/></span>                             
@@ -21,6 +22,9 @@ const Game = (props) => {
                     gameObject={gameObject}
                     clickedTerritory={clickedTerritory}
                     setClickedTerritory={setClickedTerritory}
+                    playerState={playerState}
+                    setPlayerState={setPlayerState}
+
                 />
                 <div className='statusBar'>
                     <p>
@@ -30,7 +34,13 @@ const Game = (props) => {
                 </div>
             </div>
             
-            <ActionMenu user={user}/>
+            <ActionMenu
+                user={user}
+                clickedTerritory={clickedTerritory}
+                setClickedTerritory={setClickedTerritory}
+                playerState={playerState}
+                setPlayerState={setPlayerState}
+            />
             
         </div>
     )

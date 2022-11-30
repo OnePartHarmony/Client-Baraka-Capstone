@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 
-const CombatMenu = ({ user }) => {
+const CombatMenu = (props) => {
 
     const dice = {
         'Hedgehog': "0, 5, 5, 5, 5, 5",
@@ -11,10 +11,10 @@ const CombatMenu = ({ user }) => {
         'Charging': "4, 4, 4, 4, 4, 9"
     }
 
-    const [selection, setSelection] = useState(null)
+    const [formation, setFormation] = useState(null)
 
     const handleClick = (e) => {
-        setSelection(e.target.innerText)
+        setFormation(e.target.innerText)
     }
 
     return (
@@ -30,14 +30,13 @@ const CombatMenu = ({ user }) => {
             </div>
             <br />
             <div>
-                {selection &&
-                    <h3>Roll the {selection} die, its faces are {dice[selection]}.</h3>
+                {formation &&
+                    <h3>Roll the {formation} die, its faces are {dice[formation]}.</h3>
                 }
             </div>
             <br />
             <div>
-                <Button variant='success'>CONFIRM</Button>{' '}
-                <Button variant='danger'>CANCEL</Button>
+                <Button variant='danger'>CONFIRM</Button>
             </div>
         </>
     )

@@ -16,10 +16,10 @@ import GameMenu from './components/game/GameMenu'
 import ChangeGame from './components/game/ChangeGame'
 import Rules from './components/Rules'
 import ActionMenu from './components/game/ActionMenu'
+import Game from './components/game/Game'
 
 const App = () => {
 
-	const [playerState, setPlayerState] = useState('wait')
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 	const [joinedGame, setJoinedGame] = useState(false)
@@ -78,6 +78,7 @@ const App = () => {
 	return (
 		<>
 			<Header user={user} joinedGame={joinedGame}/>
+			<Game user={user} statusArray={statusArray} gameObject={gameObject} />
 			<Routes>
 				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 				<Route
