@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import ImageMapper from 'react-img-mapper'
-import { setTerritoryBackground } from './setTerritoryBackground'
+import { setTerritoryBackground, setSoldier, setPriest } from './setTerritoryImages'
 import invisible from '../../../images/invisible.png'
 
 const Territory = (props) => {
@@ -8,6 +8,10 @@ const Territory = (props) => {
     const {user, territory, hexWidth, clickFunction} = props
 
     const background = setTerritoryBackground(territory)
+    const soldier = setSoldier(territory)
+    const priest = setPriest(territory)
+
+
 
     const map = {
         name: `map ${territory.number}`,                      
@@ -20,6 +24,7 @@ const Territory = (props) => {
         }]                        
     }
 
+    
     return (        
         <div
             key={territory.number}
@@ -28,7 +33,6 @@ const Territory = (props) => {
             {territory.type != 'water' && 
                 <ImageMapper style={{zIndex: 2}}
                     areaKeyName={territory.number}
-                    // src={'https://i.imgur.com/lbdYrhr.png'}
                     src={invisible}
                     map={map}
                     onClick={clickFunction}
@@ -39,7 +43,9 @@ const Territory = (props) => {
                     stayHighlighted
                 /> 
             }
-                       
+            {/* {territory.soldiers && 
+
+            }            */}
             {/* render display of units and properties for territory */}
         </div>               
     )
