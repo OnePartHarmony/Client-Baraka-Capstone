@@ -3,12 +3,11 @@ import Territory from './Territory'
 
 const mapTerritories = (territories, width, clickFunction) => {
 
-    // set a dynamic number based on the view width, with a max and min for responsive sizing
-    let hexWidth = .3 * width   
-    if (hexWidth > 425) {
-        hexWidth = 425
-    } else if (hexWidth < 300) {
-        hexWidth = 300
+    let hexWidth = .1 * width   
+    if (hexWidth > 90) {
+        hexWidth = 90
+    } else if (hexWidth < 75) {
+        hexWidth = 75
     }
 
     //establish empty array with length 37
@@ -27,26 +26,26 @@ const mapTerritories = (territories, width, clickFunction) => {
     })
 
     return (
-        <div className='hexBoard' style= {{height: 2* hexWidth}}>
+        <div className='hexBoard' style= {{height: 2 * hexWidth}}>
             <div className='hexRow hexRow1'>
                 {territoriesJSX.slice(0,4)}
             </div>
-            <div className='hexRow hexRow2' style={{ top: -.072 * hexWidth }}>
+            <div className='hexRow hexRow2' style={{ top: -.3 * hexWidth }}>
                 {territoriesJSX.slice(4,9)}
             </div>
-            <div className='hexRow hexRow3' style={{ top: -.144 * hexWidth}}>
+            <div className='hexRow hexRow3' style={{ top: -.6 * hexWidth}}>
                 {territoriesJSX.slice(9,15)}
             </div>
-            <div className='hexRow hexRow4' style={{ top: -.216 * hexWidth}}>
+            <div className='hexRow hexRow4' style={{ top: -.9 * hexWidth}}>
                 {territoriesJSX.slice(15,22)}
             </div>
-            <div className='hexRow hexRow5' style={{ top: -.288 * hexWidth}}>
+            <div className='hexRow hexRow5' style={{ top: -1.2 * hexWidth}}>
                 {territoriesJSX.slice(22,28)}
             </div>
-            <div className='hexRow hexRow6' style={{ top: -.360 * hexWidth}}>
+            <div className='hexRow hexRow6' style={{ top: -1.5 * hexWidth}}>
                 {territoriesJSX.slice(28,33)}
             </div>
-            <div className='hexRow hexRow7' style={{ top: -.432 * hexWidth}}>
+            <div className='hexRow hexRow7' style={{ top: -1.8 * hexWidth}}>
                 {territoriesJSX.slice(33,37)}
             </div>
         </div>
