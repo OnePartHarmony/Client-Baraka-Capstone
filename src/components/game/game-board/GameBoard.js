@@ -21,10 +21,10 @@ for (let i=0; i<37; i++){
 
 const GameBoard = (props) => {
 
-    const {user, gameObject} = props
+    const {user, gameObject, clickedTerritory, setClickedTerritory} = props
 
     const [width, setWidth] = useState(window.innerWidth)
-    const [clickedTerritory, setClickedTerritory] = useState('')
+    
 
 
     const setWindowWidth = () => {
@@ -39,12 +39,8 @@ const GameBoard = (props) => {
         }
     }, [gameObject])
 
-    const clickFunction = (e) => {
-        setClickedTerritory(e.id)
-    }
 
-
-    let territories = gameObject ? mapTerritories(gameObject.territories, width, clickFunction) : (<h1>Waiting for game board....</h1>)
+    let territories = gameObject ? mapTerritories(gameObject.territories, width, setClickedTerritory) : (<h1>Waiting for game board....</h1>)
 
 
     return (

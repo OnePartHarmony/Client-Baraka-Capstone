@@ -6,13 +6,15 @@ import peasant from '../../../images/onePeasant.png'
 
 const Territory = (props) => {
 
-    const {user, territory, hexWidth, clickFunction} = props
+    const {user, territory, hexWidth, setClickedTerritory} = props
 
     const background = setTerritoryBackground(territory)
     const soldier = setSoldier(territory)
     const priest = setPriest(territory)
 
-
+    const clickFunction = (e) => {
+        setClickedTerritory(e.id)
+    }
 
     const map = {
         name: `map ${territory.number}`,                      
@@ -22,7 +24,7 @@ const Territory = (props) => {
             'shape': 'poly',
             'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
             'stayHighlighted': 'true',
-        }]                        
+        }]
     }
 
     

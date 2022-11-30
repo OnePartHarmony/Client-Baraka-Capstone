@@ -1,7 +1,7 @@
 import React from 'react'
 import Territory from './Territory'
 
-const mapTerritories = (territories, width, clickFunction) => {
+const mapTerritories = (territories, width, setClickedTerritory) => {
 
     let hexWidth = .1 * width   
     if (hexWidth > 90) {
@@ -20,7 +20,7 @@ const mapTerritories = (territories, width, clickFunction) => {
                 key={territory.number}
                 territory={territory}
                 hexWidth={hexWidth}
-                clickFunction={clickFunction}
+                clickFunction={setClickedTerritory}
             />
         ))
     })
