@@ -55,6 +55,24 @@ body {
   position: relative;
 }
 
+.territoryImages {
+  position: relative;
+  top: -85%;
+  left: 20%;
+  height: 100%;
+}
+
+.territoryImages strong {
+  background-color: white;
+  border-radius: 30%;
+}
+
+.territoryDude {
+  height: 22%;
+  background-color: white;
+  border-radius: 30%;
+}
+
 .statusBar {
   border-radius: 10px;
   height: 10vh;
