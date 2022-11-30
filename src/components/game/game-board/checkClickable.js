@@ -1,4 +1,4 @@
-export const checkClickable = (territory, clickableBoard, gameObject, userPlayerObject) => {
+export const checkClickable = (territory, clickableBoard, gameObject, userPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands) => {
     
 
     if (!clickableBoard || territory.type === 'water') {

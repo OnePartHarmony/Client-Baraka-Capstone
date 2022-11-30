@@ -13,6 +13,8 @@ const CommandMenu = (props) => {
 
     const handleConfirm = () => {
         //NEED MORE THINGS HERE
+        //like, if command == advance, save the advancing and clicked territories as from and to
+
 
         if (advancingTerritory){
             setTerritoriesWithConfirmedCommands(prevArray => {prevArray.push(advancingTerritory)})

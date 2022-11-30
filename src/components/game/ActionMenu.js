@@ -7,6 +7,7 @@ const ActionMenu = (props) => {
     const {user, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory, setTerritoriesWithConfirmedCommands} = props
     const [command, setCommand] = useState(null)
 
+    //when advance is chosen as the commmand, the advancing territory needs to be seen as the 'to' territory is chosen
     useEffect(() => {
         if (command === 'advance'){
             setAdvancingTerritory(clickedTerritory)            

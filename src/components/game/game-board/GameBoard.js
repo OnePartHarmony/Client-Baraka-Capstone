@@ -22,7 +22,7 @@ for (let i=0; i<37; i++){
 
 const GameBoard = (props) => {
 
-    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject, playerState, advancingTerritory} = props
+    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands} = props
 
     const [width, setWidth] = useState(window.innerWidth)
     const [clickableBoard, setClickableBoard] = useState(false)
@@ -74,6 +74,7 @@ const GameBoard = (props) => {
                 gameObject={gameObject}
                 playerState={playerState}
                 advancingTerritory={advancingTerritory}
+                territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
         /> 
         : 
         (<h1>Waiting for game board....</h1>)
