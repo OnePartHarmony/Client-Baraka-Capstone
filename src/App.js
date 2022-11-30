@@ -15,8 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import GameMenu from './components/game/GameMenu'
 import ChangeGame from './components/game/ChangeGame'
 import Rules from './components/Rules'
-import ActionMenu from './components/game/ActionMenu'
-import Game from './components/game/Game'
+
 
 const App = () => {
 
@@ -78,7 +77,6 @@ const App = () => {
 	return (
 		<>
 			<Header user={user} joinedGame={joinedGame}/>
-			<Game user={user} statusArray={statusArray} gameObject={gameObject} />
 			<Routes>
 				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 				<Route
