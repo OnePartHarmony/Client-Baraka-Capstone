@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import GameBoard from './game-board/GameBoard'
 import ActionMenu from './ActionMenu'
-import socket from '../../apiConfig'
+import { socket } from '../../apiConfig'
 
 const Game = (props) => {
 
@@ -15,8 +15,9 @@ const Game = (props) => {
     ))
 
     useEffect(() => {
-        if (clickedTerritory){
+        if (clickedTerritory && gameObject.placementOrder.length > 0){
             socket.emit('initialUnitPlacement', clickedTerritory, userPlayerObject._id, gameObject._id)
+            setClickedTerritory(null)
         }
     }, [clickedTerritory])
     
