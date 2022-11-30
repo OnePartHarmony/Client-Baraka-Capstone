@@ -9,6 +9,8 @@ const Game = (props) => {
     const [clickedTerritory, setClickedTerritory] = useState(null)
     const [playerState, setPlayerState] = useState('wait')
     const [userPlayerObject, setUserPlayerObject] = useState({})
+    const [advancingTerritory, setAdvancingTerritory] = useState(null)
+    const [territoriesWithConfirmedCommands, setTerritoriesWithConfirmedCommands] = useState([])
     
     const statusDisplay = statusArray.map((item, index) => (        
         <span key={index}>{item}<br/></span>                             
@@ -16,7 +18,7 @@ const Game = (props) => {
 
     useEffect(() => {
         if (clickedTerritory && gameObject.placementOrder.length > 0){
-            socket.emit('initialUnitPlacement', clickedTerritory, userPlayerObject._id, gameObject._id)
+            socket.emit('initialUnitPlacement', clickedTerritory._id, userPlayerObject._id, gameObject._id)
             setClickedTerritory(null)
         }
     }, [clickedTerritory])
@@ -35,6 +37,9 @@ const Game = (props) => {
                     setPlayerState={setPlayerState}
                     userPlayerObject={userPlayerObject}
                     setUserPlayerObject={setUserPlayerObject}
+                    playerState={playerState}
+                    advancingTerritory={advancingTerritory}
+                    territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
                 />
                 <div className='statusBar'>
                     <p>
@@ -50,6 +55,9 @@ const Game = (props) => {
                 setClickedTerritory={setClickedTerritory}
                 playerState={playerState}
                 setPlayerState={setPlayerState}
+                advancingTerritory={advancingTerritory}
+                setAdvancingTerritory={setAdvancingTerritory}
+                setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
             />
             
         </div>

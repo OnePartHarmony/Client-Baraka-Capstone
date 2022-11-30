@@ -36,12 +36,10 @@ const GameMenu = (props) => {
         clearGameStates()
         createGame(user, playerCount)
             .then(res => {
-                console.log(res.data.game)
+                // console.log(res.data.game)
                 setUser(res.data.user)
-                // setRoomId(res.data.game.roomId)
-                // joinGame()
+                setJoinedGame(true)
             })
-            .then(setJoinedGame(true))
             .catch(err => {
                 msgAlert({
 					heading: 'Failed to create game',

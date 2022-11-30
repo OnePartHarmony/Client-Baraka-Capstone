@@ -3,7 +3,7 @@ import Territory from './Territory'
 
 const HexMap = (props) => {
 
-    const {userPlayerObject, gameObject, territories, width, clickedTerritory, setClickedTerritory, clickableBoard} = props
+    const {userPlayerObject, gameObject, territories, width, clickedTerritory, setClickedTerritory, clickableBoard, playerState, advancingTerritory, territoriesWithConfirmedCommands} = props
 
     let hexWidth = .1 * width   
     if (hexWidth > 90) {
@@ -27,6 +27,9 @@ const HexMap = (props) => {
                 clickedTerritory={clickedTerritory}
                 setClickedTerritory={setClickedTerritory}
                 clickableBoard={clickableBoard}
+                playerState={playerState}
+                advancingTerritory={advancingTerritory}
+                territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
             />
         ))
     })

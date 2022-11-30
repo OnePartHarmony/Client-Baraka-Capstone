@@ -3,16 +3,26 @@ import { Button } from 'react-bootstrap'
 
 const CommandMenu = (props) => {
 
-    const { user, playerState, setPlayerState, clickedTerritory, setClickedTerritory } = props
+    const { user, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory} = props
 
-    const [command, setCommand] = useState(null)
+    
 
     const handleChoice = (e) => {
         setCommand(e.target.innerText.toLowerCase())
     }
 
     const handleConfirm = () => {
+        //NEED MORE THINGS HERE
+        //like, if command == advance, save the advancing and clicked territories as from and to
 
+
+        if (advancingTerritory){
+            setTerritoriesWithConfirmedCommands(prevArray => {prevArray.push(advancingTerritory)})
+            setAdvancingTerritory(null)
+        } else {
+            setTerritoriesWithConfirmedCommands(prevArray => {prevArray.push(clickedTerritory)})
+        }
+        setClickedTerritory(null)
     }
 
     const handleBack = () => {
