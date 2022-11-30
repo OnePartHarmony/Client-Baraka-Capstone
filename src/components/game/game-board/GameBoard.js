@@ -28,6 +28,10 @@ const GameBoard = (props) => {
     const [userPlayerObject, setUserPlayerObject] = useState({})
     const [clickableBoard, setClickableBoard] = useState(false)
 
+    const setWindowWidth = () => {
+        setWidth(window.innerWidth)
+    }  
+
     useEffect(() => {
             window.addEventListener('resize', setWindowWidth)
 
@@ -40,34 +44,35 @@ const GameBoard = (props) => {
     useEffect(() => {
         //find the player object that belongs to the user
         if (gameObject) {
-            gameObject.players.forEach(player => {
-                if (player.user._id === user._id) {
-                    setUserPlayerObject(player)
+                    gameObject.players.forEach(player => {
+                        if (player.user._id === user._id) {
+                            setUserPlayerObject(player)
+                        }
+                    })
                 }
-            })
-        }        
-        
-        if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {
+    }, [gameObject])
+
+    
+    useEffect(() => {
+        if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {            
             setClickableBoard(true)
         } else {
             setClickableBoard(false)
         }
+    }, [userPlayerObject])
 
-    }, [gameObject])
-
-    const setWindowWidth = () => {
-        setWidth(window.innerWidth)
-    }
-
-    
+      
 
 
     let territories = gameObject ? 
         <HexMap
                 territories={gameObject.territories}
                 width={width}
+                clickedTerritory={clickedTerritory}
                 setClickedTerritory={setClickedTerritory}
                 clickableBoard={clickableBoard}
+                userPlayerObject={userPlayerObject}
+                gameObject={gameObject}
         /> 
         : 
         (<h1>Waiting for game board....</h1>)
