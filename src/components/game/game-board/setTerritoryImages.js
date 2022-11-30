@@ -1,3 +1,4 @@
+// import background images
 import neutralFarmland from '../../../images/Neutral-Farmland-Hex.png'
 import neutralField from '../../../images/Neutral-Field-Hex.png'
 import neutralMountain from '../../../images/Neutral-Mountain-Hex.png'
@@ -15,6 +16,17 @@ import winterField from '../../../images/Blue-Field-Hex.png'
 import winterMountain from '../../../images/Blue-Mountain-Hex.png'
 import water from '../../../images/Water-Hex.png'
 import empty from '../../../images/Empty-Hex.png'
+// import priest images
+import springPriest from '../../../images/oneGreenPriest.png'
+import summerPriest from '../../../images/oneRedPriest.png'
+import autumnPriest from '../../../images/oneGreyPriest.png'
+import winterPriest from '../../../images/oneBluePriest.png'
+// import soldier images
+import springSoldier from '../../../images/greenSoldier.png'
+import summerSoldier from '../../../images/redSoldier.png'
+import autumnSoldier from '../../../images/greySoldier.png'
+import winterSoldier from '../../../images/blueSoldier.png'
+
 
 
 export const setTerritoryBackground = (territory) => {
@@ -99,4 +111,45 @@ export const setTerritoryBackground = (territory) => {
     
     return background
 
+}
+
+export const setPriest = (territory) => {
+    let priest
+    if (territory.controlledBy) {
+        switch (territory.controlledBy.season) {
+            case 'spring' :
+                priest = springPriest
+                break
+            case 'summer' :
+                priest = summerPriest
+                break
+            case 'autumn' :
+                priest = autumnPriest
+                break
+            default :
+                priest = winterPriest
+        }
+    }
+    return priest
+}
+
+export const setSoldier = (territory) => {
+    let soldier
+    if (territory.controlledBy) {
+        switch (territory.controlledBy.season) {
+            case 'spring' :
+                soldier = springSoldier
+                break
+            case 'summer' :
+                soldier = summerSoldier
+                break
+            case 'autumn' :
+                soldier = autumnSoldier
+                break
+            default :
+                soldier = winterSoldier
+        }
+    }
+    
+    return soldier
 }
