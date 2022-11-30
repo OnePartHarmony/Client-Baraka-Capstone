@@ -68,6 +68,7 @@ const GameBoard = (props) => {
         <HexMap
                 territories={gameObject.territories}
                 width={width}
+                clickedTerritory={clickedTerritory}
                 setClickedTerritory={setClickedTerritory}
                 clickableBoard={clickableBoard}
                 userPlayerObject={userPlayerObject}

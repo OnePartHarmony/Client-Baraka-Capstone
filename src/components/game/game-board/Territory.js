@@ -7,7 +7,7 @@ import { checkClickable } from './checkClickable'
 
 const Territory = (props) => {
 
-    const {gameObject, userPlayerObject, territory, hexWidth, setClickedTerritory, clickableBoard} = props
+    const {gameObject, userPlayerObject, territory, hexWidth, clickedTerritory, setClickedTerritory, clickableBoard} = props
     const [clickable, setClickable] = useState(false)
     
     const background = setTerritoryBackground(territory)
@@ -16,12 +16,20 @@ const Territory = (props) => {
     
     
     useEffect(()=> {
-        setClickable(checkClickable(territory, clickableBoard, gameObject, userPlayerObject))
+        setClickable(checkClickable(territory, clickableBoard, gameObject, userPlayerObject))        
     }, [clickableBoard])
 
 
-    const clickFunction = (e) => {
-        setClickedTerritory(e.id)
+    const toggleClickedTerritory = () => {        
+        if (clickable){
+            setClickedTerritory(previousClick => {
+                if (previousClick != territory.number){
+                    setClickedTerritory(territory.number)
+                } else {
+                    setClickedTerritory('')
+                }
+            })           
+        }        
     }
 
     const map = {
@@ -47,7 +55,7 @@ const Territory = (props) => {
                     areaKeyName={territory.number}
                     src={invisible}
                     map={map}
-                    onClick={clickFunction}
+                    onClick={toggleClickedTerritory}
                     responsive= 'true'
                     width={hexWidth}
                     imgWidth={100}
