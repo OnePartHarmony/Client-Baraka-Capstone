@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import GameBoard from './game-board/GameBoard'
 import ActionMenu from './ActionMenu'
 
 const Game = (props) => {
 
     const {user, statusArray, gameObject} = props
-    
+    const [clickedTerritory, setClickedTerritory] = useState('')
     
     const statusDisplay = statusArray.map((item, index) => (        
         <span key={index}>{item}<br/></span>                             
@@ -19,6 +19,8 @@ const Game = (props) => {
                 <GameBoard
                     user={user}
                     gameObject={gameObject}
+                    clickedTerritory={clickedTerritory}
+                    setClickedTerritory={setClickedTerritory}
                 />
                 <div className='statusBar'>
                     <p>
