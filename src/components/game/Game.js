@@ -10,6 +10,7 @@ const Game = (props) => {
     const [playerState, setPlayerState] = useState('wait')
     const [userPlayerObject, setUserPlayerObject] = useState({})
     const [advancingTerritory, setAdvancingTerritory] = useState(null)
+    const [territoriesWithConfirmedCommands, setTerritoriesWithConfirmedCommands] = useState([])
     
     const statusDisplay = statusArray.map((item, index) => (        
         <span key={index}>{item}<br/></span>                             
@@ -38,6 +39,7 @@ const Game = (props) => {
                     setUserPlayerObject={setUserPlayerObject}
                     playerState={playerState}
                     advancingTerritory={advancingTerritory}
+                    territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
                 />
                 <div className='statusBar'>
                     <p>
@@ -55,6 +57,7 @@ const Game = (props) => {
                 setPlayerState={setPlayerState}
                 advancingTerritory={advancingTerritory}
                 setAdvancingTerritory={setAdvancingTerritory}
+                setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
             />
             
         </div>

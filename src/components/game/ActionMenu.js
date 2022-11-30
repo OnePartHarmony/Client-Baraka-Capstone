@@ -4,7 +4,7 @@ import CombatMenu from './CombatMenu'
 
 const ActionMenu = (props) => {
 
-    const {user, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory} = props
+    const {user, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory, setTerritoriesWithConfirmedCommands} = props
     const [command, setCommand] = useState(null)
 
     useEffect(() => {
@@ -34,6 +34,9 @@ const ActionMenu = (props) => {
                     setPlayerState={setPlayerState}
                     clickedTerritory={clickedTerritory}
                     setClickedTerritory={setClickedTerritory}
+                    advancingTerritory={advancingTerritory}
+                    setAdvancingTerritory={setAdvancingTerritory}
+                    setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
                 />
             }
             {playerState === 'combat' &&
