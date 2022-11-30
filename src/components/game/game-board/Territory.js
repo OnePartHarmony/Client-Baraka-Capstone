@@ -27,7 +27,7 @@ const Territory = (props) => {
                 if (previousClick != territory.number){
                     setClickedTerritory(territory.number)
                 } else {
-                    setClickedTerritory('')
+                    setClickedTerritory(null)
                 }
             })           
         }        
