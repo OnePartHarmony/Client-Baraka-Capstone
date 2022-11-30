@@ -44,6 +44,7 @@ const Territory = (props) => {
                     imgWidth={100}
                     parentWidth={hexWidth}
                     stayHighlighted
+                    toggleHighlighted
                 /> 
             }
             <div className="territoryImages">
