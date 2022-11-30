@@ -34,6 +34,7 @@ const App = () => {
         })
 
 		socket.on('gameData', (arg) => {
+            console.log('thats some big data')
 			setGameObject(arg.game)
 		})
 
