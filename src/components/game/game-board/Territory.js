@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ImageMapper from 'react-img-mapper'
 import { setTerritoryBackground } from './setTerritoryBackground'
-
+import invisible from '../../../images/invisible.png'
 
 const Territory = (props) => {
 
@@ -28,7 +28,8 @@ const Territory = (props) => {
             {territory.type != 'water' && 
                 <ImageMapper style={{zIndex: 2}}
                     areaKeyName={territory.number}
-                    src={'https://i.imgur.com/lbdYrhr.png'}
+                    // src={'https://i.imgur.com/lbdYrhr.png'}
+                    src={invisible}
                     map={map}
                     onClick={clickFunction}
                     responsive= 'true'
