@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import mapTerritories from './territories'
+import HexMap from './HexMap'
+
 
 const placeholderTerritories = []
 for (let i=0; i<37; i++){
@@ -24,28 +25,57 @@ const GameBoard = (props) => {
     const {user, gameObject, clickedTerritory, setClickedTerritory} = props
 
     const [width, setWidth] = useState(window.innerWidth)
-    
+    const [userPlayerObject, setUserPlayerObject] = useState({})
+    const [clickableBoard, setClickableBoard] = useState(false)
 
+    useEffect(() => {
+            window.addEventListener('resize', setWindowWidth)
+
+            return function unMount() {
+                window.removeEventListener('resize', setWindowWidth)
+            }
+        }, [])
+
+
+    useEffect(() => {
+        //find the player object that belongs to the user
+        if (gameObject) {
+            gameObject.players.forEach(player => {
+                if (player.user._id === user._id) {
+                    setUserPlayerObject(player)
+                }
+            })
+        }        
+        
+        if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {
+            setClickableBoard(true)
+        } else {
+            setClickableBoard(false)
+        }
+
+    }, [gameObject])
 
     const setWindowWidth = () => {
         setWidth(window.innerWidth)
     }
 
-    useEffect(() => {
-        window.addEventListener('resize', setWindowWidth)
-
-        return function unMount() {
-            window.removeEventListener('resize', setWindowWidth)
-        }
-    }, [gameObject])
+    
 
 
-    let territories = gameObject ? mapTerritories(gameObject.territories, width, setClickedTerritory) : (<h1>Waiting for game board....</h1>)
+    let territories = gameObject ? 
+        <HexMap
+                territories={gameObject.territories}
+                width={width}
+                setClickedTerritory={setClickedTerritory}
+                clickableBoard={clickableBoard}
+        /> 
+        : 
+        (<h1>Waiting for game board....</h1>)
 
 
     return (
         <>
-            {territories} 
+            {territories}
         </>        
     )
 }
