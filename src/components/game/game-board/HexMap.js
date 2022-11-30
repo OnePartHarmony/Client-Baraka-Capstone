@@ -1,7 +1,9 @@
 import React from 'react'
 import Territory from './Territory'
 
-const mapTerritories = (territories, width, setClickedTerritory) => {
+const HexMap = (props) => {
+
+    const {territories, width, setClickedTerritory, clickableBoard} = props
 
     let hexWidth = .1 * width   
     if (hexWidth > 90) {
@@ -51,4 +53,4 @@ const mapTerritories = (territories, width, setClickedTerritory) => {
         </div>
 )}
 
-export default mapTerritories
+export default HexMap
