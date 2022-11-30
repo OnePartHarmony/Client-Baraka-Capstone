@@ -15,8 +15,8 @@ const Territory = (props) => {
             'id': `${territory.number}`,
             'name': `${territory.number}`,
             'shape': 'poly',
-            // 'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
-            'coords': [170,0,343,100,343,295,170,395,0,295,0,100],
+            'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
+            // 'coords': [170,0,343,100,343,295,170,395,0,295,0,100],
             'stayHighlighted': 'true',
             // preFillColor: 'rgba(255,0,0,.4)',
             // lineWidth: 4
@@ -26,15 +26,18 @@ const Territory = (props) => {
     return (        
         <div
             key={territory.number}
-            style={{backgroundImage: `url(${background})`, height: hexWidth, width: .87 * hexWidth, backgroundSize: '100% 100%'}}
+            style={{backgroundImage: `url(${background})`, height: 1.14 * hexWidth, width: hexWidth, backgroundSize: '100% 100%'}}
             // style={{backgroundImage: `url(${background})`, height: .285 * hexWidth, width: .25 * hexWidth, backgroundSize: '100% 100%'}}
         >
             {territory.type != 'water' && 
                 <ImageMapper style={{zIndex: 2}}
-                    src={'https://i.imgur.com/oAra3xY.png'}
+                    areaKeyName={territory.number}
+                    src={'https://i.imgur.com/lbdYrhr.png'}
                     map={map}
                     onClick={clickFunction}
                     responsive= 'true'
+                    width={hexWidth}
+                    imgWidth={100}
                     parentWidth={hexWidth}
                     stayHighlighted
                 /> 

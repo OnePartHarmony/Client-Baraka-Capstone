@@ -12,8 +12,8 @@ const mapTerritories = (territories, width, clickFunction) => {
     // }
 
     let hexWidth = .1 * width   
-    if (hexWidth > 110) {
-        hexWidth = 110
+    if (hexWidth > 90) {
+        hexWidth = 90
     } else if (hexWidth < 75) {
         hexWidth = 75
     }
@@ -56,22 +56,22 @@ const mapTerritories = (territories, width, clickFunction) => {
             <div className='hexRow hexRow7' style={{ top: -.432 * hexWidth}}>
                 {territoriesJSX.slice(33,37)}
             </div> */}
-            <div className='hexRow hexRow2' style={{ top: -.25 * hexWidth }}>
+            <div className='hexRow hexRow2' style={{ top: -.3 * hexWidth }}>
                 {territoriesJSX.slice(4,9)}
             </div>
-            <div className='hexRow hexRow3' style={{ top: -.5 * hexWidth}}>
+            <div className='hexRow hexRow3' style={{ top: -.6 * hexWidth}}>
                 {territoriesJSX.slice(9,15)}
             </div>
-            <div className='hexRow hexRow4' style={{ top: -.75 * hexWidth}}>
+            <div className='hexRow hexRow4' style={{ top: -.9 * hexWidth}}>
                 {territoriesJSX.slice(15,22)}
             </div>
-            <div className='hexRow hexRow5' style={{ top: -1 * hexWidth}}>
+            <div className='hexRow hexRow5' style={{ top: -1.2 * hexWidth}}>
                 {territoriesJSX.slice(22,28)}
             </div>
-            <div className='hexRow hexRow6' style={{ top: -1.25 * hexWidth}}>
+            <div className='hexRow hexRow6' style={{ top: -1.5 * hexWidth}}>
                 {territoriesJSX.slice(28,33)}
             </div>
-            <div className='hexRow hexRow7' style={{ top: -1.5 * hexWidth}}>
+            <div className='hexRow hexRow7' style={{ top: -1.8 * hexWidth}}>
                 {territoriesJSX.slice(33,37)}
             </div>
         </div>
