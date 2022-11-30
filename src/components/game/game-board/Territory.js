@@ -8,7 +8,7 @@ import { Tooltip, OverlayTrigger } from 'react-bootstrap'
 
 const Territory = (props) => {
 
-    const {gameObject, userPlayerObject, territory, hexWidth, clickedTerritory, setClickedTerritory, clickableBoard} = props
+    const {gameObject, userPlayerObject, territory, hexWidth, clickedTerritory, setClickedTerritory, clickableBoard, playerState, advancingTerritory} = props
     const [clickable, setClickable] = useState(false)
     
     const background = setTerritoryBackground(territory)
@@ -17,7 +17,7 @@ const Territory = (props) => {
     
     
     useEffect(()=> {
-        setClickable(checkClickable(territory, clickableBoard, gameObject, userPlayerObject))        
+        setClickable(checkClickable(territory, clickableBoard, gameObject, userPlayerObject, playerState, advancingTerritory))        
     }, [clickableBoard])
 
 
