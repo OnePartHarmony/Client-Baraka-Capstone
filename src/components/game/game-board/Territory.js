@@ -24,8 +24,8 @@ const Territory = (props) => {
     const toggleClickedTerritory = () => {        
         if (clickable){
             setClickedTerritory(previousClick => {
-                if (previousClick != territory._id){
-                    setClickedTerritory(territory._id)
+                if (previousClick != territory){
+                    setClickedTerritory(territory)
                 } else {
                     setClickedTerritory(null)
                 }

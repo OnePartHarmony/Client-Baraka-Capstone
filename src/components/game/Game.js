@@ -17,7 +17,7 @@ const Game = (props) => {
 
     useEffect(() => {
         if (clickedTerritory && gameObject.placementOrder.length > 0){
-            socket.emit('initialUnitPlacement', clickedTerritory, userPlayerObject._id, gameObject._id)
+            socket.emit('initialUnitPlacement', clickedTerritory._id, userPlayerObject._id, gameObject._id)
             setClickedTerritory(null)
         }
     }, [clickedTerritory])

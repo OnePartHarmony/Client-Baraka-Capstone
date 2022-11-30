@@ -3,9 +3,9 @@ import { Button } from 'react-bootstrap'
 
 const CommandMenu = (props) => {
 
-    const { user, playerState, setPlayerState, clickedTerritory, setClickedTerritory } = props
+    const { user, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand} = props
 
-    const [command, setCommand] = useState(null)
+    
 
     const handleChoice = (e) => {
         setCommand(e.target.innerText.toLowerCase())
