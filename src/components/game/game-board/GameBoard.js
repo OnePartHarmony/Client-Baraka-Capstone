@@ -25,7 +25,7 @@ const GameBoard = (props) => {
 
     const [width, setWidth] = useState(window.innerWidth)
     const [clickedTerritory, setClickedTerritory] = useState('')
-    const [updated, setUpdated] = useState(false)
+
 
     const setWindowWidth = () => {
         setWidth(window.innerWidth)
@@ -37,7 +37,7 @@ const GameBoard = (props) => {
         return function unMount() {
             window.removeEventListener('resize', setWindowWidth)
         }
-    }, [updated, gameObject])
+    }, [gameObject])
 
     const clickFunction = (e) => {
         setClickedTerritory(e.id)
