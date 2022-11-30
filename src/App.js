@@ -15,11 +15,10 @@ import ChangePassword from './components/auth/ChangePassword'
 import GameMenu from './components/game/GameMenu'
 import ChangeGame from './components/game/ChangeGame'
 import Rules from './components/Rules'
-import ActionMenu from './components/game/ActionMenu'
+
 
 const App = () => {
 
-	const [playerState, setPlayerState] = useState('wait')
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 	const [joinedGame, setJoinedGame] = useState(false)
