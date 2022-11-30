@@ -32,6 +32,12 @@ const Territory = (props) => {
         }        
     }
 
+    let fillColor = 'rgba(255, 255, 255, 0.5)'    
+    if (!clickable) {
+        console.log('here')
+        fillColor = 'rgba(255, 255, 255, 0)'
+    }
+
     const map = {
         name: `map ${territory.number}`,                      
         areas: [{
@@ -40,7 +46,8 @@ const Territory = (props) => {
             'shape': 'poly',
             'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
             'stayHighlighted': 'true',
-            // 'preFillColor': 'rgb(255,255,0)'
+            'fillColor': `${fillColor}`,
+            'preFillColor': 'rgba(255,255,0,0)'            
         }]
     }
 
@@ -49,21 +56,19 @@ const Territory = (props) => {
         <div
             key={territory.number}
             style={{backgroundImage: `url(${background})`, height: 1.14 * hexWidth, width: hexWidth, backgroundSize: '100% 100%'}}
-        > 
-            {clickable && 
-                <ImageMapper style={{zIndex: 2}}
-                    areaKeyName={territory.number}
-                    src={invisible}
-                    map={map}
-                    onClick={toggleClickedTerritory}
-                    responsive= 'true'
-                    width={hexWidth}
-                    imgWidth={100}
-                    parentWidth={hexWidth}
-                    stayHighlighted={true}
-                    toggleHighlighted={true}
-                /> 
-            }   
+        >            
+            <ImageMapper style={{zIndex: 2}}
+                areaKeyName={territory.number}
+                src={invisible}
+                map={map}
+                onClick={toggleClickedTerritory}
+                responsive= 'true'
+                width={hexWidth}
+                imgWidth={100}
+                parentWidth={hexWidth}
+                stayHighlighted={true}
+                toggleHighlighted={true}
+            />              
             <div className="territoryImages">
                 {territory.soldiers > 0 && 
                     <><img className="territoryDude" src={soldier} alt='soldier'/><strong>x {territory.soldiers}</strong><br/></>
