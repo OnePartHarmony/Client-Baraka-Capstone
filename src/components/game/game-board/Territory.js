@@ -16,10 +16,7 @@ const Territory = (props) => {
             'name': `${territory.number}`,
             'shape': 'poly',
             'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
-            // 'coords': [170,0,343,100,343,295,170,395,0,295,0,100],
             'stayHighlighted': 'true',
-            // preFillColor: 'rgba(255,0,0,.4)',
-            // lineWidth: 4
         }]                        
     }
 
@@ -27,7 +24,6 @@ const Territory = (props) => {
         <div
             key={territory.number}
             style={{backgroundImage: `url(${background})`, height: 1.14 * hexWidth, width: hexWidth, backgroundSize: '100% 100%'}}
-            // style={{backgroundImage: `url(${background})`, height: .285 * hexWidth, width: .25 * hexWidth, backgroundSize: '100% 100%'}}
         >
             {territory.type != 'water' && 
                 <ImageMapper style={{zIndex: 2}}
@@ -44,11 +40,6 @@ const Territory = (props) => {
             }
                        
             {/* render display of units and properties for territory */}
-            {/* <p>P: {territory.priests}</p>
-            <p>S: {territory.soldiers}</p>
-            <p>W: {territory.wealth}</p>
-            <p>A: {territory.abundace}</p>
-            <p>Pop: {territory.pop}</p> */}
         </div>               
     )
 }
