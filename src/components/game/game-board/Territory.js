@@ -2,15 +2,6 @@ import React, {useEffect, useState} from 'react'
 import ImageMapper from 'react-img-mapper'
 import { setTerritoryBackground } from './setTerritoryBackground'
 
-//territory attributes
-//type: [field, farmland, water, mountain]
-//priests: number
-//soldiers: number
-//wealth: number
-//abundance: number
-//adjacents:
-//controlledBy: Player._id
-//population: number
 
 const Territory = (props) => {
 
@@ -38,14 +29,17 @@ const Territory = (props) => {
             style={{backgroundImage: `url(${background})`, height: hexWidth, width: .87 * hexWidth, backgroundSize: '100% 100%'}}
             // style={{backgroundImage: `url(${background})`, height: .285 * hexWidth, width: .25 * hexWidth, backgroundSize: '100% 100%'}}
         >
-            <ImageMapper style={{zIndex: 2}}
-                src={'https://i.imgur.com/oAra3xY.png'}
-                map={map}
-                onClick={clickFunction}
-                responsive= 'true'
-                parentWidth={hexWidth}
-                stayHighlighted
-            />            
+            {territory.type != 'water' && 
+                <ImageMapper style={{zIndex: 2}}
+                    src={'https://i.imgur.com/oAra3xY.png'}
+                    map={map}
+                    onClick={clickFunction}
+                    responsive= 'true'
+                    parentWidth={hexWidth}
+                    stayHighlighted
+                /> 
+            }
+                       
             {/* render display of units and properties for territory */}
             {/* <p>P: {territory.priests}</p>
             <p>S: {territory.soldiers}</p>
