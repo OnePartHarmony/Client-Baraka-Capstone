@@ -22,10 +22,9 @@ for (let i=0; i<37; i++){
 
 const GameBoard = (props) => {
 
-    const {user, gameObject, clickedTerritory, setClickedTerritory} = props
+    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject} = props
 
     const [width, setWidth] = useState(window.innerWidth)
-    const [userPlayerObject, setUserPlayerObject] = useState({})
     const [clickableBoard, setClickableBoard] = useState(false)
 
     const setWindowWidth = () => {
