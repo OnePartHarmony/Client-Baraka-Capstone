@@ -8,11 +8,17 @@ import { checkClickable } from './checkClickable'
 const Territory = (props) => {
 
     const {gameObject, userPlayerObject, territory, hexWidth, setClickedTerritory, clickableBoard} = props
+    const [clickable, setClickable] = useState(false)
     
     const background = setTerritoryBackground(territory)
     const soldier = setSoldier(territory)
     const priest = setPriest(territory)
-    const clickable = checkClickable(territory, clickableBoard, gameObject, userPlayerObject)
+    
+    
+    useEffect(()=> {
+        setClickable(checkClickable(territory, clickableBoard, gameObject, userPlayerObject))
+    }, [clickableBoard])
+
 
     const clickFunction = (e) => {
         setClickedTerritory(e.id)
@@ -26,6 +32,7 @@ const Territory = (props) => {
             'shape': 'poly',
             'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
             'stayHighlighted': 'true',
+            // 'preFillColor': 'rgb(255,255,0)'
         }]
     }
 
@@ -34,7 +41,7 @@ const Territory = (props) => {
         <div
             key={territory.number}
             style={{backgroundImage: `url(${background})`, height: 1.14 * hexWidth, width: hexWidth, backgroundSize: '100% 100%'}}
-        >
+        > 
             {clickable && 
                 <ImageMapper style={{zIndex: 2}}
                     areaKeyName={territory.number}
@@ -45,10 +52,10 @@ const Territory = (props) => {
                     width={hexWidth}
                     imgWidth={100}
                     parentWidth={hexWidth}
-                    stayHighlighted
-                    toggleHighlighted
+                    stayHighlighted={true}
+                    toggleHighlighted={true}
                 /> 
-            }
+            }   
             <div className="territoryImages">
                 {territory.soldiers > 0 && 
                     <><img className="territoryDude" src={soldier} alt='soldier'/><strong>x {territory.soldiers}</strong><br/></>
@@ -62,7 +69,7 @@ const Territory = (props) => {
                     <><img className="territoryDude" src={peasant} alt='soldier'/><strong>x {territory.population}</strong></>
                 }
             </div>
-                      
+                   
             {/* render display of units and properties for territory */}
         </div>               
     )
