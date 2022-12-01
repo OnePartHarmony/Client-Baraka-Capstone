@@ -61,7 +61,7 @@ const Game = (props) => {
     }, [gameObject])
 
     useEffect(() => {
-       if (!statusArray.length && !playerState) {
+       if (!statusArray.length && playerState === 'wait') {
             setStatusArray([`Send other players room id: ${user.gameRoomId}`])
         } 
     }, [])
