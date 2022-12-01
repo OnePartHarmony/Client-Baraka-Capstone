@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Button } from 'react-bootstrap'
 
 const CommandMenu = (props) => {
@@ -8,6 +8,8 @@ const CommandMenu = (props) => {
     const [commandList, setCommandList] = useState([])
     const [soldiersMarching, setSoldiersMarching] = useState(0)
     const [priestsMarching, setPriestsMarching] = useState(0)
+    const [musteredUnit, setMusteredUnit] = useState(null)
+    const [confirmIsNOTClickable, setConfirmIsNOTClickable] = useState(true)
 
     const handleChoice = (e) => {
         setCommand(e.target.innerText.toLowerCase())
@@ -54,6 +56,26 @@ const CommandMenu = (props) => {
         setPlayerState('selectTerritory')
     }
 
+    useEffect(() => {
+        //check if all data is chosen for a command to be confirmed
+        setConfirmIsNOTClickable(() => {
+            //excise or sow command
+            if (command && ((command === 'excise' || command === 'sow')
+            //advance command
+            || (command === 'advance' && advancingTerritory && clickedTerritory && (priestsMarching || soldiersMarching))
+            // muster command
+            || (command === 'muster' && musteredUnit ))) {
+                return false
+            } else {
+                return true
+            }
+        })
+        
+    }, [command, advancingTerritory, clickedTerritory, priestsMarching, soldiersMarching, musteredUnit])
+    
+
+
+
     return (
         <>
             <h2>Choose your command:</h2>
@@ -65,11 +87,14 @@ const CommandMenu = (props) => {
                 }
                 <Button onClick={handleChoice} variant="dark">Excise</Button>
                 <Button onClick={handleChoice} variant="dark">Muster</Button>
+                {command === 'muster' &&
+                    <>TODO Muster Form</>
+                }
                 <Button onClick={handleChoice} variant="dark">Sow</Button>
             </div>
             <br />
             <div>
-                <Button onClick={handleConfirm} variant='danger'>CONFIRM</Button>{'  '}
+                <Button onClick={handleConfirm} variant='danger' disabled={confirmIsNOTClickable} >CONFIRM</Button>{'  '}
                 <Button onClick={handleBack}>BACK</Button>
             </div>
         </>
