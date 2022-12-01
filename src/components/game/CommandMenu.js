@@ -6,7 +6,7 @@ import CombatMenu from './CombatMenu'
 
 const CommandMenu = (props) => {
 
-    const { user, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory } = props
+    const { user, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory } = props
 
     const [commandList, setCommandList] = useState([])
     const [soldiersMarching, setSoldiersMarching] = useState(0)
@@ -126,7 +126,7 @@ const CommandMenu = (props) => {
             commandList: commandList,
             formation: formation
         }
-        socket.emit('issueCommands', commandObject)
+        socket.emit('issueCommands', commandObject, userPlayerObject._id, gameObject._id)
 
         setMusteredUnit(null)
         setAdvancingTerritory(null)

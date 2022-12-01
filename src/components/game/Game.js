@@ -89,6 +89,7 @@ const Game = (props) => {
             
             <ActionMenu
                 user={user}
+                gameObject={gameObject}
                 clickedTerritory={clickedTerritory}
                 setClickedTerritory={setClickedTerritory}
                 playerState={playerState}
