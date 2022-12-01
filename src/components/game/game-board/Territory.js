@@ -23,12 +23,12 @@ const Territory = (props) => {
             return true
             
         //when choosing a territory to command, it must be controlled by the user and not already commanded
-        } else if (playerState === 'selectTerritory' && !territoriesWithConfirmedCommands.includes(territory) && territory.controlledBy.season === userPlayerObject.season){
+        } else if (playerState === 'selectTerritory' && !territoriesWithConfirmedCommands.includes(territory) && territory.controlledBy?.season === userPlayerObject.season){
             return true
             
         //when choosing a territory to advance to, it must be adjacent to the advancing territory
         //potentially playerState === 'selectCommand'
-        } else if ( advancingTerritory?.adjacents.includes(territory) ) {
+        } else if ( advancingTerritory?.adjacents.includes(territory.number) ) {
             return true
         } else {
             return false
@@ -38,7 +38,7 @@ const Territory = (props) => {
     
     useEffect(()=> {
         setClickable(checkClickable())        
-    }, [clickableBoard])
+    }, [clickableBoard, advancingTerritory])
 
 
     const toggleClickedTerritory = () => {        
@@ -57,6 +57,10 @@ const Territory = (props) => {
     ///territories that need colors:
     let fillColor = 'rgba(255, 255, 255, 0)'
     let preFillColor = 'rgba(0,0,0,0)'
+    if (clickableBoard && !clickable && territory.type != 'water') {
+        fillColor = 'rgba(0, 0, 0, 0.5)'
+        preFillColor = 'rgba(0, 0, 0, 0.5)'
+    }
     //territoriesWithConfirmedCommands - same prefill and fill (unless clickable)
     if (territoriesWithConfirmedCommands.includes(territory)){
         fillColor = 'rgba(255, 255, 0, 0.5)'
@@ -66,6 +70,10 @@ const Territory = (props) => {
     if (territory === advancingTerritory) {
         fillColor = 'rgba(0, 0, 255, 0.5)'
         preFillColor = 'rgba(0, 0, 255, 0.5)'
+    }
+    if (territory === clickedTerritory) {
+        fillColor = 'rgba(255, 0, 0, 0.5)'
+        preFillColor = 'rgba(255, 0, 0, 0.5)'
     }
     if (clickable) {
         console.log('here')
@@ -146,7 +154,7 @@ const Territory = (props) => {
                     imgWidth={100}
                     parentWidth={hexWidth}
                     stayHighlighted={true}
-                    toggleHighlighted={true}
+                    toggleHighlighted={false}
                 />              
                 <div className="territoryImages">
                     {territory.soldiers > 0 && 
