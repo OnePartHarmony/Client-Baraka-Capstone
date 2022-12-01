@@ -97,6 +97,8 @@ const CommandMenu = (props) => {
                 <Button onClick={handleConfirm} variant='danger' disabled={confirmIsNOTClickable} >CONFIRM</Button>{'  '}
                 <Button onClick={handleBack}>BACK</Button>
             </div>
+
+            {/* ///NEED button to issue all commands, which should first trigger a way to order Advance commands///// */}
         </>
     )
 }
