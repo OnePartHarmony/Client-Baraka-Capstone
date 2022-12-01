@@ -156,10 +156,10 @@ const CommandMenu = (props) => {
 
     }, [command, advancingTerritory, clickedTerritory, priestsMarching, soldiersMarching, musteredUnit])
 
-    let soldierMarchOptions
-    let priestMarchOptions
-    for (let i = 1; i <= clickedTerritory.soldiers; i++) soldierMarchOptions.push(i)
-    for (let i = 1; i <= clickedTerritory.priests; i++) priestMarchOptions.push(i)
+    let soldierMarchOptions = []
+    let priestMarchOptions = []
+    for (let i = 1; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
+    for (let i = 1; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
 
 
     return (
@@ -167,7 +167,7 @@ const CommandMenu = (props) => {
             <h2>Choose your command:</h2>
             <br />
             <div className="d-grid gap-2">
-                {(clickedTerritory.priests || clickedTerritory.soldiers) &&
+                {(clickedTerritory?.priests || clickedTerritory?.soldiers) &&
 
                     <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 }
@@ -175,32 +175,33 @@ const CommandMenu = (props) => {
                 {command === 'advance' &&
                     <Dropdown title='Priests'>
                         {priestMarchOptions.map(number => (
-                            <Dropdown.Item>${number}</Dropdown.Item>
+                            <Dropdown.Item>{number}</Dropdown.Item>
                         ))}
-                    </Dropdown>
+                    </Dropdown>       
                 }
+                
 
-                {clickedTerritory.priests &&
+                {clickedTerritory?.priests &&
 
                     <Button onClick={handleChoice} variant='dark'>Excise</Button>
                 }
 
-                {(clickedTerritory.priests && clickedTerritory.population) &&
+                {(clickedTerritory?.priests && clickedTerritory?.population) &&
 
                     <Button onClick={handleChoice} variant='dark'>Muster</Button>
                 }
 
-                {(command === 'muster' && userPlayerObject.gold >= 2 && clickedTerritory.population && clickedTerritory.abundance) &&
+                {(command === 'muster' && userPlayerObject.gold >= 2 && clickedTerritory?.population && clickedTerritory?.abundance) &&
 
                     <Button onClick={() => { setMusteredUnit('soldier') }} variant={soldierButtonColor}>Muster Soldier</Button>
                 }
 
-                {(command === 'muster' && userPlayerObject.gold >= 5 && clickedTerritory.population && clickedTerritory.abundance) &&
+                {(command === 'muster' && userPlayerObject.gold >= 5 && clickedTerritory?.population && clickedTerritory?.abundance) &&
 
                     <Button onClick={() => { setMusteredUnit('priest') }} variant={priestButtonColor}>Muster Priest</Button>
                 }
 
-                {clickedTerritory.population &&
+                {clickedTerritory?.population &&
 
                     <Button onClick={handleChoice} variant='dark'>Sow</Button>
                 }
