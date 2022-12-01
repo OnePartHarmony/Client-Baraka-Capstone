@@ -11,7 +11,7 @@ const CombatMenu = (props) => {
         'Charging': "4, 4, 4, 4, 4, 9"
     }
 
-    const [formation, setFormation] = useState(null)
+    const { formation, setFormation } = props
 
     const handleClick = (e) => {
         setFormation(e.target.innerText)

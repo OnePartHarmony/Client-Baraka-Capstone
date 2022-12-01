@@ -118,22 +118,21 @@ const Game = (props) => {
                         territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
                         hexWidth={hexWidth}
                     />
-                </div>
-                
-                <ActionMenu
-                    user={user}
-                    clickedTerritory={clickedTerritory}
-                    setClickedTerritory={setClickedTerritory}
-                    playerState={playerState}
-                    setPlayerState={setPlayerState}
-                    advancingTerritory={advancingTerritory}
-                    setAdvancingTerritory={setAdvancingTerritory}
-                    setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
-                    userPlayerObject={userPlayerObject}
-                />            
-            </div>
-        </>
-        
+                </div>            
+            <ActionMenu
+                user={user}
+                gameObject={gameObject}
+                clickedTerritory={clickedTerritory}
+                setClickedTerritory={setClickedTerritory}
+                playerState={playerState}
+                setPlayerState={setPlayerState}
+                advancingTerritory={advancingTerritory}
+                setAdvancingTerritory={setAdvancingTerritory}
+                setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
+                userPlayerObject={userPlayerObject}
+            />            
+        </div>
+
     )
 }
 
