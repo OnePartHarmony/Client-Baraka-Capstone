@@ -4,7 +4,8 @@ import Game from './Game'
 import JoinGame from './JoinGame'
 import NewGame from './NewGame'
 import { createGame } from '../../api/game'
-
+import { Navbar } from 'react-bootstrap'
+import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 
 const GameMenu = (props) => {
 
@@ -12,6 +13,7 @@ const GameMenu = (props) => {
     
     const [roomId, setRoomId] = useState('')
     const [playerCount, setPlayerCount] = useState(2)
+
 
     const joinGame = () => {
         clearGameStates()
@@ -73,34 +75,73 @@ const GameMenu = (props) => {
         console.log(`${user.username} ${wonOrLost} the game.`)
     }, [wonOrLost])
     
+    const statusDisplay = statusArray.map((item, index) => (        
+        <span key={index}>{item}<br/></span>                             
+    ))
+
+    let seasonalColor = 'white'
+    switch (gameObject?.currentSeason) {
+        case 'spring' :
+            seasonalColor = 'rgb(0, 255, 0)'
+            break
+        case 'summer' :
+            seasonalColor = 'rgb(255, 0, 0)'
+            break
+        case 'autumn' :
+            seasonalColor = 'rgb(200, 200, 200)'
+            break
+        default :
+            seasonalColor = 'rgb(100, 196, 255)'
+    }
+
+
 
     return (
-        <div className='game'>
-            {joinedGame  ? 
-                <>
-                    <Game
-                        user={user}
-                        statusArray={statusArray}
-                        setStatusArray={setStatusArray}
-                        gameObject={gameObject}
-                    />
-                </>                
-                :
-                <>
-                    <NewGame
-                        user={user}
-                        setJoinedGame={setJoinedGame}
-                        setUser={setUser}
-                        msgAlert={msgAlert}                        
-                        startGame={startGame}
-                        playerCount={playerCount}
-                        setPlayerCount={setPlayerCount}
-                    />
-                    <JoinGame roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
-                </>                
-            }
-            
-        </div>
+        <>
+            <Navbar className='statNav' variant='dark' expand='md'>
+                    <div className='statusBar'>
+                        {/* for scrollbar display */}
+                        <div className='innerStatus'>
+                            <p>
+                                {statusDisplay}
+                            </p>
+                        </div>                                            
+                    </div>
+                    <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                    <NavbarCollapse>
+                        <div className='roomStats' style={{color: seasonalColor}}>
+                            <p>Room: {user.gameRoomId}</p>
+                            <p>Current Season: {gameObject?.currentSeason ? gameObject?.currentSeason.charAt(0).toUpperCase() + gameObject?.currentSeason.slice(1) : null}</p>
+                        </div>
+                    </NavbarCollapse>
+            </Navbar>
+            <div className='game'>
+                {joinedGame  ? 
+                    <>                        
+                        <Game
+                            user={user}
+                            statusArray={statusArray}
+                            setStatusArray={setStatusArray}
+                            gameObject={gameObject}
+                        />
+                    </>                
+                    :
+                    <>
+                        <NewGame
+                            user={user}
+                            setJoinedGame={setJoinedGame}
+                            setUser={setUser}
+                            msgAlert={msgAlert}                        
+                            startGame={startGame}
+                            playerCount={playerCount}
+                            setPlayerCount={setPlayerCount}
+                        />
+                        <JoinGame roomId={roomId} setRoomId={setRoomId} joinGame={joinGame}/>
+                    </>                
+                }                
+            </div>        
+        </>
+
     )
 }
 

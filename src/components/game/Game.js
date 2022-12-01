@@ -3,6 +3,7 @@ import GameBoard from './game-board/GameBoard'
 import ActionMenu from './ActionMenu'
 import { socket } from '../../apiConfig'
 
+
 const Game = (props) => {
 
     const {user, statusArray, setStatusArray, gameObject} = props
@@ -11,10 +12,38 @@ const Game = (props) => {
     const [userPlayerObject, setUserPlayerObject] = useState({})
     const [advancingTerritory, setAdvancingTerritory] = useState(null)
     const [territoriesWithConfirmedCommands, setTerritoriesWithConfirmedCommands] = useState([])
+    const [width, setWidth] = useState(window.innerWidth)
     
-    const statusDisplay = statusArray.map((item, index) => (        
-        <span key={index}>{item}<br/></span>                             
-    ))
+    const setWindowWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', setWindowWidth)
+
+        return function unMount() {
+            window.removeEventListener('resize', setWindowWidth)
+        }
+    }, [])
+
+    const adjustHexWidth = () => {
+        console.log("sup")
+        let newWidth = .1 * width
+        if (newWidth > 110) {
+            newWidth = 110
+        } else if (newWidth < 75) {
+            newWidth = 75
+        }
+        return newWidth
+    }
+
+    const [hexWidth, setHexWidth] = useState(adjustHexWidth)
+
+    useEffect(() => {
+        setHexWidth(adjustHexWidth)
+    }, [width])
+
+    
 
     //initial placement function
     useEffect(() => {
@@ -28,34 +57,42 @@ const Game = (props) => {
     useEffect(()=> {
         if (gameObject?.command) {
             setPlayerState('selectTerritory')
-        }
+        }        
     }, [gameObject])
 
-    //check for win and death
     useEffect(() => {
-        //find preists
-        let myPriests = 0
-        let theirPriests = 0
-        gameObject?.territories.forEach(territory => {
-            if (territory.priests) {
-                if (territory.controlledBy === userPlayerObject._id) {
-                    myPriests += territory.priests
-                } else {
-                    theirPriests += territory.priests
-                }
-            }            
-        })
-        if (theirPriests && !myPriests){
-            socket.emit('iDied', user, (response) => {
-                let newStatArray = statusArray.slice()
-                newStatArray.unshift(response.message)
-                setStatusArray(newStatArray)
-            })
-        } else if (myPriests && !theirPriests) {
-            socket.emit('iWon', user)
-        }
+       if (!statusArray.length && !playerState) {
+            setStatusArray([`Send other players room id: ${user.gameRoomId}`])
+        } 
+    }, [])
 
-    }, gameObject)
+
+
+    //check for win and death
+    // useEffect(() => {
+    //     //find preists
+    //     let myPriests = 0
+    //     let theirPriests = 0
+    //     gameObject?.territories.forEach(territory => {
+    //         if (territory.priests) {
+    //             if (territory.controlledBy === userPlayerObject._id) {
+    //                 myPriests += territory.priests
+    //             } else {
+    //                 theirPriests += territory.priests
+    //             }
+    //         }            
+    //     })
+    //     if (theirPriests && !myPriests){
+    //         socket.emit('iDied', user, (response) => {
+    //             let newStatArray = statusArray.slice()
+    //             newStatArray.unshift(response.message)
+    //             setStatusArray(newStatArray)
+    //         })
+    //     } else if (myPriests && !theirPriests) {
+    //         socket.emit('iWon', user)
+    //     }
+
+    // }, gameObject)
 
     useEffect(() => {
         if (playerState === 'selectTerritory' && clickedTerritory) {
@@ -64,29 +101,24 @@ const Game = (props) => {
     }, [clickedTerritory])
 
     return (
-        <div className='game'>
-
-            <div className='gameLeft'>
-                <GameBoard
-                    user={user}
-                    gameObject={gameObject}
-                    clickedTerritory={clickedTerritory}
-                    setClickedTerritory={setClickedTerritory}
-                    playerState={playerState}
-                    setPlayerState={setPlayerState}
-                    userPlayerObject={userPlayerObject}
-                    setUserPlayerObject={setUserPlayerObject}
-                    advancingTerritory={advancingTerritory}
-                    territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
-                />
-                <div className='statusBar'>
-                    <p>
-                        {statusDisplay}
-                    </p>
-                    
-                </div>
-            </div>
+        <>
             
+            <div className='game'>            
+                <div className='gameLeft' style={{height: 6.5 * hexWidth, width: 7.7 * hexWidth}}>
+                    <GameBoard
+                        user={user}
+                        gameObject={gameObject}
+                        clickedTerritory={clickedTerritory}
+                        setClickedTerritory={setClickedTerritory}
+                        playerState={playerState}
+                        setPlayerState={setPlayerState}
+                        userPlayerObject={userPlayerObject}
+                        setUserPlayerObject={setUserPlayerObject}
+                        advancingTerritory={advancingTerritory}
+                        territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
+                        hexWidth={hexWidth}
+                    />
+                </div>            
             <ActionMenu
                 user={user}
                 gameObject={gameObject}
@@ -98,9 +130,9 @@ const Game = (props) => {
                 setAdvancingTerritory={setAdvancingTerritory}
                 setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
                 userPlayerObject={userPlayerObject}
-            />
-            
+            />            
         </div>
+
     )
 }
 

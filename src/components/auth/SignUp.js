@@ -35,7 +35,7 @@ const SignUp = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/gameMenu'))
+			.then(() => navigate('/'))
 			.catch((error) => {
                 setEmail('')
                 setPassword('')
@@ -69,6 +69,7 @@ const SignUp = (props) => {
                         <Form.Label className='mt-3'>Username</Form.Label>
                         <Form.Control
                             required
+                            maxLength={15}
                             name='username'
                             value={username}
                             type='text'

@@ -6,7 +6,7 @@ import backgroundMusic from '../../audio/EmilyHopkins-SlowCat.mp3'
 import Player from './BackgroundMusic'
 
 const linkStyle = {
-	color: 'white',
+	color: 'rgb(165, 163, 163)',
 	textDecoration: 'none',
 	marginLeft: "10px"
 }
@@ -54,7 +54,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user, joinedGame }) => (
-	<Navbar bg='dark' variant='dark' expand='md' className='navigation' style={{ paddingTop: '2px', paddingBottom: '2px' }}>
+	<Navbar variant='dark' expand='md' className='navigation' style={{ paddingTop: '2px', paddingBottom: '2px' }}>
 		<Navbar.Brand>
 			<Link to='/' style={linkStyle}>
 				<img src='/favicon.ico' alt='baraka logo' className='brandLink' height='40px' />
@@ -66,11 +66,11 @@ const Header = ({ user, joinedGame }) => (
 			/>
 		</Nav.Item>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
-		<Navbar.Collapse id='basic-navbar-nav'>
+		<Navbar.Collapse id='basic-navbar-nav opacity-1' style={{background: 'rgb(30,33,37)'}}>
 			<Nav className='ml-auto'>			
 				{user ?
 					<>						
-						<Nav.Item>
+						{/* <Nav.Item>
 							<Link to='/' style={linkStyle}>
 								{user.gameRoomId && joinedGame ?
 									<span className='navbar-text mr-2'>Game Id: {user.gameRoomId}</span>
@@ -78,7 +78,7 @@ const Header = ({ user, joinedGame }) => (
 									<span>Game</span>
 								}								
 							</Link>
-						</Nav.Item>
+						</Nav.Item> */}
 						{authenticatedOptions}
 					</>
 					
