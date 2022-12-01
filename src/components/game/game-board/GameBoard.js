@@ -92,7 +92,7 @@ const GameBoard = (props) => {
 
     const hexBoard = (
         <>
-            <div className='hexBoard' style={{height: 6.2 * hexWidth, zIndex: 2, margin: 'auto'}}>
+            <div className='hexBoard' style={{height: 6.2 * hexWidth, zIndex: 3, margin: 'auto'}}>
                 <div className='hexRow hexRow1'>
                     {territoriesJSX.slice(0,4)}
                 </div>
