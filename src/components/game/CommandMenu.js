@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Dropdown } from 'react-bootstrap'
 import { socket } from '../../apiConfig'
 import CombatMenu from './CombatMenu'
 
@@ -105,6 +105,8 @@ const CommandMenu = (props) => {
         }
 
         // reset states after command is pushed
+        setSoldiersMarching(0)
+        setPriestsMarching(0)
         setMusteredUnit(null)
         setAdvancingTerritory(null)
         setClickedTerritory(null)
@@ -113,6 +115,8 @@ const CommandMenu = (props) => {
     }
 
     const handleBack = () => {
+        setSoldiersMarching(0)
+        setPriestsMarching(0)
         setMusteredUnit(null)
         setAdvancingTerritory(null)
         setClickedTerritory(null)
@@ -152,6 +156,11 @@ const CommandMenu = (props) => {
 
     }, [command, advancingTerritory, clickedTerritory, priestsMarching, soldiersMarching, musteredUnit])
 
+    let soldierMarchOptions
+    let priestMarchOptions
+    for (let i = 1; i <= clickedTerritory.soldiers; i++) soldierMarchOptions.push(i)
+    for (let i = 1; i <= clickedTerritory.priests; i++) priestMarchOptions.push(i)
+
 
     return (
         <>
@@ -164,7 +173,11 @@ const CommandMenu = (props) => {
                 }
 
                 {command === 'advance' &&
-                    <>TODO Advance Form</>
+                    <Dropdown title='Priests'>
+                        {priestMarchOptions.map(number => (
+                            <Dropdown.Item>${number}</Dropdown.Item>
+                        ))}
+                    </Dropdown>
                 }
 
                 {clickedTerritory.priests &&
