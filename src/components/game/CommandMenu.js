@@ -6,7 +6,7 @@ import CombatMenu from './CombatMenu'
 
 const CommandMenu = (props) => {
 
-    const { user, soldiersMarching, setSoldiersMarching, commandList, setCommandList, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory } = props
+    const { user, soldiersMarching, setSoldiersMarching, commandList, setCommandList, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory, musteredUnit, setMusteredUnit, priestsMarching, setPriestsMarching } = props
 
     const [confirmIsNOTClickable, setConfirmIsNOTClickable] = useState(true)
 
