@@ -6,14 +6,9 @@ import CombatMenu from './CombatMenu'
 
 const CommandMenu = (props) => {
 
-    const { user, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory } = props
+    const { user, soldiersMarching, setSoldiersMarching, commandList, setCommandList, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory } = props
 
-    const [commandList, setCommandList] = useState([])
-    const [soldiersMarching, setSoldiersMarching] = useState(0)
-    const [priestsMarching, setPriestsMarching] = useState(0)
-    const [musteredUnit, setMusteredUnit] = useState(null)
     const [confirmIsNOTClickable, setConfirmIsNOTClickable] = useState(true)
-    const [formation, setFormation] = useState('Hedgehog')
 
     let priestButtonColor = 'secondary'
     let soldierButtonColor = 'secondary'
@@ -124,21 +119,6 @@ const CommandMenu = (props) => {
         setCommand(null)
     }
 
-    const handleIssueCommands = () => {
-
-        let commandObject = {
-            commandList: commandList,
-            formation: formation
-        }
-        socket.emit('issueCommands', commandObject, userPlayerObject._id, gameObject._id)
-
-        setMusteredUnit(null)
-        setAdvancingTerritory(null)
-        setClickedTerritory(null)
-        setPlayerState('wait')
-        setCommand(null)
-    }
-
     useEffect(() => {
         //check if all data is chosen for a command to be confirmed
         setConfirmIsNOTClickable(() => {
@@ -208,15 +188,9 @@ const CommandMenu = (props) => {
             </div>
             <br />
             <div>
-                <Button onClick={handleConfirm} disabled={confirmIsNOTClickable} >CONFIRM</Button>{'  '}
+                <Button onClick={handleConfirm} disabled={confirmIsNOTClickable}>CONFIRM COMMAND</Button>{'  '}
                 <Button onClick={handleBack}>BACK</Button><br /><br />
             </div>
-            <div>
-                <CombatMenu formation={formation} setFormation={setFormation}/>
-                <Button onClick={handleIssueCommands} variant='danger'>ISSUE ALL COMMANDS</Button>
-            </div>
-
-            {/* ///NEED button to issue all commands, which should first trigger a way to order Advance commands///// */}
         </>
     )
 }

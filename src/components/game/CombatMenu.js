@@ -31,12 +31,12 @@ const CombatMenu = (props) => {
             <br />
             <div>
                 {formation &&
-                    <h3>Roll the {formation} die, its faces are {dice[formation]}.</h3>
+                    <h3>{formation} die is selected, its faces are {dice[formation]}.</h3>
                 }
             </div>
             <br />
             <div>
-                <Button variant='danger'>CONFIRM</Button>
+                <Button variant='danger'>CONFIRM FORMATION</Button>
             </div>
         </>
     )
