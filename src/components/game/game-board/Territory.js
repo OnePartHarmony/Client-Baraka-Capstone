@@ -19,21 +19,20 @@ const Territory = (props) => {
         //water is never clickable
         if (!clickableBoard || territory.type === 'water') {
             return false
-        }
-        if (gameObject.placementOrder.length > 0 && (!territory.controlledBy || territory.controlledBy.season === userPlayerObject.season)) {
+        } else if (gameObject.placementOrder.length > 0 && (!territory.controlledBy || territory.controlledBy.season === userPlayerObject.season)) {
             return true
-        }
-    
+            
         //when choosing a territory to command, it must be controlled by the user and not already commanded
-        if (playerState === 'selectTerritory' && !territoriesWithConfirmedCommands.includes(territory) && territory.controlledBy.season === userPlayerObject.season){
+        } else if (playerState === 'selectTerritory' && !territoriesWithConfirmedCommands.includes(territory) && territory.controlledBy.season === userPlayerObject.season){
             return true
-        }
-    
+            
         //when choosing a territory to advance to, it must be adjacent to the advancing territory
         //potentially playerState === 'selectCommand'
-        if ( advancingTerritory?.adjacents.includes(territory) ) {
+        } else if ( advancingTerritory?.adjacents.includes(territory) ) {
             return true
-        }
+        } else {
+            return false
+        }       
     
     }
     
@@ -54,14 +53,30 @@ const Territory = (props) => {
         }        
     }
 
-    let fillColor = 'rgba(255, 255, 255, 0.5)'    
-    if (!clickable) {
+
+    ///territories that need colors:
+    let fillColor = 'rgba(255, 255, 255, 0)'
+    let preFillColor = 'rgba(0,0,0,0)'
+    //territoriesWithConfirmedCommands - same prefill and fill (unless clickable)
+    if (territoriesWithConfirmedCommands.includes(territory)){
+        fillColor = 'rgba(255, 255, 0, 0.5)'
+        preFillColor = 'rgba(255, 255, 0, 0.5)'
+    }
+    //advancingTerritory - same prefill and fill, (unless clickable - should never be clickable)
+    if (territory === advancingTerritory) {
+        fillColor = 'rgba(0, 0, 255, 0.5)'
+        preFillColor = 'rgba(0, 0, 255, 0.5)'
+    }
+    if (clickable) {
         console.log('here')
-        fillColor = 'rgba(255, 255, 255, 0)'
+        fillColor = 'rgba(255, 255, 255, 0.5)'
     }
 
+
+
+
     const map = {
-        name: `map ${territory.number}`,                      
+        name: `map ${territory.number}`,
         areas: [{
             'id': `${territory.number}`,
             'name': `${territory.number}`,
@@ -69,7 +84,7 @@ const Territory = (props) => {
             'coords': [50,0,100,28.5,100,85.5,50,114,0,85.5,0,28.5],
             'stayHighlighted': 'true',
             'fillColor': `${fillColor}`,
-            'preFillColor': 'rgba(255,255,0,0)'            
+            'preFillColor': `${preFillColor}`
         }]
     }
 
