@@ -5,8 +5,8 @@
 }
 
 .statNav {
-  background-color: rgba(0,0,0,0);
   width: '100vw';
+  background-color: rgb(30,33,37);
 }
 
 body {
@@ -14,16 +14,16 @@ body {
 }
 
 .game {
-  top: 55px;
+  padding-top: 20px;
   background-image: url(https://i.imgur.com/PEIVQHM.jpg);
   background-size: cover;
-  min-height: 94vh;
+  min-height: 85vh;
   height: max-content;
   width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-content: top;
 }
 
 .gameLeft {
@@ -33,7 +33,6 @@ body {
 
 .gameRight {  
   border: 2px solid red;
-  min-height: 80vh;  
   border-radius: 10px;
   margin: 0 3vw;
   flex-grow: 1;
@@ -131,15 +130,6 @@ body {
   width: 55vw;
   display: flex;
   flex-direction: column;
-}
-
-
-.playerStats {
-  position: absolute;
-  height: 11vw;
-  width: 12vw;
-  padding: 1.2vw;
-  border-radius: 30%;
 }
 
 .player0 {

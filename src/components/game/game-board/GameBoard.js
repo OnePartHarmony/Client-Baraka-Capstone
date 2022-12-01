@@ -79,7 +79,7 @@ const GameBoard = (props) => {
             borderRadius: '30%',
             zIndex: 1,
             fontSize: `${.16 * hexWidth}px`,
-            textShadow: '1px 2px black'
+            textShadow: '1px 1px black'
         }}
         >
             <p><strong>{player.user.username}</strong><br/>
@@ -92,7 +92,7 @@ const GameBoard = (props) => {
 
     const hexBoard = (
         <>
-            <div className='hexBoard' style={{height: 6.2 * hexWidth, zIndex: 2}}>
+            <div className='hexBoard' style={{height: 6.2 * hexWidth, zIndex: 2, margin: 'auto'}}>
                 <div className='hexRow hexRow1'>
                     {territoriesJSX.slice(0,4)}
                 </div>

@@ -104,7 +104,7 @@ const Game = (props) => {
         <>
             
             <div className='game'>            
-                <div className='gameLeft' style={{height: 6.2 * hexWidth, width: 7 * hexWidth}}>
+                <div className='gameLeft' style={{height: 6.5 * hexWidth, width: 7.7 * hexWidth}}>
                     <GameBoard
                         user={user}
                         gameObject={gameObject}

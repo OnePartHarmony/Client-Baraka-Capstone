@@ -98,7 +98,7 @@ const GameMenu = (props) => {
 
     return (
         <>
-            <Navbar bg='dark' className='statNav' variant='dark' expand='md'>
+            <Navbar className='statNav' variant='dark' expand='md'>
                     <div className='statusBar'>
                         {/* for scrollbar display */}
                         <div className='innerStatus'>
