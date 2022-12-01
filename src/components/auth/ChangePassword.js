@@ -8,14 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const ChangePassword = (props) => {
-	// constructor(props) {
-	// 	super(props)
 
-	// 	this.state = {
-	// 		oldPassword: '',
-	// 		newPassword: '',
-	// 	}
-	// }
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
@@ -53,12 +46,12 @@ const ChangePassword = (props) => {
 
 
     return (
-        <div className='row'>
+        <div className='container-md'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Change Password</h3>
                 <Form onSubmit={onChangePassword}>
                     <Form.Group controlId='oldPassword'>
-                        <Form.Label>Old password</Form.Label>
+                        <Form.Label className='mt-3'>Old password</Form.Label>
                         <Form.Control
                             required
                             name='oldPassword'
@@ -69,7 +62,7 @@ const ChangePassword = (props) => {
                         />
                     </Form.Group>
                     <Form.Group controlId='newPassword'>
-                        <Form.Label>New Password</Form.Label>
+                        <Form.Label className='mt-3'>New Password</Form.Label>
                         <Form.Control
                             required
                             name='newPassword'
@@ -79,7 +72,7 @@ const ChangePassword = (props) => {
                             onChange={e => setNewPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='danger' type='submit' className='mt-3'>
                         Submit
                     </Button>
                 </Form>
