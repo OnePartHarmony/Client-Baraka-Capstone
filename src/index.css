@@ -110,3 +110,11 @@ body {
   color: white;
   margin: auto;
 }
+
+.signOut {
+  margin: auto;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+}
+

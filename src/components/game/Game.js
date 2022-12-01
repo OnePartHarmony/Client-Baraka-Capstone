@@ -5,7 +5,7 @@ import { socket } from '../../apiConfig'
 
 const Game = (props) => {
 
-    const {user, statusArray, gameObject} = props
+    const {user, statusArray, setStatusArray, gameObject} = props
     const [clickedTerritory, setClickedTerritory] = useState(null)
     const [playerState, setPlayerState] = useState('wait')
     const [userPlayerObject, setUserPlayerObject] = useState({})
@@ -30,6 +30,32 @@ const Game = (props) => {
             setPlayerState('selectTerritory')
         }
     }, [gameObject])
+
+    //check for win and death
+    useEffect(() => {
+        //find preists
+        let myPriests = 0
+        let theirPriests = 0
+        gameObject?.territories.forEach(territory => {
+            if (territory.priests) {
+                if (territory.controlledBy === userPlayerObject._id) {
+                    myPriests += territory.priests
+                } else {
+                    theirPriests += territory.priests
+                }
+            }            
+        })
+        if (theirPriests && !myPriests){
+            socket.emit('iDied', user, (response) => {
+                let newStatArray = statusArray.slice()
+                newStatArray.unshift(response.message)
+                setStatusArray(newStatArray)
+            })
+        } else if (myPriests && !theirPriests) {
+            socket.emit('iWon', user)
+        }
+
+    }, gameObject)
 
     useEffect(() => {
         if (playerState === 'selectTerritory' && clickedTerritory) {
