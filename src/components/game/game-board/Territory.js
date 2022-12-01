@@ -19,6 +19,8 @@ const Territory = (props) => {
         //water is never clickable
         if (!clickableBoard || territory.type === 'water') {
             return false
+
+        //when placing a priest in beginning
         } else if (gameObject.placementOrder.length > 0 && (!territory.controlledBy || territory.controlledBy.season === userPlayerObject.season)) {
             return true
             

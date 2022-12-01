@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import GameBoard from './game-board/GameBoard'
 import ActionMenu from './ActionMenu'
 import { socket } from '../../apiConfig'
@@ -26,7 +26,8 @@ const Game = (props) => {
         }
     }, [])
 
-    const adjustHexWidth = () => {
+    
+    const adjustHexWidth = useCallback(() => {
         console.log("sup")
         let newWidth = .1 * width
         if (newWidth > 110) {
@@ -35,13 +36,13 @@ const Game = (props) => {
             newWidth = 75
         }
         return newWidth
-    }
+    }, [width])
 
     const [hexWidth, setHexWidth] = useState(adjustHexWidth)
 
     useEffect(() => {
         setHexWidth(adjustHexWidth)
-    }, [width])
+    }, [width, adjustHexWidth])
 
     
 
@@ -51,7 +52,7 @@ const Game = (props) => {
             socket.emit('initialUnitPlacement', clickedTerritory._id, userPlayerObject._id, gameObject._id)
             setClickedTerritory(null)
         }
-    }, [clickedTerritory])
+    }, [clickedTerritory, userPlayerObject, gameObject])
     
 
     useEffect(()=> {
@@ -64,7 +65,7 @@ const Game = (props) => {
        if (!statusArray.length && playerState === 'wait') {
             setStatusArray([`Send other players room id: ${user.gameRoomId}`])
         } 
-    }, [])
+    })
 
 
 
@@ -98,7 +99,7 @@ const Game = (props) => {
         if (playerState === 'selectTerritory' && clickedTerritory) {
             setPlayerState('selectCommand')
         }
-    }, [clickedTerritory])
+    }, [clickedTerritory, playerState])
 
     return (
         <>            
@@ -116,6 +117,7 @@ const Game = (props) => {
                         advancingTerritory={advancingTerritory}
                         territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
                         hexWidth={hexWidth}
+                        setStatusArray={setStatusArray}
                     />
                 </div>            
                 <ActionMenu
