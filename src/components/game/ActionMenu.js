@@ -4,7 +4,7 @@ import CombatMenu from './CombatMenu'
 
 const ActionMenu = (props) => {
 
-    const {user, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory, setTerritoriesWithConfirmedCommands} = props
+    const {user, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory, setTerritoriesWithConfirmedCommands} = props
     const [command, setCommand] = useState(null)
 
     //when advance is chosen as the commmand, the advancing territory needs to be seen as the 'to' territory is chosen
@@ -31,6 +31,7 @@ const ActionMenu = (props) => {
             {playerState === 'selectCommand' &&
                 <CommandMenu
                     user={user}
+                    gameObject={gameObject}
                     playerState={playerState}
                     setPlayerState={setPlayerState}
                     clickedTerritory={clickedTerritory}
