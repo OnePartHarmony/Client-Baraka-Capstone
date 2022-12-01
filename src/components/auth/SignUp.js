@@ -69,6 +69,7 @@ const SignUp = (props) => {
                         <Form.Label className='mt-3'>Username</Form.Label>
                         <Form.Control
                             required
+                            maxLength={15}
                             name='username'
                             value={username}
                             type='text'

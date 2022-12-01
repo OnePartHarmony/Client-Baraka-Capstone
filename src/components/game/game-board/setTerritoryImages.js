@@ -113,10 +113,10 @@ export const setTerritoryBackground = (territory) => {
 
 }
 
-export const setPriest = (territory) => {
+export const setPriest = (param) => {
     let priest
-    if (territory.controlledBy) {
-        switch (territory.controlledBy.season) {
+    if (param) {
+        switch (param.season) {
             case 'spring' :
                 priest = springPriest
                 break

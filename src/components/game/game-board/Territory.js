@@ -12,7 +12,7 @@ const Territory = (props) => {
     
     const background = setTerritoryBackground(territory)
     const soldier = setSoldier(territory)
-    const priest = setPriest(territory)
+    const priest = setPriest(territory.controlledBy)
     
     const checkClickable = () => {
     
@@ -76,7 +76,6 @@ const Territory = (props) => {
         preFillColor = 'rgba(255, 0, 0, 0.5)'
     }
     if (clickable) {
-        console.log('here')
         fillColor = 'rgba(255, 255, 255, 0.5)'
     }
 

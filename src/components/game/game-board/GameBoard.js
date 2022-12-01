@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
+import { setPriest } from './setTerritoryImages'
 import Territory from './Territory'
-
 
 const GameBoard = (props) => {
 
@@ -68,54 +68,67 @@ const GameBoard = (props) => {
         }
     }
     
-    const playerStats = gameObject?.players.map((player,index) => {
-        <div key={index} className={`player${index}`}>
-            <p>{player.user.username}</p>
-            <p>{player.season}</p>
-            <p>Gold: {player.gold}</p>
+    const playerStats = gameObject?.players.map((player,index) => (        
+        <div key={index} className={`player${index}`}
+        style={{
+            color: playerColor(player.season), 
+            position: 'absolute',
+            height: '11vw',
+            width: '12vw',
+            padding: '1.2vw',
+            borderRadius: '30%',
+            zIndex: 1,
+            fontSize: `${.16 * hexWidth}px`,
+            textShadow: '1px 2px black'
+        }}
+        >
+            <p><strong>{player.user.username}</strong><br/>
+            <img src={setPriest(player)}/>{player.season}<br/>
+            Gold: {player.gold}</p>
         </div>
-    })    
+    ))
 
 
 
     const hexBoard = (
-        <div className='hexBoard' style={{height: 6.5 * hexWidth, zIndex: 3}}>
-            <div className='hexRow hexRow1'>
-                {territoriesJSX.slice(0,4)}
+        <>
+            <div className='hexBoard' style={{height: 6.2 * hexWidth, zIndex: 2}}>
+                <div className='hexRow hexRow1'>
+                    {territoriesJSX.slice(0,4)}
+                </div>
+                <div className='hexRow hexRow2' style={{ top: -.3 * hexWidth }}>
+                    {territoriesJSX.slice(4,9)}
+                </div>
+                <div className='hexRow hexRow3' style={{ top: -.6 * hexWidth}}>
+                    {territoriesJSX.slice(9,15)}
+                </div>
+                <div className='hexRow hexRow4' style={{ top: -.9 * hexWidth}}>
+                    {territoriesJSX.slice(15,22)}
+                </div>
+                <div className='hexRow hexRow5' style={{ top: -1.2 * hexWidth}}>
+                    {territoriesJSX.slice(22,28)}
+                </div>
+                <div className='hexRow hexRow6' style={{ top: -1.5 * hexWidth}}>
+                    {territoriesJSX.slice(28,33)}
+                </div>
+                <div className='hexRow hexRow7' style={{ top: -1.8 * hexWidth}}>
+                    {territoriesJSX.slice(33,37)}
+                </div>
+                
             </div>
-            <div className='hexRow hexRow2' style={{ top: -.3 * hexWidth }}>
-                {territoriesJSX.slice(4,9)}
-            </div>
-            <div className='hexRow hexRow3' style={{ top: -.6 * hexWidth}}>
-                {territoriesJSX.slice(9,15)}
-            </div>
-            <div className='hexRow hexRow4' style={{ top: -.9 * hexWidth}}>
-                {territoriesJSX.slice(15,22)}
-            </div>
-            <div className='hexRow hexRow5' style={{ top: -1.2 * hexWidth}}>
-                {territoriesJSX.slice(22,28)}
-            </div>
-            <div className='hexRow hexRow6' style={{ top: -1.5 * hexWidth}}>
-                {territoriesJSX.slice(28,33)}
-            </div>
-            <div className='hexRow hexRow7' style={{ top: -1.8 * hexWidth}}>
-                {territoriesJSX.slice(33,37)}
-            </div>
-        </div>
+            {playerStats}
+        </>
+        
     )
 
 
-
-
-    let display = gameObject ? 
-        hexBoard
-        : 
-        (<h1>Waiting for game board....</h1>)
-
-
+    
     return (
         <>
-            {display}
+            {gameObject ? 
+            hexBoard
+            : 
+            <h1>Waiting for game board....</h1>}
         </>        
     )
 }
