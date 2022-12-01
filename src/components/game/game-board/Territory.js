@@ -38,7 +38,7 @@ const Territory = (props) => {
     
     useEffect(()=> {
         setClickable(checkClickable())        
-    }, [clickableBoard, advancingTerritory])
+    }, [clickableBoard, playerState, advancingTerritory])
 
 
     const toggleClickedTerritory = () => {        
