@@ -3,26 +3,48 @@ import { Button } from 'react-bootstrap'
 
 const CommandMenu = (props) => {
 
-    const { user, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory} = props
+    const { user, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, command, setCommand, setTerritoriesWithConfirmedCommands, advancingTerritory, setAdvancingTerritory} = props
 
-    
+    const [commandList, setCommandList] = useState([])
+    const [soldiersMarching, setSoldiersMarching] = useState(0)
+    const [priestsMarching, setPriestsMarching] = useState(0)
 
     const handleChoice = (e) => {
         setCommand(e.target.innerText.toLowerCase())
     }
 
     const handleConfirm = () => {
-        //NEED MORE THINGS HERE
-        //like, if command == advance, save the advancing and clicked territories as from and to
 
+        if (command) {
+            if (command === 'advance' && advancingTerritory && clickedTerritory && (priestsMarching || soldiersMarching)) {
 
-        if (advancingTerritory){
-            setTerritoriesWithConfirmedCommands(prevArray => {prevArray.push(advancingTerritory)})
-            setAdvancingTerritory(null)
+                // creating advance command
+                let advanceCommand = {
+                    type: 'advance',
+                    originTerritory: advancingTerritory._id,
+                    newTerritory: clickedTerritory._id,
+                    issuedBy: userPlayerObject._id,
+                    soldiersMarching: soldiersMarching,
+                    priestsMarching: priestsMarching
+                }
+                setCommandList(prevArray => {[...prevArray, advanceCommand]})
+
+                // for visual feedback and clickability checking
+                setTerritoriesWithConfirmedCommands(prevArray => {[...prevArray, advancingTerritory]})
+                setAdvancingTerritory(null)
+            } else {
+                setTerritoriesWithConfirmedCommands(prevArray => {[...prevArray, clickedTerritory]})
+            }
+
         } else {
-            setTerritoriesWithConfirmedCommands(prevArray => {prevArray.push(clickedTerritory)})
+            // send status command failed
+            console.log('you"re quite bad at this game')
         }
+
+        // reset states after command is pushed
         setClickedTerritory(null)
+        setPlayerState('selectTerritory')
+        setCommand(null)
     }
 
     const handleBack = () => {
