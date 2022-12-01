@@ -8,7 +8,7 @@ import { createGame } from '../../api/game'
 
 const GameMenu = (props) => {
 
-    const {user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, gameObject,clearGameStates} = props
+    const {user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, setStatusArray, gameObject, clearGameStates, wonOrLost} = props
     
     const [roomId, setRoomId] = useState('')
     const [playerCount, setPlayerCount] = useState(2)
@@ -67,6 +67,11 @@ const GameMenu = (props) => {
             })              
         } 
     }, [user, joinedGame])
+
+    useEffect(() => {
+        ///NEED TO handle win or loss
+        console.log(`${user.username} ${wonOrLost} the game.`)
+    }, [wonOrLost])
     
 
     return (
@@ -76,6 +81,7 @@ const GameMenu = (props) => {
                     <Game
                         user={user}
                         statusArray={statusArray}
+                        setStatusArray={setStatusArray}
                         gameObject={gameObject}
                     />
                 </>                

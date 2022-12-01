@@ -24,24 +24,33 @@ const App = () => {
 	const [joinedGame, setJoinedGame] = useState(false)
 	const [gameObject, setGameObject] = useState(null)
 	const [statusArray, setStatusArray] = useState([])
+	const [wonOrLost, setWonOrLost] = useState(null)
 
     useEffect(() => {
         //listen for status and add it to status bar
-        socket.on('status', (arg) => {
+        socket.on('status', (response) => {
             let newStatArray = statusArray.slice()
-            newStatArray.unshift(arg.message)
+            newStatArray.unshift(response.message)
             setStatusArray(newStatArray)
         })
 
-		socket.on('gameData', (arg) => {
+		socket.on('gameData', (response) => {
             console.log('thats some big data')
-			setGameObject(arg.game)
+			setGameObject(response.game)
 		})
 
 		//force socket to rejoin room on disconnect
 		socket.on('disconnect', () => {
 				console.log('disconnected', socket.id)
 				setJoinedGame(false)
+		})
+
+		socket.on('playerWon', (userId) => {
+			if (userId === user) {
+				setWonOrLost(won)
+			} else {
+				setWonOrLost(lost)
+			}
 		})
 
         return function unMount() {
@@ -109,6 +118,8 @@ const App = () => {
 									statusArray={statusArray}
 									gameObject={gameObject}
 									clearGameStates={clearGameStates}
+									setStatusArray={setStatusArray}
+									wonOrLost={wonOrLost}
 								/>
 							</RequireAuth>						
 						}
