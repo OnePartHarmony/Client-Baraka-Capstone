@@ -1,24 +1,46 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import CommandMenu from './CommandMenu'
 import CombatMenu from './CombatMenu'
 
 const ActionMenu = (props) => {
 
-    const {user, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory, setTerritoriesWithConfirmedCommands} = props
+    const { user, gameObject, userPlayerObject, playerState, setPlayerState, clickedTerritory, setClickedTerritory, advancingTerritory, setAdvancingTerritory, setTerritoriesWithConfirmedCommands } = props
     const [command, setCommand] = useState(null)
+    const [commandList, setCommandList] = useState([])
+    const [soldiersMarching, setSoldiersMarching] = useState(0)
+    const [priestsMarching, setPriestsMarching] = useState(0)
+    const [musteredUnit, setMusteredUnit] = useState(null)
+    const [formation, setFormation] = useState('Hedgehog')
 
     //when advance is chosen as the commmand, the advancing territory needs to be seen as the 'to' territory is chosen
     useEffect(() => {
-        if (command === 'advance'){
-            setAdvancingTerritory(clickedTerritory)            
+        if (command === 'advance') {
+            setAdvancingTerritory(clickedTerritory)
         }
     }, [command])
 
     useEffect(() => {
-        if (advancingTerritory === clickedTerritory){
+        if (advancingTerritory === clickedTerritory) {
             setClickedTerritory(null)
         }
     }, [advancingTerritory])
+
+    const handleIssueCommands = () => {
+
+        let commandObject = {
+            commandList: commandList,
+            formation: formation
+        }
+        socket.emit('issueCommands', commandObject, userPlayerObject._id, gameObject._id)
+
+        setSoldiersMarching(0)
+        setPriestsMarching(0)
+        setMusteredUnit(null)
+        setAdvancingTerritory(null)
+        setClickedTerritory(null)
+        setPlayerState('wait')
+        setCommand(null)
+    }
 
     return (
         <div className='gameRight'>
@@ -42,12 +64,26 @@ const ActionMenu = (props) => {
                     userPlayerObject={userPlayerObject}
                     command={command}
                     setCommand={setCommand}
+                    commandList={commandList}
+                    setCommandList={setCommandList}
+                    soldiersMarching={soldiersMarching}
+                    setSoldiersMarching={setSoldiersMarching}
+                    priestsMarching={priestsMarching}
+                    setPriestsMarching={setPriestsMarching}
+                    musteredUnit={musteredUnit}
+                    setMusteredUnit={setMusteredUnit}
+                    formation={formation}
+                    setFormation={setFormation}
                 />
             }
-            {playerState === 'combat' &&
+            {/* {playerState === 'combat' &&
                 <CombatMenu user={user}/>
-            }
-            
+            } */}
+
+            <div>
+                <CombatMenu formation={formation} setFormation={setFormation} />
+                <Button onClick={handleIssueCommands} variant='danger'>ISSUE ALL CONFIRMED COMMANDS</Button>
+            </div>
         </div>
     )
 }
