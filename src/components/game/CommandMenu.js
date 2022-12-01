@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Button } from 'react-bootstrap'
+import { socket } from '../../apiConfig'
+
 
 const CommandMenu = (props) => {
 
@@ -10,6 +12,25 @@ const CommandMenu = (props) => {
     const [priestsMarching, setPriestsMarching] = useState(0)
     const [musteredUnit, setMusteredUnit] = useState(null)
     const [confirmIsNOTClickable, setConfirmIsNOTClickable] = useState(true)
+
+    let priestBorderColor = 'black'
+    let soldierBorderColor = 'black'
+
+    // for highlighting muster selection
+    useEffect(() => {
+        if (musteredUnit === 'priest') {
+            priestBorderColor = 'yellow'
+            soldierBorderColor = 'black'
+        }
+        else if (musteredUnit === 'soldier') {
+            priestBorderColor = 'black'
+            soldierBorderColor = 'yellow'
+        }
+        else {
+            priestBorderColor = 'black'
+            soldierBorderColor = 'black'
+        }
+    }, [musteredUnit])
 
     const handleChoice = (e) => {
         setCommand(e.target.innerText.toLowerCase())
@@ -98,7 +119,8 @@ const CommandMenu = (props) => {
     }
 
     const handleIssueCommands = () => {
-        //TODO all the socket stuff, Harmony, HELP!
+
+        socket.emit('commandList', commandList)
 
         setMusteredUnit(null)
         setAdvancingTerritory(null)
@@ -136,12 +158,13 @@ const CommandMenu = (props) => {
                 }
                 <Button onClick={handleChoice} variant='dark'>Excise</Button>
                 <Button onClick={handleChoice} variant='dark'>Muster</Button>
-                {command === 'muster' &&
-                    <>TODO Muster Form</>
-                    // <>
-                    //     <Button onClick={() => {setMusteredUnit('soldier')}} variant='secondary'>Muster Soldier</Button>
-                    //     <Button onClick={() => {setMusteredUnit('priest')}} variant='secondary'>Muster Priest</Button>
-                    // </>
+                {(command === 'muster' && userPlayerObject.gold >= 2 && clickedTerritory.population >= 1 && clickedTerritory.abundance >= 1) &&
+
+                    <Button onClick={() => {setMusteredUnit('soldier')}} variant='secondary'>Muster Soldier</Button>
+                }
+                {(command === 'muster' && userPlayerObject.gold >= 5 && clickedTerritory.population >= 1 && clickedTerritory.abundance >= 1) &&
+                
+                    <Button onClick={() => {setMusteredUnit('priest')}} variant='secondary'>Muster Priest</Button>
                 }
                 <Button onClick={handleChoice} variant='dark'>Sow</Button>
             </div>
