@@ -8,7 +8,7 @@ import { createGame } from '../../api/game'
 
 const GameMenu = (props) => {
 
-    const {user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, setStatusArray, gameObject, clearGameStates, wonOrLost} = props
+    const { user, setUser, msgAlert, joinedGame, setJoinedGame, statusArray, setStatusArray, gameObject, clearGameStates, wonOrLost} = props
     
     const [roomId, setRoomId] = useState('')
     const [playerCount, setPlayerCount] = useState(2)

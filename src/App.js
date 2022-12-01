@@ -47,9 +47,9 @@ const App = () => {
 
 		socket.on('playerWon', (userId) => {
 			if (userId === user) {
-				setWonOrLost(won)
+				setWonOrLost('won')
 			} else {
-				setWonOrLost(lost)
+				setWonOrLost('lost')
 			}
 		})
 
