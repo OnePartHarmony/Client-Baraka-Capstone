@@ -81,16 +81,20 @@ const CommandMenu = (props) => {
             <h2>Choose your command:</h2>
             <br />
             <div className="d-grid gap-2">
-                <Button onClick={handleChoice} variant="dark">Advance</Button>
+                <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 {command === 'advance' &&
                     <>TODO Advance Form</>
                 }
-                <Button onClick={handleChoice} variant="dark">Excise</Button>
-                <Button onClick={handleChoice} variant="dark">Muster</Button>
+                <Button onClick={handleChoice} variant='dark'>Excise</Button>
+                <Button onClick={handleChoice} variant='dark'>Muster</Button>
                 {command === 'muster' &&
                     <>TODO Muster Form</>
+                    // <>
+                    //     <Button onClick={() => {setMusteredUnit('soldier')}} variant='secondary'>Muster Soldier</Button>
+                    //     <Button onClick={() => {setMusteredUnit('priest')}} variant='secondary'>Muster Priest</Button>
+                    // </>
                 }
-                <Button onClick={handleChoice} variant="dark">Sow</Button>
+                <Button onClick={handleChoice} variant='dark'>Sow</Button>
             </div>
             <br />
             <div>
