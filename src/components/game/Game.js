@@ -16,6 +16,7 @@ const Game = (props) => {
         <span key={index}>{item}<br/></span>                             
     ))
 
+    //initial placement function
     useEffect(() => {
         if (clickedTerritory && gameObject.placementOrder.length > 0){
             socket.emit('initialUnitPlacement', clickedTerritory._id, userPlayerObject._id, gameObject._id)
@@ -23,6 +24,18 @@ const Game = (props) => {
         }
     }, [clickedTerritory])
     
+
+    useEffect(()=> {
+        if (gameObject.command) {
+            setPlayerState('selectTerritory')
+        }
+    }, [gameObject])
+
+    useEffect(() => {
+        if (playerState === 'selectTerritory' && clickedTerritory) {
+            setPlayerState('selectCommand')
+        }
+    }, [clickedTerritory])
 
     return (
         <div className='game'>
@@ -37,7 +50,6 @@ const Game = (props) => {
                     setPlayerState={setPlayerState}
                     userPlayerObject={userPlayerObject}
                     setUserPlayerObject={setUserPlayerObject}
-                    playerState={playerState}
                     advancingTerritory={advancingTerritory}
                     territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
                 />
