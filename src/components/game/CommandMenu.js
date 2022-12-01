@@ -15,9 +15,8 @@ const CommandMenu = (props) => {
 
     const handleConfirm = () => {
 
-        if (command) {
-            if (command === 'advance' && advancingTerritory && clickedTerritory && (priestsMarching || soldiersMarching)) {
-
+        if (command === 'advance') {
+            if (advancingTerritory && clickedTerritory && (priestsMarching || soldiersMarching)) {
                 // creating advance command
                 let advanceCommand = {
                     type: 'advance',
@@ -27,21 +26,23 @@ const CommandMenu = (props) => {
                     soldiersMarching: soldiersMarching,
                     priestsMarching: priestsMarching
                 }
-                setCommandList(prevArray => {[...prevArray, advanceCommand]})
+                setCommandList(prevArray => {return [...prevArray, advanceCommand]})
 
                 // for visual feedback and clickability checking
-                setTerritoriesWithConfirmedCommands(prevArray => {[...prevArray, advancingTerritory]})
-                setAdvancingTerritory(null)
+                setTerritoriesWithConfirmedCommands(prevArray => {return [...prevArray, advancingTerritory]})                
             } else {
-                setTerritoriesWithConfirmedCommands(prevArray => {[...prevArray, clickedTerritory]})
+                // send status command failed
+                console.log('you"re quite bad at this game')
             }
-
         } else {
-            // send status command failed
-            console.log('you"re quite bad at this game')
+
+            ////ADD MORE STUFF HERE//////
+
+            setTerritoriesWithConfirmedCommands(prevArray => {return [...prevArray, clickedTerritory]})
         }
 
         // reset states after command is pushed
+        setAdvancingTerritory(null)
         setClickedTerritory(null)
         setPlayerState('selectTerritory')
         setCommand(null)

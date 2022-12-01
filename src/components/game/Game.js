@@ -26,7 +26,7 @@ const Game = (props) => {
     
 
     useEffect(()=> {
-        if (gameObject.command) {
+        if (gameObject?.command) {
             setPlayerState('selectTerritory')
         }
     }, [gameObject])

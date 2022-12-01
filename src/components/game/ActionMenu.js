@@ -39,6 +39,8 @@ const ActionMenu = (props) => {
                     setAdvancingTerritory={setAdvancingTerritory}
                     setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
                     userPlayerObject={userPlayerObject}
+                    command={command}
+                    setCommand={setCommand}
                 />
             }
             {playerState === 'combat' &&
