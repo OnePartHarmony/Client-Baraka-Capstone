@@ -4,31 +4,45 @@ import Territory from './Territory'
 
 const GameBoard = (props) => {
 
-    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands, hexWidth} = props
+    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands, hexWidth, setStatusArray} = props
 
     
     const [clickableBoard, setClickableBoard] = useState(false)
 
-
-    useEffect(() => {
-        //find the player object that belongs to the user
-        if (gameObject) {
-            gameObject.players.forEach(player => {
-                if (player.user._id === user._id) {
-                    setUserPlayerObject(player)
-                }
-            })
-        }
+    //find the player object that belongs to the user
+    useEffect(() => {        
+        gameObject?.players.forEach(player => {
+            if (player.user._id === user._id) {
+                setUserPlayerObject(player)
+            }
+        })        
     }, [gameObject])
 
-    
+    //determine if any hexes at all should be clickable
+    //alert players of whose turn it is to place a priest
     useEffect(() => {
-        if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {            
+        // if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {
+        if (gameObject?.placementOrder.length > 0) {
+            if (gameObject.placementOrder[0] === userPlayerObject.season) {
+                setClickableBoard(true)
+                setStatusArray(prevArray => {
+                    return ['Your turn! Choose a territory in which to place a priest.', ...prevArray]
+                })
+            } else {
+                setClickableBoard(false)
+                setStatusArray(prevArray => {
+                    return [`${gameObject.placementOrder[0]} is placing a priest`, ...prevArray]
+                })
+            }
+        } else if (gameObject?.command) {          
             setClickableBoard(true)
         } else {
             setClickableBoard(false)
         }
     }, [userPlayerObject])
+
+    
+    
 
 
 

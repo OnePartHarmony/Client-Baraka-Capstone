@@ -116,6 +116,7 @@ const Game = (props) => {
                         advancingTerritory={advancingTerritory}
                         territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
                         hexWidth={hexWidth}
+                        setStatusArray={setStatusArray}
                     />
                 </div>            
                 <ActionMenu
