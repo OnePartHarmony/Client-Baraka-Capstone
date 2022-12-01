@@ -3,6 +3,7 @@ import GameBoard from './game-board/GameBoard'
 import ActionMenu from './ActionMenu'
 import { socket } from '../../apiConfig'
 
+
 const Game = (props) => {
 
     const {user, statusArray, setStatusArray, gameObject} = props
@@ -44,11 +45,6 @@ const Game = (props) => {
 
     
 
-    
-    const statusDisplay = statusArray.map((item, index) => (        
-        <span key={index}>{item}<br/></span>                             
-    ))
-
     //initial placement function
     useEffect(() => {
         if (clickedTerritory && gameObject.placementOrder.length > 0){
@@ -61,8 +57,16 @@ const Game = (props) => {
     useEffect(()=> {
         if (gameObject?.command) {
             setPlayerState('selectTerritory')
-        }
+        }        
     }, [gameObject])
+
+    useEffect(() => {
+       if (!statusArray.length && !playerState) {
+            setStatusArray([`Send other players room id: ${user.gameRoomId}`])
+        } 
+    }, [])
+
+
 
     //check for win and death
     // useEffect(() => {
@@ -97,46 +101,39 @@ const Game = (props) => {
     }, [clickedTerritory])
 
     return (
-        <div className='game'>
-
-            <div className='gameLeft'>
-                <GameBoard
+        <>
+            
+            <div className='game'>            
+                <div className='gameLeft'>
+                    <GameBoard
+                        user={user}
+                        gameObject={gameObject}
+                        clickedTerritory={clickedTerritory}
+                        setClickedTerritory={setClickedTerritory}
+                        playerState={playerState}
+                        setPlayerState={setPlayerState}
+                        userPlayerObject={userPlayerObject}
+                        setUserPlayerObject={setUserPlayerObject}
+                        advancingTerritory={advancingTerritory}
+                        territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
+                        hexWidth={hexWidth}
+                    />
+                </div>
+                
+                <ActionMenu
                     user={user}
-                    gameObject={gameObject}
                     clickedTerritory={clickedTerritory}
                     setClickedTerritory={setClickedTerritory}
                     playerState={playerState}
                     setPlayerState={setPlayerState}
-                    userPlayerObject={userPlayerObject}
-                    setUserPlayerObject={setUserPlayerObject}
                     advancingTerritory={advancingTerritory}
-                    territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
-                    hexWidth={hexWidth}
-                />
-                <div className='statusBar'>
-                    <p>
-                        {statusDisplay}
-                    </p>                    
-                </div>
-                <div className='roomStats' >
-                    <p>Room: {gameObject?.roomId}</p>
-                    <p>Current Season: {gameObject?.currentSeason}</p>
-                </div>
+                    setAdvancingTerritory={setAdvancingTerritory}
+                    setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
+                    userPlayerObject={userPlayerObject}
+                />            
             </div>
-            
-            <ActionMenu
-                user={user}
-                clickedTerritory={clickedTerritory}
-                setClickedTerritory={setClickedTerritory}
-                playerState={playerState}
-                setPlayerState={setPlayerState}
-                advancingTerritory={advancingTerritory}
-                setAdvancingTerritory={setAdvancingTerritory}
-                setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
-                userPlayerObject={userPlayerObject}
-            />
-            
-        </div>
+        </>
+        
     )
 }
 

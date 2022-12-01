@@ -29,9 +29,7 @@ const App = () => {
     useEffect(() => {
         //listen for status and add it to status bar
         socket.on('status', (response) => {
-            let newStatArray = statusArray.slice()
-            newStatArray.unshift(response.message)
-            setStatusArray(newStatArray)
+            setStatusArray(prevArray => { return [response.message, ...prevArray]})
         })
 
 		socket.on('gameData', (response) => {
