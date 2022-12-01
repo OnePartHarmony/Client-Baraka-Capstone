@@ -101,8 +101,7 @@ const Game = (props) => {
     }, [clickedTerritory])
 
     return (
-        <>
-            
+        <>            
             <div className='game'>            
                 <div className='gameLeft' style={{height: 6.5 * hexWidth, width: 7.7 * hexWidth}}>
                     <GameBoard
@@ -119,19 +118,20 @@ const Game = (props) => {
                         hexWidth={hexWidth}
                     />
                 </div>            
-            <ActionMenu
-                user={user}
-                gameObject={gameObject}
-                clickedTerritory={clickedTerritory}
-                setClickedTerritory={setClickedTerritory}
-                playerState={playerState}
-                setPlayerState={setPlayerState}
-                advancingTerritory={advancingTerritory}
-                setAdvancingTerritory={setAdvancingTerritory}
-                setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
-                userPlayerObject={userPlayerObject}
-            />            
-        </div>
+                <ActionMenu
+                    user={user}
+                    gameObject={gameObject}
+                    clickedTerritory={clickedTerritory}
+                    setClickedTerritory={setClickedTerritory}
+                    playerState={playerState}
+                    setPlayerState={setPlayerState}
+                    advancingTerritory={advancingTerritory}
+                    setAdvancingTerritory={setAdvancingTerritory}
+                    setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
+                    userPlayerObject={userPlayerObject}
+                />            
+            </div>
+        </>
 
     )
 }
