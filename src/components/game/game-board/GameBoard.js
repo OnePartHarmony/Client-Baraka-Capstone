@@ -13,12 +13,12 @@ const GameBoard = (props) => {
     useEffect(() => {
         //find the player object that belongs to the user
         if (gameObject) {
-                    gameObject.players.forEach(player => {
-                        if (player.user._id === user._id) {
-                            setUserPlayerObject(player)
-                        }
-                    })
+            gameObject.players.forEach(player => {
+                if (player.user._id === user._id) {
+                    setUserPlayerObject(player)
                 }
+            })
+        }
     }, [gameObject])
 
     
@@ -64,29 +64,29 @@ const GameBoard = (props) => {
             case 'autumn' :
                 return 'rgb(200, 200, 200)'
             default :
-                return 'rgb(0, 0, 255)'
+                return 'rgb(0, 50, 255)'
         }
     }
+    
     
     const playerStats = gameObject?.players.map((player,index) => (        
         <div key={index} className={`player${index}`}
         style={{
             color: playerColor(player.season), 
             position: 'absolute',
-            height: '11vw',
-            width: '12vw',
-            padding: '1.2vw',
-            borderRadius: '30%',
+            padding: '1.4vw 1vw',
+            borderRadius: '20%',
             zIndex: 1,
             fontSize: `${.16 * hexWidth}px`,
-            textShadow: '1px 1px black'
+            textShadow: '1px 1px black'          
         }}
         >
-            <p><strong>{player.user.username}</strong><br/>
+            <p ><strong>{player.user.username}</strong><br/>
             <img src={setPriest(player)}/>{player.season}<br/>
             Gold: {player.gold}</p>
         </div>
     ))
+    
 
 
 
