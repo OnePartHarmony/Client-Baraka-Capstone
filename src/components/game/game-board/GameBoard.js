@@ -22,22 +22,10 @@ for (let i=0; i<37; i++){
 
 const GameBoard = (props) => {
 
-    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands} = props
+    const {user, gameObject, clickedTerritory, setClickedTerritory, userPlayerObject, setUserPlayerObject, playerState, advancingTerritory, territoriesWithConfirmedCommands, hexWidth} = props
 
-    const [width, setWidth] = useState(window.innerWidth)
+    
     const [clickableBoard, setClickableBoard] = useState(false)
-
-    const setWindowWidth = () => {
-        setWidth(window.innerWidth)
-    }  
-
-    useEffect(() => {
-            window.addEventListener('resize', setWindowWidth)
-
-            return function unMount() {
-                window.removeEventListener('resize', setWindowWidth)
-            }
-        }, [])
 
 
     useEffect(() => {
@@ -66,7 +54,7 @@ const GameBoard = (props) => {
     let territories = gameObject ? 
         <HexMap
                 territories={gameObject.territories}
-                width={width}
+                hexWidth={hexWidth}
                 clickedTerritory={clickedTerritory}
                 setClickedTerritory={setClickedTerritory}
                 clickableBoard={clickableBoard}

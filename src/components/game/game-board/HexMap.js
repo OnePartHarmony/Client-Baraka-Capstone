@@ -3,14 +3,8 @@ import Territory from './Territory'
 
 const HexMap = (props) => {
 
-    const {userPlayerObject, gameObject, territories, width, clickedTerritory, setClickedTerritory, clickableBoard, playerState, advancingTerritory, territoriesWithConfirmedCommands} = props
+    const {userPlayerObject, gameObject, territories, hexWidth, clickedTerritory, setClickedTerritory, clickableBoard, playerState, advancingTerritory, territoriesWithConfirmedCommands} = props
 
-    let hexWidth = .1 * width   
-    if (hexWidth > 90) {
-        hexWidth = 90
-    } else if (hexWidth < 75) {
-        hexWidth = 75
-    }
 
     //establish empty array with length 37
     const territoriesJSX = Array(37)
@@ -35,7 +29,7 @@ const HexMap = (props) => {
     })
 
     return (
-        <div className='hexBoard' style= {{height: 2 * hexWidth}}>
+        <div className='hexBoard' style={{height: 6.5 * hexWidth}}>
             <div className='hexRow hexRow1'>
                 {territoriesJSX.slice(0,4)}
             </div>

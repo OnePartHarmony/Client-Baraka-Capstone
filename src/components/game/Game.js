@@ -11,6 +11,39 @@ const Game = (props) => {
     const [userPlayerObject, setUserPlayerObject] = useState({})
     const [advancingTerritory, setAdvancingTerritory] = useState(null)
     const [territoriesWithConfirmedCommands, setTerritoriesWithConfirmedCommands] = useState([])
+    const [width, setWidth] = useState(window.innerWidth)
+    
+    const setWindowWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', setWindowWidth)
+
+        return function unMount() {
+            window.removeEventListener('resize', setWindowWidth)
+        }
+    }, [])
+
+    const adjustHexWidth = () => {
+        console.log("sup")
+        let newWidth = .1 * width
+        if (newWidth > 110) {
+            newWidth = 110
+        } else if (newWidth < 75) {
+            newWidth = 75
+        }
+        return newWidth
+    }
+
+    const [hexWidth, setHexWidth] = useState(adjustHexWidth)
+
+    useEffect(() => {
+        setHexWidth(adjustHexWidth)
+    }, [width])
+
+    
+
     
     const statusDisplay = statusArray.map((item, index) => (        
         <span key={index}>{item}<br/></span>                             
@@ -32,30 +65,30 @@ const Game = (props) => {
     }, [gameObject])
 
     //check for win and death
-    useEffect(() => {
-        //find preists
-        let myPriests = 0
-        let theirPriests = 0
-        gameObject?.territories.forEach(territory => {
-            if (territory.priests) {
-                if (territory.controlledBy === userPlayerObject._id) {
-                    myPriests += territory.priests
-                } else {
-                    theirPriests += territory.priests
-                }
-            }            
-        })
-        if (theirPriests && !myPriests){
-            socket.emit('iDied', user, (response) => {
-                let newStatArray = statusArray.slice()
-                newStatArray.unshift(response.message)
-                setStatusArray(newStatArray)
-            })
-        } else if (myPriests && !theirPriests) {
-            socket.emit('iWon', user)
-        }
+    // useEffect(() => {
+    //     //find preists
+    //     let myPriests = 0
+    //     let theirPriests = 0
+    //     gameObject?.territories.forEach(territory => {
+    //         if (territory.priests) {
+    //             if (territory.controlledBy === userPlayerObject._id) {
+    //                 myPriests += territory.priests
+    //             } else {
+    //                 theirPriests += territory.priests
+    //             }
+    //         }            
+    //     })
+    //     if (theirPriests && !myPriests){
+    //         socket.emit('iDied', user, (response) => {
+    //             let newStatArray = statusArray.slice()
+    //             newStatArray.unshift(response.message)
+    //             setStatusArray(newStatArray)
+    //         })
+    //     } else if (myPriests && !theirPriests) {
+    //         socket.emit('iWon', user)
+    //     }
 
-    }, gameObject)
+    // }, gameObject)
 
     useEffect(() => {
         if (playerState === 'selectTerritory' && clickedTerritory) {
@@ -78,12 +111,16 @@ const Game = (props) => {
                     setUserPlayerObject={setUserPlayerObject}
                     advancingTerritory={advancingTerritory}
                     territoriesWithConfirmedCommands={territoriesWithConfirmedCommands}
+                    hexWidth={hexWidth}
                 />
                 <div className='statusBar'>
                     <p>
                         {statusDisplay}
-                    </p>
-                    
+                    </p>                    
+                </div>
+                <div className='roomStats' >
+                    <p>Room: {gameObject?.roomId}</p>
+                    <p>Current Season: {gameObject?.currentSeason}</p>
                 </div>
             </div>
             
