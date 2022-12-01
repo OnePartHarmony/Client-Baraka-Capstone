@@ -71,7 +71,7 @@ const Header = ({ user, joinedGame }) => (
 				{user ?
 					<>						
 						<Nav.Item>
-							<Link to='/gameMenu' style={linkStyle}>
+							<Link to='/' style={linkStyle}>
 								{user.gameRoomId && joinedGame ?
 									<span className='navbar-text mr-2'>Game Id: {user.gameRoomId}</span>
 									:

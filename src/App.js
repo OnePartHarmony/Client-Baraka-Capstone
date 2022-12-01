@@ -88,7 +88,7 @@ const App = () => {
 		<>
 			<Header user={user} joinedGame={joinedGame}/>
 			<Routes>
-				<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+				{/* <Route path='/' element={<Home msgAlert={msgAlert} user={user} />} /> */}
 				<Route
 					path='/sign-up'
 					element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
@@ -106,7 +106,7 @@ const App = () => {
 						}
 					/>
 					<Route
-						path='/gameMenu'
+						path='/'
 						element={
 							<RequireAuth user={user}>
 								<GameMenu
