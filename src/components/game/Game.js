@@ -70,6 +70,7 @@ const Game = (props) => {
                 advancingTerritory={advancingTerritory}
                 setAdvancingTerritory={setAdvancingTerritory}
                 setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
+                userPlayerObject={userPlayerObject}
             />
             
         </div>
