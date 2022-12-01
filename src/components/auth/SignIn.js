@@ -30,7 +30,7 @@ const SignIn = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/gameMenu'))
+			.then(() => navigate('/'))
 			.catch((error) => {
                 setEmail('')
                 setPassword('')

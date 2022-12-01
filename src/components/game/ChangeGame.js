@@ -17,7 +17,7 @@ const ChangeGame = (props) => {
 
     useEffect(() => {
         if (joinedNewGame === true) {
-                navigate('/gameMenu')
+                navigate('/')
         }
     }, [joinedNewGame])
     
