@@ -16,7 +16,7 @@ const GameBoard = (props) => {
                 setUserPlayerObject(player)
             }
         })        
-    }, [gameObject, setUserPlayerObject, user])
+    }, [gameObject])
 
     //determine if any hexes at all should be clickable
     //alert players of whose turn it is to place a priest
@@ -39,7 +39,7 @@ const GameBoard = (props) => {
         } else {
             setClickableBoard(false)
         }
-    }, [userPlayerObject, gameObject, setStatusArray])
+    }, [userPlayerObject])
 
     
     

@@ -42,7 +42,7 @@ const Game = (props) => {
 
     useEffect(() => {
         setHexWidth(adjustHexWidth)
-    }, [width, adjustHexWidth])
+    }, [width])
 
     
 
@@ -52,7 +52,7 @@ const Game = (props) => {
             socket.emit('initialUnitPlacement', clickedTerritory._id, userPlayerObject._id, gameObject._id)
             setClickedTerritory(null)
         }
-    }, [clickedTerritory, userPlayerObject, gameObject])
+    }, [clickedTerritory])
     
 
     useEffect(()=> {
@@ -99,7 +99,7 @@ const Game = (props) => {
         if (playerState === 'selectTerritory' && clickedTerritory) {
             setPlayerState('selectCommand')
         }
-    }, [clickedTerritory, playerState])
+    }, [clickedTerritory])
 
     return (
         <>            
