@@ -182,33 +182,55 @@ const CommandMenu = (props) => {
 
 
                 {clickedTerritory?.priests &&
-
-                    <Button onClick={handleChoice} variant='dark'>Excise</Button>
+                    <Button
+                        onClick={handleChoice}
+                        variant='dark'
+                        disabled={command === 'excise' ? 'true' : false}
+                    >Excise</Button>
                 }
 
                 {(clickedTerritory?.priests && clickedTerritory?.population) &&
-
-                    <Button onClick={handleChoice} variant='dark'>Muster</Button>
+                    <Button
+                        onClick={handleChoice}
+                        variant='dark'
+                        disabled={command === 'muster' ? 'true' : false}
+                    >Muster</Button>
                 }
 
+                {/* if muster is chosen and no units can be made */}
+                {(command === 'muster' && (userPlayerObject.gold < 2 || !clickedTerritory?.population || !clickedTerritory?.abundance)) &&
+                    <p>Not enough resources to muster.</p>
+                }
+
+                {/* if muster is chosen and soldier can be made */}
                 {(command === 'muster' && userPlayerObject.gold >= 2 && clickedTerritory?.population && clickedTerritory?.abundance) &&
-
-                    <Button onClick={() => { setMusteredUnit('soldier') }} variant={soldierButtonColor}>Muster Soldier</Button>
+                    <Button
+                        onClick={() => { setMusteredUnit('soldier') }}
+                        variant={soldierButtonColor}
+                    >Muster Soldier</Button>
                 }
-
+                {/* if muster is chosen and priest can be made */}
                 {(command === 'muster' && userPlayerObject.gold >= 5 && clickedTerritory?.population && clickedTerritory?.abundance) &&
-
-                    <Button onClick={() => { setMusteredUnit('priest') }} variant={priestButtonColor}>Muster Priest</Button>
+                    <Button
+                        onClick={() => { setMusteredUnit('priest') }}
+                        variant={priestButtonColor}
+                    >Muster Priest</Button>
                 }
 
-                {clickedTerritory?.population &&
-
-                    <Button onClick={handleChoice} variant='dark' >Sow</Button>
+                {(!advancingTerritory && clickedTerritory?.population) &&
+                    <Button
+                        onClick={handleChoice}
+                        variant='dark'
+                        disabled={command === 'sow' ? 'true' : false}
+                    >Sow</Button>
                 }
             </div>
             <br />
             <div>
-                <Button onClick={handleConfirm} disabled={confirmIsNOTClickable}>CONFIRM COMMAND</Button>{'  '}
+                <Button
+                    onClick={handleConfirm}
+                    disabled={confirmIsNOTClickable}
+                >CONFIRM COMMAND</Button>{'  '}
                 <Button onClick={handleBack}>BACK</Button><br /><br />
             </div>
         </>
