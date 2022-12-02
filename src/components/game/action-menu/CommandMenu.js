@@ -183,7 +183,7 @@ const CommandMenu = (props) => {
             {commandMenuHeader}
             <br />
             <div className="d-grid gap-2">
-                {(!advancingTerritory && (clickedTerritory?.priests || clickedTerritory?.soldiers)) &&
+                {(!advancingTerritory && clickedTerritory) &&
                     <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 }
 
@@ -207,20 +207,21 @@ const CommandMenu = (props) => {
                 }
 
 
-                {(!advancingTerritory && clickedTerritory?.priests) &&
-                    <Button
-                        onClick={handleChoice}
-                        variant='dark'
-                        disabled={command === 'excise' ? true : false}
-                    >Excise</Button>
-                }
+                {(!advancingTerritory && clickedTerritory) &&
+                    <>                    
+                        <Button
+                            onClick={handleChoice}
+                            variant='dark'
+                            disabled={command === 'excise' ? true : false}
+                        >Excise</Button>              
 
-                {(!advancingTerritory && (clickedTerritory?.priests && clickedTerritory?.population)) &&
-                    <Button
-                        onClick={handleChoice}
-                        variant='dark'
-                        disabled={command === 'muster' ? true : false}
-                    >Muster</Button>
+                    
+                        <Button
+                            onClick={handleChoice}
+                            variant='dark'
+                            disabled={command === 'muster' ? true : false}
+                        >Muster</Button>
+                    </>
                 }
 
                 {/* if muster is chosen and no units can be made */}
@@ -243,7 +244,7 @@ const CommandMenu = (props) => {
                     >Muster Priest</Button>
                 }
 
-                {(!advancingTerritory && clickedTerritory?.population) &&
+                {(!advancingTerritory && clickedTerritory) &&
                     <Button
                         onClick={handleChoice}
                         variant='dark'
