@@ -141,9 +141,12 @@ const CommandMenu = (props) => {
     for (let i = 0; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
     for (let i = 0; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
 
+    let priestImg
+    let soldierImg
+
     if (clickedTerritory) {
-        let priestImg = setPriest(userPlayerObject)
-        let soldierImg = setSoldier(clickedTerritory)
+        priestImg = setPriest(userPlayerObject)
+        soldierImg = setSoldier(clickedTerritory)
     }
 
     return (
