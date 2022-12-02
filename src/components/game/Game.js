@@ -28,7 +28,6 @@ const Game = (props) => {
 
     
     const adjustHexWidth = useCallback(() => {
-        console.log("sup")
         let newWidth = .1 * width
         if (newWidth > 110) {
             newWidth = 110

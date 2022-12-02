@@ -70,10 +70,10 @@ const GameMenu = (props) => {
         } 
     }, [user, joinedGame])
 
-    useEffect(() => {
-        ///NEED TO handle win or loss
-        console.log(`${user.username} ${wonOrLost} the game.`)
-    }, [wonOrLost])
+    // useEffect(() => {
+    //     ///NEED TO handle win or loss
+    //     console.log(`${user.username} ${wonOrLost} the game.`)
+    // }, [wonOrLost])
     
     //set status array as separate items in status bar, every other is red to show changes
     const statusDisplay = statusArray.map((item, index) => {
