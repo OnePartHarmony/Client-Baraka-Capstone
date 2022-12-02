@@ -52,7 +52,8 @@ const CommandMenu = (props) => {
                     newTerritory: clickedTerritory._id,
                     issuedBy: userPlayerObject._id,
                     soldiersMarching: soldiersMarching,
-                    priestsMarching: priestsMarching
+                    priestsMarching: priestsMarching,
+                    commanderSeason: userPlayerObject.season
                 }
                 setCommandList(prevArray => { return [...prevArray, advanceCommand] })
 
@@ -68,7 +69,8 @@ const CommandMenu = (props) => {
             let exciseCommand = {
                 type: 'excise',
                 originTerritory: clickedTerritory._id,
-                issuedBy: userPlayerObject._id
+                issuedBy: userPlayerObject._id,
+                commanderSeason: userPlayerObject.season
             }
             setCommandList(prevArray => { return [...prevArray, exciseCommand] })
 
@@ -80,7 +82,8 @@ const CommandMenu = (props) => {
                 type: 'muster',
                 originTerritory: clickedTerritory._id,
                 issuedBy: userPlayerObject._id,
-                musteredUnit: musteredUnit
+                musteredUnit: musteredUnit,
+                commanderSeason: userPlayerObject.season
             }
             setCommandList(prevArray => { return [...prevArray, musterCommand] })
 
@@ -91,7 +94,8 @@ const CommandMenu = (props) => {
             let sowCommand = {
                 type: 'sow',
                 originTerritory: clickedTerritory._id,
-                issuedBy: userPlayerObject._id
+                issuedBy: userPlayerObject._id,
+                commanderSeason: userPlayerObject.season
             }
             setCommandList(prevArray => { return [...prevArray, sowCommand] })
 
