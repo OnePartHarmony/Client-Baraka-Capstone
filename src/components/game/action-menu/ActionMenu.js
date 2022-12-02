@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CommandMenu from './CommandMenu'
 import CombatMenu from './CombatMenu'
-import { socket } from '../../apiConfig'
+import { socket } from '../../../apiConfig'
 import { Button } from 'react-bootstrap'
 
 const ActionMenu = (props) => {
@@ -42,6 +42,10 @@ const ActionMenu = (props) => {
     }, [advancingTerritory])
 
     const handleIssueCommands = () => {
+
+        //NEED check if player has issued advance commands
+        //if so, pop up advance order menu
+
         let sentFormation = formation
         if (confirmedFormation) {sentFormation = confirmedFormation}
 

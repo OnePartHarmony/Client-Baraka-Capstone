@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap'
-import { setSoldier, setPriest } from './game-board/setTerritoryImages'
+import { setSoldier, setPriest } from '../game-board/setTerritoryImages'
 
 
 const CommandMenu = (props) => {
