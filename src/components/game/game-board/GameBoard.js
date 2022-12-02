@@ -42,7 +42,7 @@ const GameBoard = (props) => {
                 })
             }
         }
-    }, [gameObject?.placementOrder])
+    }, [gameObject?.placementOrder.length])
 
     
     
