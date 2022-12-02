@@ -11,11 +11,12 @@ const JoinGame = (props) => {
     return (
         <>
             <div className='newGameForm'>                
-                <h3>Join an Existing Game</h3>
+                <h3 className='mb-4'>Join an Existing Game</h3>
                 <label>Game Key:</label>
-                <input type='text' value={roomId} placeholder='Enter the code for your game' onChange={handleChange}/>
                 <br/>
-                <button className='newGameButton btn btn-dark' onClick={joinGame} style={{margin: 'auto'}}>
+                <input type='text' value={roomId} placeholder='enter game key' onChange={handleChange}/>
+                <br/>
+                <button className='newGameButton btn btn-dark mt-2' onClick={joinGame} style={{margin: 'auto'}}>
                     Join Game
                 </button>
             </div>

@@ -12,11 +12,12 @@ const NewGame = (props) => {
     return (
         <>
             <div className='newGameForm'>
-                <h3>Create a New Game</h3>
+                <h3 className='mb-4'>Create a New Game</h3>
                 <label>Number of Players:</label>
-                <input type='number' min='2' max='4' value={playerCount} onChange={handleChange}/>
+                <br />
+                <input type='number' min='2' max='4' value={playerCount} onChange={handleChange} style={{width: 'max-content'}}/>
                 <br/>
-                <button className='newGameButton btn btn-dark' onClick={startGame} style={{margin: 'auto'}}>
+                <button className='newGameButton btn btn-dark mt-2' onClick={startGame} style={{margin: 'auto'}}>
                     Create Game
                 </button>                             
             </div>

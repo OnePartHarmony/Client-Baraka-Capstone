@@ -120,19 +120,25 @@ body {
 }
 
 .newGameForm {
-  background-color: red;
-  padding: 10px;
+  color: rgb(219, 217, 217);
+  background-color: rgb(63, 63, 63);
+  border: 2px solid black;
   border-radius: 10px;
+  padding: 20px;
   width: max-content;
+  height: max-content;
   margin: 4vh auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 .newGameButton {
-  background: linear-gradient(#5b61ff, #17057c);    
+  background: linear-gradient(#810303, #2c0101);    
   box-shadow: 2px 2px 4px rgba(0,0,0,.2);
   cursor: pointer;
   color: white;
-  margin: auto;
+  margin: 22px auto;
 }
 
 .signOut {
@@ -140,6 +146,16 @@ body {
   width: 55vw;
   display: flex;
   flex-direction: column;
+}
+
+.authForm {
+  color: rgb(219, 217, 217);
+  margin: 30px auto;
+  width: 50vw;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 50px 10px;
+  background: rgb(63, 63, 63);
 }
 
 .player0 {

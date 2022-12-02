@@ -32,10 +32,10 @@ const SignOut = (props) => {
             <div className='signOut mt-5'>                
                 <h2 className='mx-auto mb-4'>Are you sure you want to sign out?</h2>                    
                 <ButtonGroup className='signOutButtons mx-auto'>
-                    <Button variant='danger' onClick={onSignOut}>
+                    <Button variant='dark' onClick={onSignOut}>
                         Sign Out
                     </Button>
-                    <Button variant='warning' onClick={onCancel}>
+                    <Button variant='secondary' onClick={onCancel}>
                         Cancel
                     </Button>
                 </ButtonGroup>                

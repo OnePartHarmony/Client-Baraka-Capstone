@@ -43,8 +43,8 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='container-sm'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+        <div className='authForm'>
+            <div className='col-sm-10 col-md-8 mx-auto'>
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
@@ -69,7 +69,7 @@ const SignIn = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='danger' type='submit' className='mt-4'>
+                    <Button variant='danger' type='submit' className='mt-4 newGameButton'>
                         Submit
                     </Button>
                 </Form>
