@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Dropdown } from 'react-bootstrap'
+import { Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import { setSoldier, setPriest } from './game-board/setTerritoryImages'
-
 
 
 const CommandMenu = (props) => {
@@ -140,6 +139,22 @@ const CommandMenu = (props) => {
     let priestMarchOptions = []
     for (let i = 0; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
     for (let i = 0; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
+    const priestMarchDropdown = priestMarchOptions.map(number => (
+            <Dropdown.Item
+                key={number}
+                value={number}
+                onClick={() => {setPriestsMarching(number)}}
+                active={priestsMarching === number ? true : false}
+            >{number}</Dropdown.Item>
+        ))
+    const soldierMarchDropdown = priestMarchOptions.map(number => (
+            <Dropdown.Item
+                key={number}
+                value={number}
+                onClick={() => {setSoldiersMarching(number)}}
+                active={soldiersMarching === number ? true : false}
+            >{number}</Dropdown.Item>
+        ))
 
     let priestImg
     let soldierImg
@@ -156,7 +171,7 @@ const CommandMenu = (props) => {
         } else {
             commandMenuHeader = (<h4>Choose a Destination</h4>)            
         }
-    } 
+    }
 
     return (
         <>
@@ -170,22 +185,20 @@ const CommandMenu = (props) => {
 
                 {(command === 'advance' && clickedTerritory) &&
                     <>
-                        <span>
-                            <img src={priestImg} />
-                            <Dropdown title='Priests' onSelect={setPriestsMarching}>
-                                {priestMarchOptions.map(number => (
-                                    <Dropdown.Item key={number} value={number}>{number}</Dropdown.Item>
-                                ))}
-                            </Dropdown>
-                        </span>
-                        <span>
-                            <img src={soldierImg} />
-                            <Dropdown title='Soldiers' onSelect={setSoldiersMarching}>
-                                {priestMarchOptions.map(number => (
-                                    <Dropdown.Item key={number} value={number}>{number}</Dropdown.Item>
-                                ))}
-                            </Dropdown>
-                        </span>
+                        <div>
+                            <img src={priestImg} alt='priest' className='me-4'/>
+                            <span>{priestsMarching}</span>
+                            <DropdownButton title='Priests'>
+                                {priestMarchDropdown}                                         
+                            </DropdownButton>
+                        </div>
+                        <div>
+                            <img src={soldierImg} alt='soldier' className='me-4'/>
+                            <span>{soldiersMarching}</span>
+                            <DropdownButton title='Soldiers'>
+                                {soldierMarchDropdown}
+                            </DropdownButton>
+                        </div>
                     </>
                 }
 
@@ -194,7 +207,7 @@ const CommandMenu = (props) => {
                     <Button
                         onClick={handleChoice}
                         variant='dark'
-                        disabled={command === 'excise' ? 'true' : false}
+                        disabled={command === 'excise' ? true : false}
                     >Excise</Button>
                 }
 
@@ -202,7 +215,7 @@ const CommandMenu = (props) => {
                     <Button
                         onClick={handleChoice}
                         variant='dark'
-                        disabled={command === 'muster' ? 'true' : false}
+                        disabled={command === 'muster' ? true : false}
                     >Muster</Button>
                 }
 
@@ -230,7 +243,7 @@ const CommandMenu = (props) => {
                     <Button
                         onClick={handleChoice}
                         variant='dark'
-                        disabled={command === 'sow' ? 'true' : false}
+                        disabled={command === 'sow' ? true : false}
                     >Sow</Button>
                 }
             </div>

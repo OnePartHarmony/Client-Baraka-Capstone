@@ -114,42 +114,37 @@ export const setTerritoryBackground = (territory) => {
 }
 
 export const setPriest = (param) => {
-    let priest
-    if (param) {
-        switch (param.season) {
-            case 'spring' :
-                priest = springPriest
-                break
-            case 'summer' :
-                priest = summerPriest
-                break
-            case 'autumn' :
-                priest = autumnPriest
-                break
-            default :
-                priest = winterPriest
-        }
-    }
+    let priest    
+    switch (param?.season) {
+        case 'spring' :
+            priest = springPriest
+            break
+        case 'summer' :
+            priest = summerPriest
+            break
+        case 'autumn' :
+            priest = autumnPriest
+            break
+        default :
+            priest = winterPriest
+    }    
     return priest
 }
 
-export const setSoldier = (territory) => {
-    let soldier
-    if (territory.controlledBy) {
-        switch (territory.controlledBy.season) {
-            case 'spring' :
-                soldier = springSoldier
-                break
-            case 'summer' :
-                soldier = summerSoldier
-                break
-            case 'autumn' :
-                soldier = autumnSoldier
-                break
-            default :
-                soldier = winterSoldier
-        }
-    }
-    
+export const setSoldier = (param) => {
+    let soldier    
+    switch (param?.season) {
+        case 'spring' :
+            soldier = springSoldier
+            break
+        case 'summer' :
+            soldier = summerSoldier
+            break
+        case 'autumn' :
+            soldier = autumnSoldier
+            break
+        default :
+            soldier = winterSoldier
+    }    
     return soldier
 }

@@ -17,10 +17,6 @@ const CombatMenu = (props) => {
         setFormation(e.target.innerText)
     }
 
-    const confirmFormation = () => {
-        setConfirmedFormation(formation)
-    }
-
     return (
         <>
             <h2>Choose your combat formation:</h2>
@@ -29,27 +25,27 @@ const CombatMenu = (props) => {
                 <Button
                     onClick={handleClick}
                     variant="dark"
-                    disabled={formation === 'Hedgehog' ? 'true' : false}
+                    disabled={formation === 'Hedgehog' ? true : false}
                 >Hedgehog</Button>
                 <Button
                     onClick={handleClick}
                     variant="dark"
-                    disabled={formation === 'Phalanx' ? 'true' : false}
+                    disabled={formation === 'Phalanx' ? true : false}
                 >Phalanx</Button>
                 <Button
                     onClick={handleClick}
                     variant="dark"
-                    disabled={formation === 'Skirmish' ? 'true' : false}
+                    disabled={formation === 'Skirmish' ? true : false}
                 >Skirmish</Button>
                 <Button
                     onClick={handleClick}
                     variant="dark"
-                    disabled={formation === 'Flanking' ? 'true' : false}
+                    disabled={formation === 'Flanking' ? true : false}
                 >Flanking</Button>
                 <Button
                     onClick={handleClick}
                     variant="dark"
-                    disabled={formation === 'Charging' ? 'true' : false}
+                    disabled={formation === 'Charging' ? true : false}
                 >Charging</Button>
             </div>
             <br />
@@ -60,7 +56,7 @@ const CombatMenu = (props) => {
             </div>
             <br />
             <div>
-                <Button variant='warning' className='mb-3' onClick={confirmFormation}>CONFIRM FORMATION</Button>
+                <Button variant='warning' className='mb-3' onClick={() => {setConfirmedFormation(formation)}}>CONFIRM FORMATION</Button>
             </div>
         </>
     )
