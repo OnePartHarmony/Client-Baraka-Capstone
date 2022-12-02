@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Dropdown } from 'react-bootstrap'
+import { Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import { setSoldier, setPriest } from './game-board/setTerritoryImages'
-
 
 
 const CommandMenu = (props) => {
@@ -136,10 +135,27 @@ const CommandMenu = (props) => {
 
     }, [command, advancingTerritory, clickedTerritory, priestsMarching, soldiersMarching, musteredUnit])
 
+    //get options for dropdowns that appear when advancing
     let soldierMarchOptions = []
     let priestMarchOptions = []
     for (let i = 0; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
     for (let i = 0; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
+    const priestMarchDropdown = priestMarchOptions.map(number => (
+            <Dropdown.Item
+                key={number}
+                value={number}
+                onClick={() => {setPriestsMarching(number)}}
+                active={priestsMarching === number ? true : false}
+            >{number}</Dropdown.Item>
+        ))
+    const soldierMarchDropdown = priestMarchOptions.map(number => (
+            <Dropdown.Item
+                key={number}
+                value={number}
+                onClick={() => {setSoldiersMarching(number)}}
+                active={soldiersMarching === number ? true : false}
+            >{number}</Dropdown.Item>
+        ))
 
     let priestImg
     let soldierImg
@@ -149,66 +165,94 @@ const CommandMenu = (props) => {
         soldierImg = setSoldier(clickedTerritory)
     }
 
+    let commandMenuHeader = (<h2>Choose your command:</h2>)
+    if (command === 'advance') {
+        if (clickedTerritory) {
+            commandMenuHeader = (<h3>Choose Advancing Units</h3>)
+        } else {
+            commandMenuHeader = (<h4>Choose a Destination</h4>)            
+        }
+    }
+
     return (
         <>
-            <h2>Choose your command:</h2>
+            {commandMenuHeader}
             <br />
             <div className="d-grid gap-2">
-                {(clickedTerritory?.priests || clickedTerritory?.soldiers) &&
-
+                {(!advancingTerritory && (clickedTerritory?.priests || clickedTerritory?.soldiers)) &&
                     <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 }
 
-                {command === 'advance' &&
+                {(command === 'advance' && clickedTerritory) &&
                     <>
-                        <span>
-                            <img src={priestImg} />
-                            <Dropdown title='Priests' onSelect={setPriestsMarching}>
-                                {priestMarchOptions.map(number => (
-                                    <Dropdown.Item key={number} value={number}>{number}</Dropdown.Item>
-                                ))}
-                            </Dropdown>
-                        </span>
-                        <span>
-                            <img src={soldierImg} />
-                            <Dropdown title='Soldiers' onSelect={setSoldiersMarching}>
-                                {priestMarchOptions.map(number => (
-                                    <Dropdown.Item key={number} value={number}>{number}</Dropdown.Item>
-                                ))}
-                            </Dropdown>
-                        </span>
+                        <div>
+                            <img src={priestImg} alt='priest' className='me-4'/>
+                            <span>{priestsMarching}</span>
+                            <DropdownButton title='Priests'>
+                                {priestMarchDropdown}                                         
+                            </DropdownButton>
+                        </div>
+                        <div>
+                            <img src={soldierImg} alt='soldier' className='me-4'/>
+                            <span>{soldiersMarching}</span>
+                            <DropdownButton title='Soldiers'>
+                                {soldierMarchDropdown}
+                            </DropdownButton>
+                        </div>
                     </>
                 }
 
 
-                {clickedTerritory?.priests &&
-
-                    <Button onClick={handleChoice} variant='dark'>Excise</Button>
+                {(!advancingTerritory && clickedTerritory?.priests) &&
+                    <Button
+                        onClick={handleChoice}
+                        variant='dark'
+                        disabled={command === 'excise' ? true : false}
+                    >Excise</Button>
                 }
 
-                {(clickedTerritory?.priests && clickedTerritory?.population) &&
-
-                    <Button onClick={handleChoice} variant='dark'>Muster</Button>
+                {(!advancingTerritory && (clickedTerritory?.priests && clickedTerritory?.population)) &&
+                    <Button
+                        onClick={handleChoice}
+                        variant='dark'
+                        disabled={command === 'muster' ? true : false}
+                    >Muster</Button>
                 }
 
+                {/* if muster is chosen and no units can be made */}
+                {(command === 'muster' && (userPlayerObject.gold < 2 || !clickedTerritory?.population || !clickedTerritory?.abundance)) &&
+                    <p>Not enough resources to muster.</p>
+                }
+
+                {/* if muster is chosen and soldier can be made */}
                 {(command === 'muster' && userPlayerObject.gold >= 2 && clickedTerritory?.population && clickedTerritory?.abundance) &&
-
-                    <Button onClick={() => { setMusteredUnit('soldier') }} variant={soldierButtonColor}>Muster Soldier</Button>
+                    <Button
+                        onClick={() => { setMusteredUnit('soldier') }}
+                        variant={soldierButtonColor}
+                    >Muster Soldier</Button>
                 }
-
+                {/* if muster is chosen and priest can be made */}
                 {(command === 'muster' && userPlayerObject.gold >= 5 && clickedTerritory?.population && clickedTerritory?.abundance) &&
-
-                    <Button onClick={() => { setMusteredUnit('priest') }} variant={priestButtonColor}>Muster Priest</Button>
+                    <Button
+                        onClick={() => { setMusteredUnit('priest') }}
+                        variant={priestButtonColor}
+                    >Muster Priest</Button>
                 }
 
-                {clickedTerritory?.population &&
-
-                    <Button onClick={handleChoice} variant='dark'>Sow</Button>
+                {(!advancingTerritory && clickedTerritory?.population) &&
+                    <Button
+                        onClick={handleChoice}
+                        variant='dark'
+                        disabled={command === 'sow' ? true : false}
+                    >Sow</Button>
                 }
             </div>
             <br />
             <div>
-                <Button onClick={handleConfirm} disabled={confirmIsNOTClickable}>CONFIRM COMMAND</Button>{'  '}
+                <Button
+                    onClick={handleConfirm}
+                    disabled={confirmIsNOTClickable}
+                >CONFIRM COMMAND</Button>{'  '}
                 <Button onClick={handleBack}>BACK</Button><br /><br />
             </div>
         </>

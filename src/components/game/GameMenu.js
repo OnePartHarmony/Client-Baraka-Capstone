@@ -100,7 +100,7 @@ const GameMenu = (props) => {
             seasonalColor = 'rgb(0, 255, 0)'
             break
         case 'summer' :
-            seasonalColor = 'rgb(255, 0, 0)'
+            seasonalColor = 'rgb(225, 6, 6)'
             break
         case 'autumn' :
             seasonalColor = 'rgb(200, 200, 200)'

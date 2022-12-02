@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import CommandMenu from './CommandMenu'
 import CombatMenu from './CombatMenu'
-import { Button } from 'react-bootstrap'
 import { socket } from '../../apiConfig'
+import { Button } from 'react-bootstrap'
 
 const ActionMenu = (props) => {
 
@@ -13,6 +13,7 @@ const ActionMenu = (props) => {
     const [priestsMarching, setPriestsMarching] = useState(0)
     const [musteredUnit, setMusteredUnit] = useState(null)
     const [formation, setFormation] = useState('Hedgehog')
+    const [confirmedFormation, setConfirmedFormation] = useState(null)
 
     useEffect(() => {
         return () => {
@@ -41,10 +42,12 @@ const ActionMenu = (props) => {
     }, [advancingTerritory])
 
     const handleIssueCommands = () => {
+        let sentFormation = formation
+        if (confirmedFormation) {sentFormation = confirmedFormation}
 
         let commandObject = {
             commandList: commandList,
-            formation: formation
+            formation: sentFormation
         }
         socket.emit('issueCommands', commandObject, userPlayerObject._id, gameObject._id)
 
@@ -55,51 +58,64 @@ const ActionMenu = (props) => {
         setClickedTerritory(null)
         setPlayerState('wait')
         setCommand(null)
+        setFormation(null)
+        setConfirmedFormation(null)
     }
 
     return (
-        <div className='gameRight'>
-            {playerState === 'wait' &&
-                <p>Waiting for other players...</p>
-            }
-            {playerState === 'selectTerritory' &&
-                <p>Choose a territory.</p>
-            }
-            {playerState === 'selectCommand' &&
-                <CommandMenu
-                    user={user}
-                    gameObject={gameObject}
-                    playerState={playerState}
-                    setPlayerState={setPlayerState}
-                    clickedTerritory={clickedTerritory}
-                    setClickedTerritory={setClickedTerritory}
-                    advancingTerritory={advancingTerritory}
-                    setAdvancingTerritory={setAdvancingTerritory}
-                    setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
-                    userPlayerObject={userPlayerObject}
-                    command={command}
-                    setCommand={setCommand}
-                    commandList={commandList}
-                    setCommandList={setCommandList}
-                    soldiersMarching={soldiersMarching}
-                    setSoldiersMarching={setSoldiersMarching}
-                    priestsMarching={priestsMarching}
-                    setPriestsMarching={setPriestsMarching}
-                    musteredUnit={musteredUnit}
-                    setMusteredUnit={setMusteredUnit}
-                    formation={formation}
-                    setFormation={setFormation}
-                />
-            }
-            {/* {playerState === 'combat' &&
-                <CombatMenu user={user}/>
-            } */}
+        <>
+            {(playerState === 'selectCommand' || playerState === 'selectTerritory' || playerState === 'combat') &&
+                <div className='gameRight'>
+                    {/* {playerState === 'wait' &&
+                        <p>Waiting for other players...</p>
+                    } */}
+                    {/* {playerState === 'selectTerritory' &&
+                        <p>Choose a territory.</p>
+                    } */}
+                    {playerState === 'selectCommand' &&
+                        <CommandMenu
+                            user={user}
+                            gameObject={gameObject}
+                            playerState={playerState}
+                            setPlayerState={setPlayerState}
+                            clickedTerritory={clickedTerritory}
+                            setClickedTerritory={setClickedTerritory}
+                            advancingTerritory={advancingTerritory}
+                            setAdvancingTerritory={setAdvancingTerritory}
+                            setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
+                            userPlayerObject={userPlayerObject}
+                            command={command}
+                            setCommand={setCommand}
+                            commandList={commandList}
+                            setCommandList={setCommandList}
+                            soldiersMarching={soldiersMarching}
+                            setSoldiersMarching={setSoldiersMarching}
+                            priestsMarching={priestsMarching}
+                            setPriestsMarching={setPriestsMarching}
+                            musteredUnit={musteredUnit}
+                            setMusteredUnit={setMusteredUnit}
+                            formation={formation}
+                            setFormation={setFormation}
+                        />
+                    }
+                    {/* {playerState === 'combat' &&
+                        <CombatMenu user={user}/>
+                    } */}
 
-            <div>
-                <CombatMenu formation={formation} setFormation={setFormation} />
-                <Button onClick={handleIssueCommands} variant='danger'>ISSUE ALL CONFIRMED COMMANDS</Button>
-            </div>
-        </div>
+                        {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
+                            <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
+                        }
+                    <div>
+                        {playerState === 'selectTerritory' &&
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                                <Button className='issueCommands' variant='warning' onClick={handleIssueCommands}>ISSUE ALL CONFIRMED COMMANDS</Button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </>
+
     )
 }
 

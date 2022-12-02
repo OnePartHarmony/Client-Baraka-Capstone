@@ -10,7 +10,7 @@ const Territory = (props) => {
     const [clickable, setClickable] = useState(false)
     
     const background = setTerritoryBackground(territory)
-    const soldier = setSoldier(territory)
+    const soldier = setSoldier(territory.controlledBy)
     const priest = setPriest(territory.controlledBy)
     
     const checkClickable = () => {

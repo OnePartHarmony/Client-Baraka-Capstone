@@ -11,22 +11,42 @@ const CombatMenu = (props) => {
         'Charging': "4, 4, 4, 4, 4, 9"
     }
 
-    const { formation, setFormation } = props
+    const { formation, setFormation, setConfirmedFormation } = props
 
     const handleClick = (e) => {
         setFormation(e.target.innerText)
     }
 
     return (
-        <>
+        <div>
             <h2>Choose your combat formation:</h2>
             <br />
             <div className="d-grid gap-2">
-                <Button onClick={handleClick} variant="dark">Hedgehog</Button>
-                <Button onClick={handleClick} variant="dark">Phalanx</Button>
-                <Button onClick={handleClick} variant="dark">Skirmish</Button>
-                <Button onClick={handleClick} variant="dark">Flanking</Button>
-                <Button onClick={handleClick} variant="dark">Charging</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Hedgehog' ? true : false}
+                >Hedgehog</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Phalanx' ? true : false}
+                >Phalanx</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Skirmish' ? true : false}
+                >Skirmish</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Flanking' ? true : false}
+                >Flanking</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Charging' ? true : false}
+                >Charging</Button>
             </div>
             <br />
             <div>
@@ -35,10 +55,11 @@ const CombatMenu = (props) => {
                 }
             </div>
             <br />
-            <div>
-                <Button variant='danger'>CONFIRM FORMATION</Button>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Button className='mb-3 greyButton' variant='secondary' onClick={() => {setConfirmedFormation(formation)}}>CONFIRM FORMATION</Button>  
             </div>
-        </>
+                      
+        </div>
     )
 }
 
