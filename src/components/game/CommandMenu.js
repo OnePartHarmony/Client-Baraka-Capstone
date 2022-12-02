@@ -149,9 +149,18 @@ const CommandMenu = (props) => {
         soldierImg = setSoldier(clickedTerritory)
     }
 
+    let commandMenuHeader = (<h2>Choose your command:</h2>)
+    if (command === 'advance') {
+        if (clickedTerritory) {
+            commandMenuHeader = (<h3>Choose Advancing Units</h3>)
+        } else {
+            commandMenuHeader = (<h4>Choose a Destination</h4>)            
+        }
+    } 
+
     return (
         <>
-            <h2>Choose your command:</h2>
+            {commandMenuHeader}
             <br />
             <div className="d-grid gap-2">
                 {(clickedTerritory?.priests || clickedTerritory?.soldiers) &&
@@ -159,7 +168,7 @@ const CommandMenu = (props) => {
                     <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 }
 
-                {command === 'advance' &&
+                {(command === 'advance' && clickedTerritory) &&
                     <>
                         <span>
                             <img src={priestImg} />
