@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap'
 import { setSoldier, setPriest } from '../game-board/setTerritoryImages'
 
@@ -141,7 +141,8 @@ const CommandMenu = (props) => {
 
     //get options for dropdowns that appear when advancing
     let soldierMarchOptions = []
-    let priestMarchOptions = []
+    let priestMarchOptions = []    
+
     for (let i = 0; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
     for (let i = 0; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
     const priestMarchDropdown = priestMarchOptions.map(number => (
@@ -161,13 +162,10 @@ const CommandMenu = (props) => {
             >{number}</Dropdown.Item>
         ))
 
-    let priestImg
-    let soldierImg
-
-    if (clickedTerritory) {
-        priestImg = setPriest(userPlayerObject)
-        soldierImg = setSoldier(clickedTerritory)
-    }
+        
+    const priestImg = setPriest(userPlayerObject)
+    const soldierImg = setSoldier(userPlayerObject)
+    
 
     let commandMenuHeader = (<h2>Choose your command:</h2>)
     if (command === 'advance') {
@@ -187,7 +185,7 @@ const CommandMenu = (props) => {
                     <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 }
 
-                {(command === 'advance' && clickedTerritory) &&
+                {(advancingTerritory && clickedTerritory) &&
                     <>
                         <div>
                             <img src={priestImg} alt='priest' className='me-4'/>

@@ -62,6 +62,7 @@ const ActionMenu = (props) => {
         setFormation(null)
         setConfirmedFormation(null)
         setCommandList([])
+        setTerritoriesWithConfirmedCommands([])
     }
 
     return (
