@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Dropdown } from 'react-bootstrap'
 import { socket } from '../../apiConfig'
 import CombatMenu from './CombatMenu'
+import { setSoldier, setPriest } from './game-board/setTerritoryImages'
 
 
 const CommandMenu = (props) => {
@@ -16,12 +17,12 @@ const CommandMenu = (props) => {
     // for highlighting muster selection
     useEffect(() => {
         if (musteredUnit === 'priest') {
-            priestButtonColor = 'yellow'
+            priestButtonColor = 'primary'
             soldierButtonColor = 'secondary'
         }
         else if (musteredUnit === 'soldier') {
             priestButtonColor = 'secondary'
-            soldierButtonColor = 'yellow'
+            soldierButtonColor = 'primary'
         }
         else {
             priestButtonColor = 'secondary'
@@ -138,9 +139,13 @@ const CommandMenu = (props) => {
 
     let soldierMarchOptions = []
     let priestMarchOptions = []
-    for (let i = 1; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
-    for (let i = 1; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
+    for (let i = 0; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
+    for (let i = 0; i <= advancingTerritory?.priests; i++) priestMarchOptions.push(i)
 
+    if (clickedTerritory) {
+        let priestImg = setPriest(userPlayerObject)
+        let soldierImg = setSoldier(clickedTerritory)
+    }
 
     return (
         <>
@@ -153,13 +158,26 @@ const CommandMenu = (props) => {
                 }
 
                 {command === 'advance' &&
-                    <Dropdown title='Priests'>
-                        {priestMarchOptions.map(number => (
-                            <Dropdown.Item>{number}</Dropdown.Item>
-                        ))}
-                    </Dropdown>       
+                    <>
+                        <span>
+                            <img src={priestImg} />
+                            <Dropdown title='Priests' onSelect={setPriestsMarching}>
+                                {priestMarchOptions.map(number => (
+                                    <Dropdown.Item key={number} value={number}>{number}</Dropdown.Item>
+                                ))}
+                            </Dropdown>
+                        </span>
+                        <span>
+                            <img src={soldierImg} />
+                            <Dropdown title='Soldiers' onSelect={setSoldiersMarching}>
+                                {priestMarchOptions.map(number => (
+                                    <Dropdown.Item key={number} value={number}>{number}</Dropdown.Item>
+                                ))}
+                            </Dropdown>
+                        </span>
+                    </>
                 }
-                
+
 
                 {clickedTerritory?.priests &&
 
