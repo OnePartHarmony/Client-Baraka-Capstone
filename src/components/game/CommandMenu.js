@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Dropdown } from 'react-bootstrap'
-import { socket } from '../../apiConfig'
-import CombatMenu from './CombatMenu'
-import { setSoldier, setPriest } from './game-board/setTerritoryImages'
 
 
 const CommandMenu = (props) => {
