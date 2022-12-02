@@ -43,9 +43,6 @@ const ActionMenu = (props) => {
 
     const handleIssueCommands = () => {
 
-        //NEED check if player has issued advance commands
-        //if so, pop up advance order menu
-
         let sentFormation = formation
         if (confirmedFormation) {sentFormation = confirmedFormation}
 
@@ -68,11 +65,11 @@ const ActionMenu = (props) => {
 
     return (
         <>
-            {(playerState === 'selectCommand' || playerState === 'selectTerritory' || playerState === 'combat') &&
+            {/* {(playerState === 'selectCommand' || playerState === 'selectTerritory' || playerState === 'combat') && */}
                 <div className='gameRight'>
-                    {/* {playerState === 'wait' &&
-                        <p>Waiting for other players...</p>
-                    } */}
+                    {playerState === 'wait' &&
+                        <h2>Waiting for other players...</h2>
+                    }
                     {playerState === 'selectTerritory' &&
                         <h4>Choose a Territory to Command or</h4>
                     }
@@ -122,7 +119,7 @@ const ActionMenu = (props) => {
                         }
                     </div>
                 </div>
-            }
+            {/* } */}
         </>
 
     )

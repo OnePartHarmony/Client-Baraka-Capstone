@@ -69,16 +69,7 @@ const Header = ({ user, joinedGame }) => (
 		<Navbar.Collapse id='basic-navbar-nav opacity-1' style={{background: 'rgb(30,33,37)'}}>
 			<Nav className='ml-auto'>			
 				{user ?
-					<>						
-						{/* <Nav.Item>
-							<Link to='/' style={linkStyle}>
-								{user.gameRoomId && joinedGame ?
-									<span className='navbar-text mr-2'>Game Id: {user.gameRoomId}</span>
-									:
-									<span>Game</span>
-								}								
-							</Link>
-						</Nav.Item> */}
+					<>
 						{authenticatedOptions}
 					</>
 					
