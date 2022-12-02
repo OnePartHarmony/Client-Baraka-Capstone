@@ -14,6 +14,19 @@ const ActionMenu = (props) => {
     const [musteredUnit, setMusteredUnit] = useState(null)
     const [formation, setFormation] = useState('Hedgehog')
 
+    useEffect(() => {
+        return () => {
+            setSoldiersMarching(0)
+            setPriestsMarching(0)
+            setMusteredUnit(null)
+            setAdvancingTerritory(null)
+            setClickedTerritory(null)
+            setPlayerState('wait')
+            setCommand(null)
+            setCommandList([])
+        }
+    }, [])
+
     //when advance is chosen as the commmand, the advancing territory needs to be seen as the 'to' territory is chosen
     useEffect(() => {
         if (command === 'advance') {
