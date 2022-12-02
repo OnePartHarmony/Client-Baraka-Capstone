@@ -26,11 +26,31 @@ const CombatMenu = (props) => {
             <h2>Choose your combat formation:</h2>
             <br />
             <div className="d-grid gap-2">
-                <Button onClick={handleClick} variant="dark">Hedgehog</Button>
-                <Button onClick={handleClick} variant="dark">Phalanx</Button>
-                <Button onClick={handleClick} variant="dark">Skirmish</Button>
-                <Button onClick={handleClick} variant="dark">Flanking</Button>
-                <Button onClick={handleClick} variant="dark">Charging</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Hedgehog' ? 'true' : false}
+                >Hedgehog</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Phalanx' ? 'true' : false}
+                >Phalanx</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Skirmish' ? 'true' : false}
+                >Skirmish</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Flanking' ? 'true' : false}
+                >Flanking</Button>
+                <Button
+                    onClick={handleClick}
+                    variant="dark"
+                    disabled={formation === 'Charging' ? 'true' : false}
+                >Charging</Button>
             </div>
             <br />
             <div>
