@@ -50,13 +50,13 @@ const SignUp = (props) => {
 
 
     return (
-        <div className='container-sm'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+        <div className='authForm'>
+            <div className='col-sm-10 col-md-8 mx-auto'>
                 <h3>Sign Up</h3>
                 <Form onSubmit={onSignUp}>
                     <Form.Group controlId='email'>
                         <Form.Label className='mt-3'>Email address</Form.Label>
-                        <Form.Control
+                        <Form.Control                            
                             required
                             type='email'
                             name='email'
@@ -67,7 +67,7 @@ const SignUp = (props) => {
                     </Form.Group>
                     <Form.Group controlId='username'>
                         <Form.Label className='mt-3'>Username</Form.Label>
-                        <Form.Control
+                        <Form.Control                            
                             required
                             maxLength={14}
                             name='username'
@@ -79,7 +79,7 @@ const SignUp = (props) => {
                     </Form.Group>
                     <Form.Group controlId='password'>
                         <Form.Label className='mt-3'>Password</Form.Label>
-                        <Form.Control
+                        <Form.Control                            
                             required
                             name='password'
                             value={password}
@@ -90,7 +90,7 @@ const SignUp = (props) => {
                     </Form.Group>
                     <Form.Group controlId='passwordConfirmation'>
                         <Form.Label className='mt-3'>Password Confirmation</Form.Label>
-                        <Form.Control
+                        <Form.Control                            
                             required
                             name='passwordConfirmation'
                             value={passwordConfirmation}
