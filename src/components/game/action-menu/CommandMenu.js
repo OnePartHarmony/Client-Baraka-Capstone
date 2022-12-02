@@ -152,7 +152,7 @@ const CommandMenu = (props) => {
                 active={priestsMarching === number ? true : false}
             >{number}</Dropdown.Item>
         ))
-    const soldierMarchDropdown = priestMarchOptions.map(number => (
+    const soldierMarchDropdown = soldierMarchOptions.map(number => (
             <Dropdown.Item
                 key={number}
                 value={number}

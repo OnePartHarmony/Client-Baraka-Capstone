@@ -61,6 +61,7 @@ const ActionMenu = (props) => {
         setCommand(null)
         setFormation(null)
         setConfirmedFormation(null)
+        setCommandList([])
     }
 
     return (
