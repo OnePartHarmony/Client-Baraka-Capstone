@@ -41,6 +41,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   margin: 0 4vw;
+  height: max-content;
 }
 
 .statusBar {

@@ -63,50 +63,59 @@ const ActionMenu = (props) => {
     }
 
     return (
-        <div className='gameRight'>
-            {/* {playerState === 'wait' &&
-                <p>Waiting for other players...</p>
-            } */}
-            {/* {playerState === 'selectTerritory' &&
-                <p>Choose a territory.</p>
-            } */}
-            {playerState === 'selectCommand' &&
-                <CommandMenu
-                    user={user}
-                    gameObject={gameObject}
-                    playerState={playerState}
-                    setPlayerState={setPlayerState}
-                    clickedTerritory={clickedTerritory}
-                    setClickedTerritory={setClickedTerritory}
-                    advancingTerritory={advancingTerritory}
-                    setAdvancingTerritory={setAdvancingTerritory}
-                    setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
-                    userPlayerObject={userPlayerObject}
-                    command={command}
-                    setCommand={setCommand}
-                    commandList={commandList}
-                    setCommandList={setCommandList}
-                    soldiersMarching={soldiersMarching}
-                    setSoldiersMarching={setSoldiersMarching}
-                    priestsMarching={priestsMarching}
-                    setPriestsMarching={setPriestsMarching}
-                    musteredUnit={musteredUnit}
-                    setMusteredUnit={setMusteredUnit}
-                    formation={formation}
-                    setFormation={setFormation}
-                />
-            }
-            {/* {playerState === 'combat' &&
-                <CombatMenu user={user}/>
-            } */}
+        <>
+            {(playerState === 'selectCommand' || playerState === 'selectTerritory' || playerState === 'combat') &&
+                <div className='gameRight'>
+                    {/* {playerState === 'wait' &&
+                        <p>Waiting for other players...</p>
+                    } */}
+                    {/* {playerState === 'selectTerritory' &&
+                        <p>Choose a territory.</p>
+                    } */}
+                    {playerState === 'selectCommand' &&
+                        <CommandMenu
+                            user={user}
+                            gameObject={gameObject}
+                            playerState={playerState}
+                            setPlayerState={setPlayerState}
+                            clickedTerritory={clickedTerritory}
+                            setClickedTerritory={setClickedTerritory}
+                            advancingTerritory={advancingTerritory}
+                            setAdvancingTerritory={setAdvancingTerritory}
+                            setTerritoriesWithConfirmedCommands={setTerritoriesWithConfirmedCommands}
+                            userPlayerObject={userPlayerObject}
+                            command={command}
+                            setCommand={setCommand}
+                            commandList={commandList}
+                            setCommandList={setCommandList}
+                            soldiersMarching={soldiersMarching}
+                            setSoldiersMarching={setSoldiersMarching}
+                            priestsMarching={priestsMarching}
+                            setPriestsMarching={setPriestsMarching}
+                            musteredUnit={musteredUnit}
+                            setMusteredUnit={setMusteredUnit}
+                            formation={formation}
+                            setFormation={setFormation}
+                        />
+                    }
+                    {/* {playerState === 'combat' &&
+                        <CombatMenu user={user}/>
+                    } */}
 
-                {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
-                    <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
-                }
-            <div> 
-                <Button className='issueCommands' variant='warning' onClick={handleIssueCommands}>ISSUE ALL CONFIRMED COMMANDS</Button>
-            </div>
-        </div>
+                        {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
+                            <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
+                        }
+                    <div>
+                        {playerState === 'selectTerritory' &&
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                                <Button className='issueCommands' variant='warning' onClick={handleIssueCommands}>ISSUE ALL CONFIRMED COMMANDS</Button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </>
+
     )
 }
 
