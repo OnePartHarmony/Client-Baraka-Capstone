@@ -135,6 +135,7 @@ const CommandMenu = (props) => {
 
     }, [command, advancingTerritory, clickedTerritory, priestsMarching, soldiersMarching, musteredUnit])
 
+    //get options for dropdowns that appear when advancing
     let soldierMarchOptions = []
     let priestMarchOptions = []
     for (let i = 0; i <= advancingTerritory?.soldiers; i++) soldierMarchOptions.push(i)
@@ -178,8 +179,7 @@ const CommandMenu = (props) => {
             {commandMenuHeader}
             <br />
             <div className="d-grid gap-2">
-                {(clickedTerritory?.priests || clickedTerritory?.soldiers) &&
-
+                {(!advancingTerritory && (clickedTerritory?.priests || clickedTerritory?.soldiers)) &&
                     <Button onClick={handleChoice} variant='dark'>Advance</Button>
                 }
 
@@ -203,7 +203,7 @@ const CommandMenu = (props) => {
                 }
 
 
-                {clickedTerritory?.priests &&
+                {(!advancingTerritory && clickedTerritory?.priests) &&
                     <Button
                         onClick={handleChoice}
                         variant='dark'
@@ -211,7 +211,7 @@ const CommandMenu = (props) => {
                     >Excise</Button>
                 }
 
-                {(clickedTerritory?.priests && clickedTerritory?.population) &&
+                {(!advancingTerritory && (clickedTerritory?.priests && clickedTerritory?.population)) &&
                     <Button
                         onClick={handleChoice}
                         variant='dark'
