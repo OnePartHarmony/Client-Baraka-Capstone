@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import GameBoard from './game-board/GameBoard'
-import ActionMenu from './ActionMenu'
+import ActionMenu from './action-menu/ActionMenu'
 import { socket } from '../../apiConfig'
 
 

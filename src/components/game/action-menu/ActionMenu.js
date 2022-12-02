@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CommandMenu from './CommandMenu'
 import CombatMenu from './CombatMenu'
-import { socket } from '../../apiConfig'
+import { socket } from '../../../apiConfig'
 import { Button } from 'react-bootstrap'
 
 const ActionMenu = (props) => {
@@ -42,6 +42,10 @@ const ActionMenu = (props) => {
     }, [advancingTerritory])
 
     const handleIssueCommands = () => {
+
+        //NEED check if player has issued advance commands
+        //if so, pop up advance order menu
+
         let sentFormation = formation
         if (confirmedFormation) {sentFormation = confirmedFormation}
 
@@ -69,9 +73,9 @@ const ActionMenu = (props) => {
                     {/* {playerState === 'wait' &&
                         <p>Waiting for other players...</p>
                     } */}
-                    {/* {playerState === 'selectTerritory' &&
-                        <p>Choose a territory.</p>
-                    } */}
+                    {playerState === 'selectTerritory' &&
+                        <h4>Choose a Territory to Command or</h4>
+                    }
                     {playerState === 'selectCommand' &&
                         <CommandMenu
                             user={user}
@@ -103,7 +107,12 @@ const ActionMenu = (props) => {
                     } */}
 
                         {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
-                            <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
+                            <CombatMenu
+                                formation={formation}
+                                setFormation={setFormation}
+                                setConfirmedFormation={setConfirmedFormation}
+                                currentSeason={gameObject.currentSeason}
+                            />
                         }
                     <div>
                         {playerState === 'selectTerritory' &&

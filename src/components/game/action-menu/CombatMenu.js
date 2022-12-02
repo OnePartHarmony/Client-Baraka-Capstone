@@ -11,7 +11,7 @@ const CombatMenu = (props) => {
         'Charging': "4, 4, 4, 4, 4, 9"
     }
 
-    const { formation, setFormation, setConfirmedFormation } = props
+    const { formation, setFormation, setConfirmedFormation, currentSeason } = props
 
     const handleClick = (e) => {
         setFormation(e.target.innerText)
@@ -19,7 +19,7 @@ const CombatMenu = (props) => {
 
     return (
         <div>
-            <h2>Choose your combat formation:</h2>
+            <h2>Choose your combat formation for {currentSeason}:</h2>
             <br />
             <div className="d-grid gap-2">
                 <Button
