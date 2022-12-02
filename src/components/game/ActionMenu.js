@@ -103,7 +103,12 @@ const ActionMenu = (props) => {
                     } */}
 
                         {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
-                            <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
+                            <CombatMenu
+                                formation={formation}
+                                setFormation={setFormation}
+                                setConfirmedFormation={setConfirmedFormation}
+                                currentSeason={gameObject.currentSeason}
+                            />
                         }
                     <div>
                         {playerState === 'selectTerritory' &&
