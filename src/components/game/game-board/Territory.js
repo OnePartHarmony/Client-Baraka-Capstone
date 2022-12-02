@@ -56,7 +56,6 @@ const Territory = (props) => {
     }
 
 
-    ///territories that need colors:
     let fillColor = 'rgba(255, 255, 255, 0)'
     let preFillColor = 'rgba(0,0,0,0)'
     if (clickableBoard && !clickable && territory.type != 'water') {
@@ -64,18 +63,18 @@ const Territory = (props) => {
         preFillColor = 'rgba(0, 0, 0, 0.5)'
     }
     //territoriesWithConfirmedCommands - same prefill and fill (unless clickable)
-    if (territoriesWithConfirmedCommands.includes(territory)){
-        fillColor = 'rgba(255, 255, 0, 0.5)'
-        preFillColor = 'rgba(255, 255, 0, 0.5)'
+    if (territoriesWithConfirmedCommands.includes(territory)){        
+        fillColor = 'rgba(0, 0, 255, 0.8)'
+        preFillColor = 'rgba(0, 0, 255, 0.8)'
     }
     //advancingTerritory - same prefill and fill, (unless clickable - should never be clickable)
     if (territory === advancingTerritory) {
-        fillColor = 'rgba(0, 0, 255, 0.5)'
-        preFillColor = 'rgba(0, 0, 255, 0.5)'
+        fillColor = 'rgba(255, 0, 0, 0.5)'
+        preFillColor = 'rgba(255, 0, 0, 0.5)'        
     }
     if (territory === clickedTerritory) {
-        fillColor = 'rgba(255, 0, 0, 0.5)'
-        preFillColor = 'rgba(255, 0, 0, 0.5)'
+        fillColor = 'rgba(255, 255, 0, 0.5)'
+        preFillColor = 'rgba(255, 255, 0, 0.5)'
     }
     if (clickable) {
         fillColor = 'rgba(255, 255, 255, 0.5)'
