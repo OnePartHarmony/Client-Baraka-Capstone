@@ -29,26 +29,7 @@ const GameBoard = (props) => {
         }
     }, [userPlayerObject])
 
- //alert players of whose turn it is to place a priest
-    useEffect(() => {
-        if (gameObject?.placementOrder.length > 0) {
-            if (gameObject.placementOrder[0] === userPlayerObject.season) {
-                setStatusArray(prevArray => {
-                    return ['Your turn! Choose a territory in which to place a priest.', ...prevArray]
-                })
-            } else {
-                setStatusArray(prevArray => {
-                    return [`${gameObject.placementOrder[0]} is placing a priest`, ...prevArray]
-                })
-            }
-        }
-    }, [gameObject?.placementOrder.length])
-
     
-    
-
-
-
     //establish empty array with length 37
     const territoriesJSX = Array(37)
     

@@ -67,6 +67,39 @@ const Game = (props) => {
         } 
     })
 
+     //alert players of whose turn it is to place a priest
+    useEffect(() => {
+        if (gameObject?.placementOrder.length > 0) {
+            if (gameObject.placementOrder[0] === userPlayerObject.season) {
+                setStatusArray(prevArray => {
+                    return ['Your turn! Choose a territory in which to place a priest.', ...prevArray]
+                })
+            } else {
+                setStatusArray(prevArray => {
+                    return [`${gameObject.placementOrder[0]} is placing a priest`, ...prevArray]
+                })
+            }
+        }
+    }, [gameObject?.placementOrder.length])
+
+
+    //alert players of player state changes
+    useEffect(() => {
+        if (playerState === 'selectTerritory') {
+            setStatusArray(prevArray => {
+                return ['Choose one of your territories to command.', ...prevArray]
+            })
+        } else if (playerState === 'selectCommand') {
+            setStatusArray(prevArray => {
+                return ['Choose a command to issue to your territory.', ...prevArray]
+            })
+        } else if (playerState === 'combat') {
+            setStatusArray(prevArray => {
+                return ['Choose a combat formation.', ...prevArray]
+            })
+        }
+    }, [playerState])
+
 
 
     //check for win and death
