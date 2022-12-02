@@ -152,7 +152,7 @@ const CommandMenu = (props) => {
                 active={priestsMarching === number ? true : false}
             >{number}</Dropdown.Item>
         ))
-    const soldierMarchDropdown = priestMarchOptions.map(number => (
+    const soldierMarchDropdown = soldierMarchOptions.map(number => (
             <Dropdown.Item
                 key={number}
                 value={number}
@@ -192,14 +192,14 @@ const CommandMenu = (props) => {
                         <div>
                             <img src={priestImg} alt='priest' className='me-4'/>
                             <span>{priestsMarching}</span>
-                            <DropdownButton title='Priests'>
+                            <DropdownButton title='Priests' className='mt-1'>
                                 {priestMarchDropdown}                                         
                             </DropdownButton>
                         </div>
                         <div>
-                            <img src={soldierImg} alt='soldier' className='me-4'/>
+                            <img src={soldierImg} alt='soldier' className='me-4 mt-2'/>
                             <span>{soldiersMarching}</span>
-                            <DropdownButton title='Soldiers'>
+                            <DropdownButton title='Soldiers' className='mt-1'>
                                 {soldierMarchDropdown}
                             </DropdownButton>
                         </div>
@@ -256,8 +256,12 @@ const CommandMenu = (props) => {
                 <Button
                     onClick={handleConfirm}
                     disabled={confirmIsNOTClickable}
+                    className='mt-2'
                 >CONFIRM COMMAND</Button>{'  '}
-                <Button onClick={handleBack}>BACK</Button><br /><br />
+                <Button
+                    onClick={handleBack}
+                    className='mt-2'
+                >BACK</Button><br /><br />
             </div>
         </>
     )

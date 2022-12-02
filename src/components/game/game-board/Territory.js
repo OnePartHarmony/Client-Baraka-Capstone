@@ -106,7 +106,9 @@ const Territory = (props) => {
                     :
                         null
                 } 
-                Abundance: {territory.abundance} || Population: {territory.population}
+                Abundance: {territory.abundance}
+                <br />
+                Population: {territory.population}
                 <br />
                 Wealth: {territory.wealth}
                 <br />
