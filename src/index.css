@@ -29,15 +29,18 @@ body {
 }
 
 .gameLeft {
-  margin: 0px 10px;
+  margin: 0px 20px;
   position: relative;
 }
 
 .gameRight {  
-  border: 2px solid red;
+  box-shadow: 4px 4px 8px black;
+  background:rgb(171, 6, 6);
+  color: rgb(219, 217, 217);
+  text-shadow: 2px 2px 4px rgba(0,0,0,.5);
+  padding: 10px;
   border-radius: 10px;
-  margin: 0 3vw;
-  flex-grow: 1;
+  margin: 0 4vw;
 }
 
 .statusBar {

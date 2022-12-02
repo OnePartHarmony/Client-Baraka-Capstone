@@ -13,6 +13,7 @@ const ActionMenu = (props) => {
     const [priestsMarching, setPriestsMarching] = useState(0)
     const [musteredUnit, setMusteredUnit] = useState(null)
     const [formation, setFormation] = useState('Hedgehog')
+    const [confirmedFormation, setConfirmedFormation] = useState(null)
 
     useEffect(() => {
         return () => {
@@ -41,10 +42,12 @@ const ActionMenu = (props) => {
     }, [advancingTerritory])
 
     const handleIssueCommands = () => {
+        let sentFormation = formation
+        if (confirmedFormation) {sentFormation = confirmedFormation}
 
         let commandObject = {
             commandList: commandList,
-            formation: formation
+            formation: sentFormation
         }
         socket.emit('issueCommands', commandObject, userPlayerObject._id, gameObject._id)
 
@@ -55,16 +58,18 @@ const ActionMenu = (props) => {
         setClickedTerritory(null)
         setPlayerState('wait')
         setCommand(null)
+        setFormation(null)
+        setConfirmedFormation(null)
     }
 
     return (
         <div className='gameRight'>
-            {playerState === 'wait' &&
+            {/* {playerState === 'wait' &&
                 <p>Waiting for other players...</p>
-            }
-            {playerState === 'selectTerritory' &&
+            } */}
+            {/* {playerState === 'selectTerritory' &&
                 <p>Choose a territory.</p>
-            }
+            } */}
             {playerState === 'selectCommand' &&
                 <CommandMenu
                     user={user}
@@ -95,9 +100,11 @@ const ActionMenu = (props) => {
                 <CombatMenu user={user}/>
             } */}
 
-            <div>
-                <CombatMenu formation={formation} setFormation={setFormation} />
-                <Button onClick={handleIssueCommands} variant='danger'>ISSUE ALL CONFIRMED COMMANDS</Button>
+                {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
+                    <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
+                }
+            <div>                
+                <Button onClick={handleIssueCommands} variant='warning'>ISSUE ALL CONFIRMED COMMANDS</Button>
             </div>
         </div>
     )

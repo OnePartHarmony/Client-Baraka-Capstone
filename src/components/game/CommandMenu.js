@@ -203,7 +203,7 @@ const CommandMenu = (props) => {
 
                 {clickedTerritory?.population &&
 
-                    <Button onClick={handleChoice} variant='dark'>Sow</Button>
+                    <Button onClick={handleChoice} variant='dark' >Sow</Button>
                 }
             </div>
             <br />

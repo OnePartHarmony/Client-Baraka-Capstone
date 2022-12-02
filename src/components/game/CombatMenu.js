@@ -11,10 +11,14 @@ const CombatMenu = (props) => {
         'Charging': "4, 4, 4, 4, 4, 9"
     }
 
-    const { formation, setFormation } = props
+    const { formation, setFormation, setConfirmedFormation } = props
 
     const handleClick = (e) => {
         setFormation(e.target.innerText)
+    }
+
+    const confirmFormation = () => {
+        setConfirmedFormation(formation)
     }
 
     return (
@@ -36,7 +40,7 @@ const CombatMenu = (props) => {
             </div>
             <br />
             <div>
-                <Button variant='danger'>CONFIRM FORMATION</Button>
+                <Button variant='warning' className='mb-3' onClick={confirmFormation}>CONFIRM FORMATION</Button>
             </div>
         </>
     )

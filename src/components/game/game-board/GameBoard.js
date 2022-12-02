@@ -58,7 +58,7 @@ const GameBoard = (props) => {
             case 'spring' :
                 return 'rgb(0, 255, 0)'
             case 'summer' :
-                return 'rgb(255, 0, 0)'
+                return 'rgb(225, 6, 6)'
             case 'autumn' :
                 return 'rgb(200, 200, 200)'
             default :
@@ -76,7 +76,7 @@ const GameBoard = (props) => {
             borderRadius: '20%',
             zIndex: 1,
             fontSize: `${.16 * hexWidth}px`,
-            textShadow: '1px 1px black'          
+            textShadow: '0px 1px black'          
         }}
         >
             <p ><strong>{player.user.username}</strong><br/>
