@@ -224,19 +224,19 @@ const CommandMenu = (props) => {
                 }
 
                 {/* if muster is chosen and no units can be made */}
-                {(command === 'muster' && (userPlayerObject.gold < 2 || !clickedTerritory?.population || !clickedTerritory?.abundance)) &&
+                {(command === 'muster' && (userPlayerObject?.gold < 2 || !clickedTerritory?.population || !clickedTerritory?.abundance)) &&
                     <p>Not enough resources to muster.</p>
                 }
 
                 {/* if muster is chosen and soldier can be made */}
-                {(command === 'muster' && userPlayerObject.gold >= 2 && clickedTerritory?.population && clickedTerritory?.abundance) &&
+                {(command === 'muster' && userPlayerObject?.gold >= 2 && clickedTerritory?.population && clickedTerritory?.abundance) &&
                     <Button
                         onClick={() => { setMusteredUnit('soldier') }}
                         variant={soldierButtonColor}
                     >Muster Soldier</Button>
                 }
                 {/* if muster is chosen and priest can be made */}
-                {(command === 'muster' && userPlayerObject.gold >= 5 && clickedTerritory?.population && clickedTerritory?.abundance) &&
+                {(command === 'muster' && userPlayerObject?.gold >= 5 && clickedTerritory?.population && clickedTerritory?.abundance) &&
                     <Button
                         onClick={() => { setMusteredUnit('priest') }}
                         variant={priestButtonColor}
