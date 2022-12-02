@@ -69,9 +69,9 @@ const ActionMenu = (props) => {
                     {/* {playerState === 'wait' &&
                         <p>Waiting for other players...</p>
                     } */}
-                    {/* {playerState === 'selectTerritory' &&
-                        <p>Choose a territory.</p>
-                    } */}
+                    {playerState === 'selectTerritory' &&
+                        <h4>Choose a Territory to Command or</h4>
+                    }
                     {playerState === 'selectCommand' &&
                         <CommandMenu
                             user={user}

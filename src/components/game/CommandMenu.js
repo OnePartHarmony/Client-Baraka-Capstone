@@ -171,7 +171,7 @@ const CommandMenu = (props) => {
             commandMenuHeader = (<h3>Choose Advancing Units</h3>)
         } else {
             commandMenuHeader = (<h4>Choose a Destination</h4>)            
-        }
+        } 
     }
 
     return (
