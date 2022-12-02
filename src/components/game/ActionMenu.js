@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import CommandMenu from './CommandMenu'
 import CombatMenu from './CombatMenu'
-import { Button } from 'react-bootstrap'
 import { socket } from '../../apiConfig'
+import { Button } from 'react-bootstrap'
 
 const ActionMenu = (props) => {
 
@@ -103,8 +103,8 @@ const ActionMenu = (props) => {
                 {(playerState === 'selectTerritory' && (!confirmedFormation) ) &&
                     <CombatMenu formation={formation} setFormation={setFormation} setConfirmedFormation={setConfirmedFormation} />
                 }
-            <div>                
-                <Button onClick={handleIssueCommands} variant='warning'>ISSUE ALL CONFIRMED COMMANDS</Button>
+            <div> 
+                <Button className='issueCommands' variant='warning' onClick={handleIssueCommands}>ISSUE ALL CONFIRMED COMMANDS</Button>
             </div>
         </div>
     )

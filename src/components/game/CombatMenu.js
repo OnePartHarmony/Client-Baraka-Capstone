@@ -18,7 +18,7 @@ const CombatMenu = (props) => {
     }
 
     return (
-        <>
+        <div>
             <h2>Choose your combat formation:</h2>
             <br />
             <div className="d-grid gap-2">
@@ -55,10 +55,11 @@ const CombatMenu = (props) => {
                 }
             </div>
             <br />
-            <div>
-                <Button variant='warning' className='mb-3' onClick={() => {setConfirmedFormation(formation)}}>CONFIRM FORMATION</Button>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Button className='mb-3 greyButton' variant='secondary' onClick={() => {setConfirmedFormation(formation)}}>CONFIRM FORMATION</Button>  
             </div>
-        </>
+                      
+        </div>
     )
 }
 

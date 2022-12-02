@@ -29,7 +29,7 @@ body {
 }
 
 .gameLeft {
-  margin: 0px 20px;
+  margin-left: 20px;
   position: relative;
 }
 
@@ -181,4 +181,16 @@ body {
   bottom: 0;
   right: 0;
   text-align: right; 
+}
+
+.greyButton {
+  background: linear-gradient(#9c9c9c, #3f3e3e);
+  box-shadow: 2px 2px 4px rgba(0,0,0,.2);
+  cursor: pointer;
+}
+
+.issueCommands {
+  background: linear-gradient(#ffc547, #cf7506);
+  box-shadow: 2px 2px 4px rgba(0,0,0,.2);
+  cursor: pointer;
 }
