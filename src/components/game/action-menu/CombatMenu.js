@@ -19,7 +19,7 @@ const CombatMenu = (props) => {
 
     return (
         <div>
-            <h2>Choose your combat formation for {currentSeason}:</h2>
+            <h3 style={{marginBottom: '-10px'}}>Choose your combat formation for {currentSeason}:</h3>
             <br />
             <div className="d-grid gap-2">
                 <Button
@@ -51,7 +51,7 @@ const CombatMenu = (props) => {
             <br />
             <div>
                 {formation &&
-                    <h3>{formation} die is selected, its faces are {dice[formation]}.</h3>
+                    <h5>{formation} die is selected, its faces are {dice[formation]}.</h5>
                 }
             </div>
             <br />

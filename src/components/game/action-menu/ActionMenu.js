@@ -72,7 +72,7 @@ const ActionMenu = (props) => {
                         <h2>Waiting for other players...</h2>
                     }
                     {playerState === 'selectTerritory' &&
-                        <h4>Choose a Territory to Command or</h4>
+                        <h4 style={{color: 'grey'}}>Choose a Territory to Command, or</h4>
                     }
                     {playerState === 'selectCommand' &&
                         <CommandMenu
