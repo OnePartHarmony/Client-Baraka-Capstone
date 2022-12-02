@@ -18,22 +18,10 @@ const GameBoard = (props) => {
         })        
     }, [gameObject])
 
-    //determine if any hexes at all should be clickable
-    //alert players of whose turn it is to place a priest
+    //determine if any hexes at all should be clickable   
     useEffect(() => {
-        // if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {
-        if (gameObject?.placementOrder.length > 0) {
-            if (gameObject.placementOrder[0] === userPlayerObject.season) {
-                setClickableBoard(true)
-                setStatusArray(prevArray => {
-                    return ['Your turn! Choose a territory in which to place a priest.', ...prevArray]
-                })
-            } else {
-                setClickableBoard(false)
-                setStatusArray(prevArray => {
-                    return [`${gameObject.placementOrder[0]} is placing a priest`, ...prevArray]
-                })
-            }
+        if (gameObject && userPlayerObject &&((gameObject.command) || gameObject.placementOrder[0] === userPlayerObject.season)) {        
+            setClickableBoard(true)
         } else if (gameObject?.command) {          
             setClickableBoard(true)
         } else {
@@ -42,10 +30,6 @@ const GameBoard = (props) => {
     }, [userPlayerObject])
 
     
-    
-
-
-
     //establish empty array with length 37
     const territoriesJSX = Array(37)
     

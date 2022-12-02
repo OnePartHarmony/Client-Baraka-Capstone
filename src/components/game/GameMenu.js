@@ -75,9 +75,24 @@ const GameMenu = (props) => {
         console.log(`${user.username} ${wonOrLost} the game.`)
     }, [wonOrLost])
     
-    const statusDisplay = statusArray.map((item, index) => (        
-        <span key={index}>{item}<br/></span>                             
-    ))
+    //set status array as separate items in status bar, every other is red to show changes
+    const statusDisplay = statusArray.map((item, index) => {
+        let color
+        if (statusArray.length % 2 === 0) {
+            if (index % 2 === 0) {
+                color = 'rgba(255,0,0,.3)'
+            } else {
+                color = 'rgba(0,0,0,0)'
+            }
+        } else {
+            if (index % 2 === 0) {
+                color = 'rgba(0,0,0,0)'
+            } else {
+                color = 'rgba(255,0,0,.3)'
+            }
+        }        
+        return ( <span key={index} style={{background: color}}>{item}<br/></span>  )                                    
+    })
 
     let seasonalColor = 'white'
     switch (gameObject?.currentSeason) {

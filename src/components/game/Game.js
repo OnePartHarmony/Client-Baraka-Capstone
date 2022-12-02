@@ -61,11 +61,65 @@ const Game = (props) => {
         }        
     }, [gameObject])
 
+    //beginning of game status
     useEffect(() => {
        if (!statusArray.length && playerState === 'wait') {
             setStatusArray([`Send other players room id: ${user.gameRoomId}`])
         } 
     })
+
+    //advancing status
+    useEffect(() => {
+        if (advancingTerritory) {
+            setStatusArray(prevArray => {
+                return ['Choose a territory to advance into.', ...prevArray]
+            })
+        }
+    }, [advancingTerritory])
+
+    //status after choosing where to advance to
+    useEffect(() => {
+        if (advancingTerritory && clickedTerritory){
+            setStatusArray(prevArray => {
+                return ['Choose which units to advance.', ...prevArray]
+            })
+        }
+    }, [clickedTerritory])
+
+
+
+     //alert players of whose turn it is to place a priest
+    useEffect(() => {
+        if (gameObject?.placementOrder.length > 0) {
+            if (gameObject.placementOrder[0] === userPlayerObject.season) {
+                setStatusArray(prevArray => {
+                    return ['Your turn! Choose a territory in which to place a priest.', ...prevArray]
+                })
+            } else {
+                setStatusArray(prevArray => {
+                    return [`${gameObject.placementOrder[0]} is placing a priest`, ...prevArray]
+                })
+            }
+        }
+    }, [gameObject?.placementOrder.length])
+
+
+    //alert players of player state changes
+    useEffect(() => {
+        if (playerState === 'selectTerritory') {
+            setStatusArray(prevArray => {
+                return ['Choose one of your territories to command.', ...prevArray]
+            })
+        } else if (playerState === 'selectCommand') {
+            setStatusArray(prevArray => {
+                return ['Choose a command to issue to your territory.', ...prevArray]
+            })
+        } else if (playerState === 'combat') {
+            setStatusArray(prevArray => {
+                return ['Choose a combat formation.', ...prevArray]
+            })
+        }
+    }, [playerState])
 
 
 
